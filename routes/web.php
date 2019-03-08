@@ -11,6 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', function () { return view('pages.template'); });
+
+Route::get('/1', function () { return view('pages.blank1'); });
+Route::get('/2', function () { return view('pages.blank2'); });
+Route::get('/3', function () { return view('pages.blank3'); });
