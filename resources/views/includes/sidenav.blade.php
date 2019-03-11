@@ -14,25 +14,25 @@
     <hr class="sidebar-divider my-0">
 
     <!-- Nav Item - Dashboard -->
-    <li class="nav-item active">
+    <li class="nav-item {{ request()->is('/') ? 'active' : '' }}">
         <a class="nav-link" href="/">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="/1">
+        <a class="nav-link" href="/blank/1">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Blank 1</span></a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="/2">
+        <a class="nav-link" href="/blank/2">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Blank 2</span></a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link" href="/3">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Blank 3</span></a>
+    <li class="nav-item {{ request()->is('users') || request()->is('users/*') ? 'active' : '' }}">
+        <a class="nav-link" href="/users">
+            <i class="fas fa-fw fa-users"></i>
+            <span>Users</span></a>
     </li>
 
     <!-- Divider -->

@@ -13,6 +13,7 @@
                 <li class="breadcrumb-item active" aria-current="page">Guide</li> -->
             </ol>
         </nav>
+        @include('includes.messages')
 
         <!-- Content Row -->
         <div class="row">

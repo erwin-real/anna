@@ -15,7 +15,7 @@ class UsersController extends Controller {
 
     public function users() {
         if ($this->isUserType('admin')) {
-            return view('pages.users.users')
+            return view('pages.users.index')
                 ->with('users', User::orderBy('updated_at', 'desc')->paginate(10));
         }
         return redirect('/')->with('error', 'You don\'t have the privilege');
@@ -32,16 +32,15 @@ class UsersController extends Controller {
         if ($this->isUserType('admin')) {
 
             $validatedData = $request->validate([
-                'name' => 'required',
+                'fname' => 'required',
+                'lname' => 'required',
                 'username' => 'required|string|max:255|unique:users',
                 'password' => 'required|string|min:6|confirmed'
             ]);
 
             $user = new User(array(
-                'name' => $validatedData['name'],
                 'username' => $validatedData['username'],
-                'password' => bcrypt($validatedData['password']),
-                'remember_token' => $request->get('_token')
+                'password' => bcrypt($validatedData['password'])
             ));
 
             if ($request->get('email') == null) $user->email = null;
@@ -50,11 +49,19 @@ class UsersController extends Controller {
                 $user->email = $validateEmail['email'];
             }
 
-            $user->type = 'seller';
+            $user->remember_token = $request->get('_token');
+            $user->type = $request->get('type');
+            $user->fname = $request->get('fname');
+            $user->mname = $request->get('mname');
+            $user->lname = $request->get('lname');
+            $user->birthday = $request->get('birthday');
+            $user->address = $request->get('address');
+            $user->landline = $request->get('landline');
+            $user->mobile = $request->get('mobile');
             $user->save();
 
             return redirect('/users')
-                ->with('success', 'Added new user '. $validatedData['name'])
+                ->with('success', 'Added new user '. $validatedData['fname'].' '.$validatedData['lname'])
                 ->with('users', User::orderBy('updated_at', 'desc')->paginate(20));
         }
         return redirect('/')->with('error', 'You don\'t have the privilege');
