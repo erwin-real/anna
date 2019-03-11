@@ -11,8 +11,13 @@
 |
 */
 
-Route::get('/', function () { return view('pages.template'); });
+Route::get('/template', function () { return view('pages.template'); });
 
-Route::get('/1', function () { return view('pages.blank1'); });
-Route::get('/2', function () { return view('pages.blank2'); });
-Route::get('/3', function () { return view('pages.blank3'); });
+Route::get('/', 'PagesController@dashboard');
+
+Route::get('/blank/{id}', function ($id) { return view('pages.blank'.$id); });
+
+
+Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+Route::post('login', 'Auth\LoginController@login');
+Route::post('logout', 'Auth\LoginController@logout')->name('logout');
