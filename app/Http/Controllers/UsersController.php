@@ -34,6 +34,7 @@ class UsersController extends Controller {
             $validatedData = $request->validate([
                 'fname' => 'required',
                 'lname' => 'required',
+                'User_Group' => 'required',
                 'username' => 'required|string|max:255|unique:users',
                 'password' => 'required|string|min:6|confirmed'
             ]);
@@ -50,7 +51,7 @@ class UsersController extends Controller {
             }
 
             $user->remember_token = $request->get('_token');
-            $user->type = $request->get('type');
+            $user->group = $request->get('User_Group');
             $user->fname = $request->get('fname');
             $user->mname = $request->get('mname');
             $user->lname = $request->get('lname');
@@ -99,16 +100,23 @@ class UsersController extends Controller {
             } else if ($request->get('username') != $user->username) {
                 $validatedData = $request->validate([ 'username' => 'required|string|max:255|unique:users' ]);
                 $user->username = $validatedData['username'];
+                $user->email = $request->get('email');
             }
 
-            $user->name = $request->get('name');
-            $user->email = $request->get('email');
             $user->remember_token = $request->get('_token');
+            $user->group = $request->get('group');
+            $user->fname = $request->get('fname');
+            $user->mname = $request->get('mname');
+            $user->lname = $request->get('lname');
+            $user->birthday = $request->get('birthday');
+            $user->address = $request->get('address');
+            $user->landline = $request->get('landline');
+            $user->mobile = $request->get('mobile');
 
             $user->save();
 
             return redirect('/users')
-                ->with('success', 'Updated user '. $user->name)
+                ->with('success', 'Updated user '. $user->fname .' '. $user->lname)
                 ->with('users', User::orderBy('updated_at', 'desc')->paginate(20));
         }
         return redirect('/')->with('error', 'You don\'t have the privilege');

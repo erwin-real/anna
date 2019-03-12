@@ -9,7 +9,7 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item" aria-current="page">
-                        <a href="/dashboard">Dashboard</a>
+                        <a href="/">Dashboard</a>
                     </li>
                     <li class="breadcrumb-item" aria-current="page">
                         <a href="/users">Users</a>
@@ -18,10 +18,10 @@
                 </ol>
             </nav>
 
-            {{--@include('includes.messages')--}}
+            @include('includes.messages')
 
             <div class="container-fluid mt-5 col-lg-6 col-sm-7">
-                <div class="card">
+                <div class="card mb-4">
                     <div class="card-header">{{ __('Create User') }}</div>
 
                     <div class="card-body">
@@ -47,7 +47,7 @@
                                 <label for="mname" class="col-md-12 col-form-label text-md-left">{{ __('Middle Name') }}</label>
 
                                 <div class="col-md-12">
-                                    <input id="mname" type="text" class="form-control{{ $errors->has('mname') ? ' is-invalid' : '' }}" name="mname" value="{{ old('mname') }}" required autofocus>
+                                    <input id="mname" type="text" class="form-control{{ $errors->has('mname') ? ' is-invalid' : '' }}" name="mname" value="{{ old('mname') }}" autofocus>
 
                                     @if ($errors->has('mname'))
                                         <span class="invalid-feedback" role="alert">
@@ -72,18 +72,18 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="type" class="col-md-12 col-form-label text-md-left">{{ __('User Group') }} <span class="text-danger">*</span></label>
+                                <label for="User_Group" class="col-md-12 col-form-label text-md-left">{{ __('User Group') }} <span class="text-danger">*</span></label>
 
                                 <div class="col-md-12">
-                                    <select id="type" name="type" class="form-control" required autofocus>
+                                    <select id="User_Group" name="User_Group" class="form-control" required autofocus>
                                         <option selected disabled>Choose ...</option>
-                                        <option value="admin">Admin</option>
-                                        <option value="member">Member</option>
+                                        <option value="R&M Store: North and South">R&M Store: North and South</option>
+                                        <option value="R&M Structural (Facilities)">R&M Structural (Facilities)</option>
                                     </select>
 
-                                    @if ($errors->has('type'))
+                                    @if ($errors->has('User_Group'))
                                         <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('type') }}</strong>
+                                        <strong>{{ $errors->first('User_Group') }}</strong>
                                     </span>
                                     @endif
                                 </div>

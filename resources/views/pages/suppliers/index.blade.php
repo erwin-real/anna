@@ -11,9 +11,7 @@
                 <li class="breadcrumb-item" aria-current="page">
                     <a href="/">Dashboard</a>
                 </li>
-                <li class="breadcrumb-item active" aria-current="page">Users</li>
-                <!-- <li class="breadcrumb-item" aria-current="page"><a href="/users">Users</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Guide</li> -->
+                <li class="breadcrumb-item active" aria-current="page">Suppliers</li>
             </ol>
         </nav>
 
@@ -24,35 +22,35 @@
             <div class="container-fluid">
             <div class="card">
                 <div class="card-header">
-                    <h5 class="float-left">Users</h5>
-                    <a href="/users/create" class="btn btn-outline-primary float-right"><i class="fas fa-plus"></i> Add User</a>
+                    <h5 class="float-left">Suppliers</h5>
+                    <a href="/suppliers/create" class="btn btn-outline-primary float-right"><i class="fas fa-plus"></i> Add Supplier</a>
                     <div class="clearfix"></div>
                 </div>
 
                 <div class="card-body mt-2">
-                    @if ($users->isEmpty())
-                        <p> There are no users yet.</p>
+                    @if ($suppliers->isEmpty())
+                        <p> There are no suppliers yet.</p>
                     @else
-                        {{$users->links()}}
+                        {{--{{$suppliers->links()}}--}}
                         <div class="table-responsive">
                             <table class="table table-hover">
                                 <thead>
                                 <tr>
-                                    <th>First Name</th>
-                                    <th>Last Name</th>
-                                    <th>Username</th>
-                                    <th>Email-address</th>
-                                    <th>User Group</th>
+                                    <th>Contact Name</th>
+                                    <th>Contact Person</th>
+                                    <th>Address</th>
+                                    <th>Email Address</th>
+                                    <th>Contact No.</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($users as $user)
+                                @foreach($suppliers as $supplier)
                                     <tr>
-                                        <td><a href="/users/{{$user->id}}">{{ $user->fname }}</a></td>
-                                        <td>{{ $user->lname }}</td>
-                                        <td>{{ $user->username }}</td>
-                                        <td>{{ ($user->email == null) ? "none" : $user->email }}</td>
-                                        <td>{{ $user->group }}</td>
+                                        <td><a href="/suppliers/{{$supplier->id}}">{{ $supplier->name }}</a></td>
+                                        <td>{{ $supplier->person }}</td>
+                                        <td>{{ $supplier->address }}</td>
+                                        <td>{{ $supplier->email ? "none" : $supplier->email }}</td>
+                                        <td>{{ $supplier->contact }}</td>
                                     </tr>
                                 @endforeach
                                 </tbody>

@@ -49,7 +49,11 @@
                                         <form method="POST" action="{{ route('login') }}" aria-label="{{ __('Login') }}" class="user">
                                             @csrf
                                             <div class="form-group">
-                                                <input id="username" type="text" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" value="{{ old('username') }}" required autofocus>
+                                                <input id="username" type="text"
+                                                       class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}"
+                                                       name="username" value="{{ old('username') }}" required autofocus
+                                                       placeholder="Username"
+                                                >
 
                                                 @if ($errors->has('username'))
                                                     <span class="invalid-feedback" role="alert">
@@ -58,7 +62,10 @@
                                                 @endif
                                             </div>
                                             <div class="form-group">
-                                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+                                                <input id="password" type="password"
+                                                       class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
+                                                       name="password" required placeholder="Password"
+                                                >
 
                                                 @if ($errors->has('password'))
                                                     <span class="invalid-feedback" role="alert">

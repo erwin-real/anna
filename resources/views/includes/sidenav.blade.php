@@ -19,15 +19,20 @@
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link" href="/blank/1">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Blank 1</span></a>
+    <li class="nav-item {{ request()->is('companyInfo') || request()->is('companyInfo/*') ? 'active' : '' }}">
+        <a class="nav-link" href="/companyInfo">
+            <i class="fas fa-fw fa-info"></i>
+            <span>Company Information</span></a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link" href="/blank/2">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Blank 2</span></a>
+    <li class="nav-item {{ request()->is('customers') || request()->is('customers/*') ? 'active' : '' }}">
+        <a class="nav-link" href="/customers">
+            <i class="fas fa-fw fa-user-tie"></i>
+            <span>Customers</span></a>
+    </li>
+    <li class="nav-item {{ request()->is('suppliers') || request()->is('suppliers/*') ? 'active' : '' }}">
+        <a class="nav-link" href="/suppliers">
+            <i class="fas fa-fw fa-users-cog"></i>
+            <span>Suppliers</span></a>
     </li>
     <li class="nav-item {{ request()->is('users') || request()->is('users/*') ? 'active' : '' }}">
         <a class="nav-link" href="/users">
