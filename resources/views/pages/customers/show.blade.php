@@ -5,16 +5,16 @@
     {{-- Right Content --}}
     <div class="body-right">
         <div class="container-fluid mb-5">
-            <h1>{{$supplier->name}}</h1>
+            <h1>{{$customer->name}}</h1>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item" aria-current="page">
                         <a href="/">Dashboard</a>
                     </li>
                     <li class="breadcrumb-item" aria-current="page">
-                        <a href="/suppliers">Suppliers</a>
+                        <a href="/customers">Customers</a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">{{$supplier->name}}</li>
+                    <li class="breadcrumb-item active" aria-current="page">{{$customer->name}}</li>
                 </ol>
             </nav>
 
@@ -23,7 +23,7 @@
             <div class="mt-5 col-lg-7 col-sm-8">
                 <div class="card">
                     <div class="card-header ">
-                        <h5>Supplier's Information</h5>
+                        <h5>Customer's Information</h5>
                         <div class="clearfix"></div>
                     </div>
                     <div class="card-body">
@@ -31,7 +31,7 @@
                             <label for="name" class="col-md-12 col-form-label text-md-left"><b>{{ __('Company Name') }}</b></label>
 
                             <div class="offset-1 col-10">
-                                <span id="name">{{$supplier->name}}</span>
+                                <span id="name">{{$customer->name}}</span>
                             </div>
                         </div>
 
@@ -39,7 +39,7 @@
                             <label class="col-md-12 col-form-label text-md-left"><b>{{ __('Contact Person') }}</b></label>
 
                             <div class="offset-1 col-10">
-                                <span>{{$supplier->person}}</span>
+                                <span>{{$customer->person}}</span>
                             </div>
                         </div>
 
@@ -47,7 +47,7 @@
                             <label class="col-md-12 col-form-label text-md-left"><b>{{ __('Address') }}</b></label>
 
                             <div class="offset-1 col-10">
-                                <span>{{$supplier->address}}</span>
+                                <span>{{$customer->address}}</span>
                             </div>
                         </div>
 
@@ -55,7 +55,7 @@
                             <label class="col-md-12 col-form-label text-md-left"><b>{{ __('Email Address') }}</b></label>
 
                             <div class="offset-1 col-10">
-                                <span>{{$supplier->email}}</span>
+                                <span>{{$customer->email}}</span>
                             </div>
                         </div>
 
@@ -63,7 +63,7 @@
                             <label class="col-md-12 col-form-label text-md-left"><b>{{ __('Contact No.') }}</b></label>
 
                             <div class="offset-1 col-10">
-                                <span>{{$supplier->contact}}</span>
+                                <span>{{$customer->contact}}</span>
                             </div>
                         </div>
 
@@ -71,23 +71,15 @@
                             <label class="col-md-12 col-form-label text-md-left"><b>{{ __('TIN #') }}</b></label>
 
                             <div class="offset-1 col-10">
-                                <span>{{$supplier->tin}}</span>
+                                <span>{{$customer->tin}}</span>
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label class="col-md-12 col-form-label text-md-left"><b>{{ __('Tax Output %') }}</b></label>
+                            <label class="col-md-12 col-form-label text-md-left"><b>{{ __('Customer Type') }}</b></label>
 
                             <div class="offset-1 col-10">
-                                <span>{{$supplier->tax_output}}</span>
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label class="col-md-12 col-form-label text-md-left"><b>{{ __('Tax') }}</b></label>
-
-                            <div class="offset-1 col-10">
-                                <span>{{$supplier->tax_type}}</span>
+                                <span>{{$customer->type}}</span>
                             </div>
                         </div>
 
@@ -95,7 +87,7 @@
                             <label class="col-md-12 col-form-label text-md-left"><b>{{ __('Added at') }}</b></label>
 
                             <div class="offset-1 col-10">
-                                <span>{{ date('D M d, Y', strtotime($supplier->created_at)) }}</span>
+                                <span>{{ date('D M d, Y', strtotime($customer->created_at)) }}</span>
                             </div>
                         </div>
 
@@ -103,11 +95,11 @@
                             <label class="col-md-12 col-form-label text-md-left"><b>{{ __('Updated at') }}</b></label>
 
                             <div class="offset-1 col-10">
-                                <span>{{ date('D M d, Y', strtotime($supplier->updated_at)) }}</span>
+                                <span>{{ date('D M d, Y', strtotime($customer->updated_at)) }}</span>
                             </div>
                         </div>
 
-                        <a href="{{ action('SupplierController@edit', $supplier->id) }}" class="btn btn-outline-info float-left mr-2"><i class="fa fa-pencil-alt"></i> Edit</a>
+                        <a href="{{ action('CustomerController@edit', $customer->id) }}" class="btn btn-outline-info float-left mr-2"><i class="fa fa-pencil-alt"></i> Edit</a>
 
                         <button class="btn btn-outline-danger" data-toggle="modal" data-target="#delUserModal">
                             <i class="fas fa-trash fa-sm fa-fw"></i>
@@ -119,7 +111,7 @@
                 </div>
 
             </div>
-            <a href="/suppliers" class="btn btn-outline-primary mt-3"><i class="fas fa-chevron-left"></i> Back</a>
+            <a href="/customers" class="btn btn-outline-primary mt-3"><i class="fas fa-chevron-left"></i> Back</a>
         </div>
     </div>
 
@@ -136,7 +128,7 @@
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
 
-                    <form id="delete" method="POST" action="{{ action('SupplierController@destroy', $supplier->id) }}" class="float-left">
+                    <form id="delete" method="POST" action="{{ action('CustomerController@destroy', $customer->id) }}" class="float-left">
                         <input type="hidden" name="_method" value="DELETE">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <div>

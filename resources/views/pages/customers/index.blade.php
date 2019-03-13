@@ -5,13 +5,13 @@
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <h1 class="h2 mb-0 text-gray-800">Suppliers</h1>
+        <h1 class="h2 mb-0 text-gray-800">Customers</h1>
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item" aria-current="page">
                     <a href="/">Dashboard</a>
                 </li>
-                <li class="breadcrumb-item active" aria-current="page">Suppliers</li>
+                <li class="breadcrumb-item active" aria-current="page">Customers</li>
             </ol>
         </nav>
 
@@ -22,35 +22,35 @@
             <div class="container-fluid">
             <div class="card">
                 <div class="card-header">
-                    <h5 class="float-left">Suppliers</h5>
-                    <a href="/suppliers/create" class="btn btn-outline-primary float-right"><i class="fas fa-plus"></i> Add Supplier</a>
+                    <h5 class="float-left">Customers</h5>
+                    <a href="/customers/create" class="btn btn-outline-primary float-right"><i class="fas fa-plus"></i> Add Customer</a>
                     <div class="clearfix"></div>
                 </div>
 
                 <div class="card-body mt-2">
-                    @if ($suppliers->isEmpty())
-                        <p> There are no suppliers yet.</p>
+                    @if ($customers->isEmpty())
+                        <p> There are no customers yet.</p>
                     @else
-                        {{--{{$suppliers->links()}}--}}
+                        {{--{{$customers->links()}}--}}
                         <div class="table-responsive">
                             <table class="table table-hover">
                                 <thead>
                                 <tr>
-                                    <th>Company Name</th>
+                                    <th>Customer Name</th>
                                     <th>Contact Person</th>
                                     <th>Address</th>
                                     <th>Email Address</th>
-                                    <th>Contact No.</th>
+                                    <th>Customer Type</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($suppliers as $supplier)
+                                @foreach($customers as $customer)
                                     <tr>
-                                        <td><a href="/suppliers/{{$supplier->id}}">{{ $supplier->name }}</a></td>
-                                        <td>{{ $supplier->person }}</td>
-                                        <td>{{ $supplier->address }}</td>
-                                        <td>{{ $supplier->email }}</td>
-                                        <td>{{ $supplier->contact }}</td>
+                                        <td><a href="/customers/{{$customer->id}}">{{ $customer->name }}</a></td>
+                                        <td>{{ $customer->person }}</td>
+                                        <td>{{ $customer->address }}</td>
+                                        <td>{{ $customer->email }}</td>
+                                        <td>{{ $customer->type }}</td>
                                     </tr>
                                 @endforeach
                                 </tbody>

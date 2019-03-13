@@ -62,41 +62,66 @@ class SupplierController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Supplier  $supplier
+     * int id
      * @return \Illuminate\Http\Response
      */
-    public function show(Supplier $supplier) {
-        //
+    public function show($id) {
+        return view('pages.suppliers.show')->with('supplier', Supplier::find($id));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Supplier  $supplier
+     * @param  int id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Supplier $supplier) {
-        //
+    public function edit($id) {
+        return view('pages.suppliers.edit')->with('supplier', Supplier::find($id));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Supplier  $supplier
+     * @param  int id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Supplier $supplier) {
-        //
+    public function update(Request $request, $id) {
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'person' => 'required',
+            'address' => 'required',
+            'tax_type' => 'required'
+        ]);
+
+        $supplier = Supplier::find($id);
+        $supplier->name = $validatedData['name'];
+        $supplier->person = $validatedData['person'];
+        $supplier->address = $validatedData['address'];
+        $supplier->tax_type = $validatedData['tax_type'];
+        $supplier->email = $request->input('email');
+        $supplier->contact = $request->input('contact');
+        $supplier->tin = $request->input('tin');
+        $supplier->tax_output = $request->input('tax_output');
+
+        $supplier->save();
+
+        return redirect('/suppliers')
+            ->with('success', 'Updated supplier '. $validatedData['name'])
+            ->with('suppliers', Supplier::orderBy('updated_at', 'desc')->paginate(20));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Supplier  $supplier
+     * @param  int id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Supplier $supplier) {
-        //
+    public function destroy($id) {
+        $supplier = Supplier::find($id);
+        $supplier->delete();
+
+        return redirect('/suppliers')
+            ->with('success', 'Deleted supplier successfully!');
     }
 }

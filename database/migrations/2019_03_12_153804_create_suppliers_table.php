@@ -21,7 +21,7 @@ class CreateSuppliersTable extends Migration
             $table->string('email')->nullable();
             $table->string('contact')->nullable();
             $table->string('tin')->nullable();
-            $table->double('tax_output', 15, 4)->nullable();
+            $table->string('tax_output')->nullable();
             $table->string('tax_type');
             $table->string('image')->nullable();
             $table->timestamps();

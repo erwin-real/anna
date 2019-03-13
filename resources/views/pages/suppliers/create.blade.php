@@ -14,7 +14,7 @@
                     <li class="breadcrumb-item" aria-current="page">
                         <a href="/suppliers">Suppliers</a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">Create Supplier</li>
+                    <li class="breadcrumb-item active" aria-current="page">Add Supplier</li>
                 </ol>
             </nav>
 

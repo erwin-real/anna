@@ -48,10 +48,10 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="person" class="col-md-12 col-form-label text-md-left">{{ __('Contact Person') }} <span class="text-danger">*</span></label>
+                                <label for="person" class="col-md-12 col-form-label text-md-left">{{ __('Contact Person') }}</label>
 
                                 <div class="col-md-12">
-                                    <input id="person" type="text" class="form-control{{ $errors->has('person') ? ' is-invalid' : '' }}" name="person" value="{{$customer->person}}" required autofocus>
+                                    <input id="person" type="text" class="form-control{{ $errors->has('person') ? ' is-invalid' : '' }}" name="person" value="{{$customer->person}}" autofocus>
 
                                     @if ($errors->has('person'))
                                         <span class="invalid-feedback" role="alert">
@@ -118,31 +118,17 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="tax_output" class="col-md-12 col-form-label text-md-left">{{ __('Tax Output %') }}</label>
+                                <label for="type" class="col-md-12 col-form-label text-md-left">{{ __('Customer Type') }}</label>
 
                                 <div class="col-md-12">
-                                    <input id="tax_output" type="text" class="form-control{{ $errors->has('tax_output') ? ' is-invalid' : '' }}" name="tax_output"  value="{{$customer->tax_output}}">
-
-                                    @if ($errors->has('tax_output'))
-                                        <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('tax_output') }}</strong>
-                                    </span>
-                                    @endif
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="tax_type" class="col-md-12 col-form-label text-md-left">{{ __('Tax') }} <span class="text-danger">*</span></label>
-
-                                <div class="col-md-12">
-                                    <select id="tax_type" name="tax_type" class="form-control" required autofocus>
-                                        <option value="Non-vat" {{$customer->tax_type == 'Non-vat' ? 'selected' : ''}}>Non-vat</option>
-                                        <option value="Property Tax" {{$customer->tax_type == 'Property Tax' ? 'selected' : ''}}>Property Tax</option>
+                                    <select id="type" name="type" class="form-control" autofocus>
+                                        <option value="Type1" {{$customer->type == 'Type1' ? 'selected' : ''}}>Type1</option>
+                                        <option value="Type2" {{$customer->type == 'Type2' ? 'selected' : ''}}>Type2</option>
                                     </select>
 
-                                    @if ($errors->has('tax_type'))
+                                    @if ($errors->has('type'))
                                         <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('tax_type') }}</strong>
+                                        <strong>{{ $errors->first('type') }}</strong>
                                     </span>
                                     @endif
                                 </div>

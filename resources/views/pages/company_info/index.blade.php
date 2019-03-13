@@ -27,7 +27,7 @@
         <div class="row">
             <div class="container-fluid mt-3 col-lg-6 col-sm-10">
                 <div class="card mb-4">
-                    <div class="card-header">{{ __('Name:') }} <b>{{$company_info ? $company_info->name : 'none'}}</b></div>
+                    <div class="card-header"><b>{{ __('Company Name:') }}</b> {{$company_info ? $company_info->name : 'none'}}</div>
 
                     <div class="card-body">
 
