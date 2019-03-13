@@ -18,7 +18,7 @@
         @include('includes.messages')
 
         <div class="button-holder text-right">
-            <a href="/companyInfo/1/edit" target="_blank" class="btn btn-outline-info mt-1">
+            <a href="{{$company_info ? '/companyInfo/'.$company_info->id.'/edit' : '/companyInfo/create'}}" class="btn btn-outline-info mt-1">
                 <i class="fas fa-pencil-alt"></i> Update
             </a>
         </div>

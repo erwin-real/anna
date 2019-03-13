@@ -5,7 +5,7 @@
     {{-- Right Content --}}
     <div class="body-right">
         <div class="container-fluid">
-            <h1>Create Supplier</h1>
+            <h1 class="h2 mb-0 text-gray-800">Add Supplier</h1>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item" aria-current="page">
@@ -22,7 +22,7 @@
 
             <div class="container-fluid mt-5 col-lg-6 col-sm-7">
                 <div class="card mb-4">
-                    <div class="card-header">{{ __('Create Supplier') }}</div>
+                    <div class="card-header">{{ __('Supplier\'s Information') }}</div>
 
                     <div class="card-body">
 
@@ -89,7 +89,7 @@
                                 <label for="contact" class="col-md-12 col-form-label text-md-left">{{ __('Contact No.') }}</label>
 
                                 <div class="col-md-12">
-                                    <input id="contact" type="text" class="form-control{{ $errors->has('contact') ? ' is-invalid' : '' }}" name="contact">
+                                    <input id="contact" type="number" class="form-control{{ $errors->has('contact') ? ' is-invalid' : '' }}" name="contact">
 
                                     @if ($errors->has('contact'))
                                         <span class="invalid-feedback" role="alert">
@@ -103,7 +103,7 @@
                                 <label for="tin" class="col-md-12 col-form-label text-md-left">{{ __('TIN #') }}</label>
 
                                 <div class="col-md-12">
-                                    <input id="tin" type="text" class="form-control{{ $errors->has('tin') ? ' is-invalid' : '' }}" name="tin">
+                                    <input id="tin" type="number" class="form-control{{ $errors->has('tin') ? ' is-invalid' : '' }}" name="tin">
 
                                     @if ($errors->has('tin'))
                                         <span class="invalid-feedback" role="alert">

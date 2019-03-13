@@ -5,7 +5,7 @@
     {{-- Right Content --}}
     <div class="body-right">
         <div class="container-fluid">
-            <h1>Update Customer</h1>
+            <h1 class="h2 mb-0 text-gray-800">{{'Update Customer'}}</h1>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item" aria-current="page">
@@ -34,7 +34,7 @@
                             @csrf
 
                             <div class="form-group row">
-                                <label for="name" class="col-md-12 col-form-label text-md-left">{{ __('Company Name') }} <span class="text-danger">*</span></label>
+                                <label for="name" class="col-md-12 col-form-label text-md-left">{{ __('Customer Name') }} <span class="text-danger">*</span></label>
 
                                 <div class="col-md-12">
                                     <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" value="{{$customer->name}}" name="name" required autofocus>
@@ -93,7 +93,7 @@
                                 <label for="contact" class="col-md-12 col-form-label text-md-left">{{ __('Contact No.') }}</label>
 
                                 <div class="col-md-12">
-                                    <input id="contact" type="text" class="form-control{{ $errors->has('contact') ? ' is-invalid' : '' }}" name="contact" value="{{$customer->contact}}">
+                                    <input id="contact" type="number" class="form-control{{ $errors->has('contact') ? ' is-invalid' : '' }}" name="contact" value="{{$customer->contact}}">
 
                                     @if ($errors->has('contact'))
                                         <span class="invalid-feedback" role="alert">
@@ -104,10 +104,10 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="tin" class="col-md-12 col-form-label text-md-left">{{ __('TIN #') }}</label>
+                                <label for="tin" class="col-md-12 col-form-label text-md-left">{{ __('TIN') }}</label>
 
                                 <div class="col-md-12">
-                                    <input id="tin" type="text" class="form-control{{ $errors->has('tin') ? ' is-invalid' : '' }}" name="tin" value="{{$customer->tin}}">
+                                    <input id="tin" type="number" class="form-control{{ $errors->has('tin') ? ' is-invalid' : '' }}" name="tin" value="{{$customer->tin}}">
 
                                     @if ($errors->has('tin'))
                                         <span class="invalid-feedback" role="alert">
@@ -124,6 +124,7 @@
                                     <select id="type" name="type" class="form-control" autofocus>
                                         <option value="Type1" {{$customer->type == 'Type1' ? 'selected' : ''}}>Type1</option>
                                         <option value="Type2" {{$customer->type == 'Type2' ? 'selected' : ''}}>Type2</option>
+                                        <option value="Type3" {{$customer->type == 'Type3' ? 'selected' : ''}}>Type3</option>
                                     </select>
 
                                     @if ($errors->has('type'))

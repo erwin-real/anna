@@ -5,7 +5,7 @@
     {{-- Right Content --}}
     <div class="body-right">
         <div class="container-fluid">
-            <h1>Update Customer</h1>
+            <h1 class="h2 mb-0 text-gray-800">Update Supplier</h1>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item" aria-current="page">
@@ -93,7 +93,7 @@
                                 <label for="contact" class="col-md-12 col-form-label text-md-left">{{ __('Contact No.') }}</label>
 
                                 <div class="col-md-12">
-                                    <input id="contact" type="text" class="form-control{{ $errors->has('contact') ? ' is-invalid' : '' }}" name="contact" value="{{$customer->contact}}">
+                                    <input id="contact" type="number" class="form-control{{ $errors->has('contact') ? ' is-invalid' : '' }}" name="contact" value="{{$customer->contact}}">
 
                                     @if ($errors->has('contact'))
                                         <span class="invalid-feedback" role="alert">
@@ -107,7 +107,7 @@
                                 <label for="tin" class="col-md-12 col-form-label text-md-left">{{ __('TIN #') }}</label>
 
                                 <div class="col-md-12">
-                                    <input id="tin" type="text" class="form-control{{ $errors->has('tin') ? ' is-invalid' : '' }}" name="tin" value="{{$customer->tin}}">
+                                    <input id="tin" type="number" class="form-control{{ $errors->has('tin') ? ' is-invalid' : '' }}" name="tin" value="{{$customer->tin}}">
 
                                     @if ($errors->has('tin'))
                                         <span class="invalid-feedback" role="alert">

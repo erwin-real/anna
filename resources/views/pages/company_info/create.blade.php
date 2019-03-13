@@ -26,15 +26,14 @@
 
                     <div class="card-body">
 
-                        <form action="{{ action('CompanyInfoController@update', $company_info->id) }}" method="POST">
-                            <input type="hidden" name="_method" value="PUT">
+                        <form action="{{ action('CompanyInfoController@store') }}" method="POST">
                             @csrf
 
                             <div class="form-group row">
                                 <label for="name" class="col-md-12 col-form-label text-md-left">{{ __('Company Name') }} <span class="text-danger">*</span></label>
 
                                 <div class="col-md-12">
-                                    <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ $company_info->name }}" required autofocus>
+                                    <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" required autofocus>
 
                                     @if ($errors->has('name'))
                                         <span class="invalid-feedback" role="alert">
@@ -48,7 +47,7 @@
                                 <label for="address" class="col-md-12 col-form-label text-md-left">{{ __('Company Address') }} <span class="text-danger">*</span></label>
 
                                 <div class="col-md-12">
-                                    <input id="address" type="text" class="form-control{{ $errors->has('address') ? ' is-invalid' : '' }}" name="address" value="{{ $company_info->address }}" required autofocus>
+                                    <input id="address" type="text" class="form-control{{ $errors->has('address') ? ' is-invalid' : '' }}" name="address" required autofocus>
 
                                     @if ($errors->has('address'))
                                         <span class="invalid-feedback" role="alert">
@@ -62,7 +61,7 @@
                                 <label for="email" class="col-md-12 col-form-label text-md-left">{{ __('Email') }} <span class="text-danger">*</span></label>
 
                                 <div class="col-md-12">
-                                    <input id="email" type="text" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ $company_info->email  }}" required autofocus>
+                                    <input id="email" type="text" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" required autofocus>
 
                                     @if ($errors->has('email'))
                                         <span class="invalid-feedback" role="alert">
@@ -76,7 +75,7 @@
                                 <label for="mobile" class="col-md-12 col-form-label text-md-left">{{ __('Mobile #') }}</label>
 
                                 <div class="col-md-12">
-                                    <input id="mobile" type="number" class="form-control{{ $errors->has('mobile') ? ' is-invalid' : '' }}" name="mobile" value="{{ $company_info->mobile }}" autofocus>
+                                    <input id="mobile" type="number" class="form-control{{ $errors->has('mobile') ? ' is-invalid' : '' }}" name="mobile" autofocus>
 
                                     @if ($errors->has('mobile'))
                                         <span class="invalid-feedback" role="alert">
@@ -90,7 +89,7 @@
                                 <label for="landline" class="col-md-12 col-form-label text-md-left">{{ __('Landline') }}</label>
 
                                 <div class="col-md-12">
-                                    <input id="landline" type="number" class="form-control{{ $errors->has('landline') ? ' is-invalid' : '' }}" name="landline" value="{{ $company_info->landline }}" autofocus>
+                                    <input id="landline" type="number" class="form-control{{ $errors->has('landline') ? ' is-invalid' : '' }}" name="landline" autofocus>
 
                                     @if ($errors->has('landline'))
                                         <span class="invalid-feedback" role="alert">
@@ -104,7 +103,7 @@
                                 <label for="tin" class="col-md-12 col-form-label text-md-left">{{ __('TIN.') }}</label>
 
                                 <div class="col-md-12">
-                                    <input id="tin" type="number" class="form-control{{ $errors->has('tin') ? ' is-invalid' : '' }}" name="tin" value="{{ $company_info->tin }}" autofocus>
+                                    <input id="tin" type="number" class="form-control{{ $errors->has('tin') ? ' is-invalid' : '' }}" name="tin" autofocus>
 
                                     @if ($errors->has('tin'))
                                         <span class="invalid-feedback" role="alert">
@@ -118,7 +117,7 @@
                                 <label for="registered" class="col-md-12 col-form-label text-md-left">{{ __('Registered To') }}</label>
 
                                 <div class="col-md-12">
-                                    <input id="registered" type="text" class="form-control{{ $errors->has('registered') ? ' is-invalid' : '' }}" name="registered" value="{{ $company_info->registered }}" autofocus>
+                                    <input id="registered" type="text" class="form-control{{ $errors->has('registered') ? ' is-invalid' : '' }}" name="registered" autofocus>
 
                                     @if ($errors->has('registered'))
                                         <span class="invalid-feedback" role="alert">
@@ -132,7 +131,7 @@
                                 <label for="rdo" class="col-md-12 col-form-label text-md-left">{{ __('RDO #') }}</label>
 
                                 <div class="col-md-12">
-                                    <input id="rdo" type="number" class="form-control{{ $errors->has('rdo') ? ' is-invalid' : '' }}" name="rdo" value="{{ $company_info->rdo }}" autofocus>
+                                    <input id="rdo" type="number" class="form-control{{ $errors->has('rdo') ? ' is-invalid' : '' }}" name="rdo" autofocus>
 
                                     @if ($errors->has('rdo'))
                                         <span class="invalid-feedback" role="alert">
@@ -146,7 +145,7 @@
                                 <label for="nature" class="col-md-12 col-form-label text-md-left">{{ __('Nature of Business') }}</label>
 
                                 <div class="col-md-12">
-                                    <input id="nature" type="text" class="form-control{{ $errors->has('nature') ? ' is-invalid' : '' }}" name="nature" value="{{ $company_info->nature }}" autofocus>
+                                    <input id="nature" type="text" class="form-control{{ $errors->has('nature') ? ' is-invalid' : '' }}" name="nature" autofocus>
 
                                     @if ($errors->has('nature'))
                                         <span class="invalid-feedback" role="alert">
@@ -161,9 +160,9 @@
 
                                 <div class="col-md-12">
                                     <select id="type" name="type" class="form-control" required autofocus>
-                                        <option value="Sole Proprietorship" {{$company_info->type == 'Sole Proprietorship' ? 'selected' : ''}}>Sole Proprietorship</option>
-                                        <option value="Manufacturing" {{$company_info->type == 'Manufacturing' ? 'selected=' : ''}}>Manufacturing</option>
-                                        <option value="Partnership" {{$company_info->type == 'Partnership' ? 'selected' : ''}}>Partnership</option>
+                                        <option value="Sole Proprietorship">Sole Proprietorship</option>
+                                        <option value="Manufacturing">Manufacturing</option>
+                                        <option value="Partnership">Partnership</option>
                                     </select>
 
                                     @if ($errors->has('type'))
@@ -179,9 +178,9 @@
 
                                 <div class="col-md-12">
                                     <select id="tax" name="tax" class="form-control" required autofocus>
-                                        <option value="Non-vat" {{$company_info->tax == 'Non-vat' ? 'selected' : ''}}>Non-vat</option>
-                                        <option value="Property Tax" {{$company_info->tax == 'Property Tax' ? 'selected' : ''}}>Property Tax</option>
-                                        <option value="Progressive Tax" {{$company_info->tax == 'Progressive Tax' ? 'selected' : ''}}>Progressive Tax</option>
+                                        <option value="Non-vat">Non-vat</option>
+                                        <option value="Property Tax">Property Tax</option>
+                                        <option value="Progressive Tax">Progressive Tax</option>
                                     </select>
 
                                     @if ($errors->has('tax'))

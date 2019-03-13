@@ -34,6 +34,11 @@
             <i class="fas fa-fw fa-users-cog"></i>
             <span>Suppliers</span></a>
     </li>
+    <li class="nav-item {{ request()->is('materials') || request()->is('materials/*') ? 'active' : '' }}">
+        <a class="nav-link" href="/materials">
+            <i class="fas fa-fw fa-puzzle-piece"></i>
+            <span>Materials</span></a>
+    </li>
     <li class="nav-item {{ request()->is('users') || request()->is('users/*') ? 'active' : '' }}">
         <a class="nav-link" href="/users">
             <i class="fas fa-fw fa-users"></i>

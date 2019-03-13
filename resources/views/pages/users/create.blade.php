@@ -5,7 +5,7 @@
     {{-- Right Content --}}
     <div class="body-right">
         <div class="container-fluid">
-            <h1>Create User</h1>
+            <h1 class="h2 mb-0 text-gray-800">Create User</h1>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item" aria-current="page">
@@ -22,7 +22,7 @@
 
             <div class="container-fluid mt-5 col-lg-6 col-sm-7">
                 <div class="card mb-4">
-                    <div class="card-header">{{ __('Create User') }}</div>
+                    <div class="card-header">{{ __('User\'s Information') }}</div>
 
                     <div class="card-body">
 
@@ -76,7 +76,6 @@
 
                                 <div class="col-md-12">
                                     <select id="User_Group" name="User_Group" class="form-control" required autofocus>
-                                        <option selected disabled>Choose ...</option>
                                         <option value="R&M Store: North and South">R&M Store: North and South</option>
                                         <option value="R&M Structural (Facilities)">R&M Structural (Facilities)</option>
                                     </select>
@@ -171,7 +170,7 @@
                                 <label for="landline" class="col-md-12 col-form-label text-md-left">{{ __('Landline') }}</label>
 
                                 <div class="col-md-12">
-                                    <input id="landline" type="text" class="form-control{{ $errors->has('landline') ? ' is-invalid' : '' }}" name="landline" value="{{ old('landline') }}" autofocus>
+                                    <input id="landline" type="number" class="form-control{{ $errors->has('landline') ? ' is-invalid' : '' }}" name="landline" value="{{ old('landline') }}" autofocus>
 
                                     @if ($errors->has('landline'))
                                         <span class="invalid-feedback" role="alert">
@@ -185,7 +184,7 @@
                                 <label for="mobile" class="col-md-12 col-form-label text-md-left">{{ __('Mobile') }}</label>
 
                                 <div class="col-md-12">
-                                    <input id="mobile" type="text" class="form-control{{ $errors->has('mobile') ? ' is-invalid' : '' }}" name="mobile" value="{{ old('mobile') }}" autofocus>
+                                    <input id="mobile" type="number" class="form-control{{ $errors->has('mobile') ? ' is-invalid' : '' }}" name="mobile" value="{{ old('mobile') }}" autofocus>
 
                                     @if ($errors->has('mobile'))
                                         <span class="invalid-feedback" role="alert">

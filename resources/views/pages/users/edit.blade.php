@@ -79,7 +79,6 @@
 
                                 <div class="col-md-12">
                                     <select id="group" name="group" class="form-control" required autofocus>
-                                        <option {{$user->group == null ? 'selected' : ''}} disabled>Choose ...</option>
                                         <option {{$user->group == 'R&M Store: North and South' ? 'selected' : ''}} value="R&M Store: North and South">R&M Store: North and South</option>
                                         <option {{$user->group == 'R&M Structural (Facilities)' ? 'selected' : ''}} value="R&M Structural (Facilities)">R&M Structural (Facilities)</option>
                                     </select>
@@ -152,7 +151,7 @@
                                 <label for="landline" class="col-md-12 col-form-label text-md-left">{{ __('Landline') }}</label>
 
                                 <div class="col-md-12">
-                                    <input id="landline" type="text" class="form-control{{ $errors->has('landline') ? ' is-invalid' : '' }}" name="landline" value="{{ $user->landline }}" autofocus>
+                                    <input id="landline" type="number" class="form-control{{ $errors->has('landline') ? ' is-invalid' : '' }}" name="landline" value="{{ $user->landline }}" autofocus>
 
                                     @if ($errors->has('landline'))
                                         <span class="invalid-feedback" role="alert">
@@ -166,7 +165,7 @@
                                 <label for="mobile" class="col-md-12 col-form-label text-md-left">{{ __('Mobile') }}</label>
 
                                 <div class="col-md-12">
-                                    <input id="mobile" type="text" class="form-control{{ $errors->has('mobile') ? ' is-invalid' : '' }}" name="mobile" value="{{ $user->mobile }}" autofocus>
+                                    <input id="mobile" type="number" class="form-control{{ $errors->has('mobile') ? ' is-invalid' : '' }}" name="mobile" value="{{ $user->mobile }}" autofocus>
 
                                     @if ($errors->has('mobile'))
                                         <span class="invalid-feedback" role="alert">

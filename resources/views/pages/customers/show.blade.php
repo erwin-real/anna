@@ -5,7 +5,7 @@
     {{-- Right Content --}}
     <div class="body-right">
         <div class="container-fluid mb-5">
-            <h1>{{$customer->name}}</h1>
+            <h1 class="h2 mb-0 text-gray-800">{{$customer->name}}</h1>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item" aria-current="page">
