@@ -40,6 +40,7 @@ Route::post('register', 'Auth\RegisterController@register');
 //Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 //Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 Route::resource('materials', 'MaterialController');
+Route::resource('products', 'ProductController');
 Route::resource('suppliers', 'SupplierController');
 Route::resource('customers', 'CustomerController');
 Route::resource('companyInfo', 'CompanyInfoController')->except([

@@ -5,16 +5,16 @@
     {{-- Right Content --}}
     <div class="body-right">
         <div class="container-fluid mb-5">
-            <h1 class="h2 mb-0 text-gray-800">{{$material->name}}</h1>
+            <h1 class="h2 mb-0 text-gray-800">{{$product->name}}</h1>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item" aria-current="page">
                         <a href="/">Dashboard</a>
                     </li>
                     <li class="breadcrumb-item" aria-current="page">
-                        <a href="/materials">Materials</a>
+                        <a href="/products">Products</a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">{{$material->main_desc}}</li>
+                    <li class="breadcrumb-item active" aria-current="page">{{$product->main_desc}}</li>
                 </ol>
             </nav>
 
@@ -23,7 +23,7 @@
             <div class="mt-5 col-lg-7 col-sm-8">
                 <div class="card">
                     <div class="card-header ">
-                        <h5>Material's Information</h5>
+                        <h5>Product's Information</h5>
                         <div class="clearfix"></div>
                     </div>
                     <div class="card-body">
@@ -31,15 +31,15 @@
                             <label for="name" class="col-md-12 col-form-label text-md-left"><b>{{ __('PLU') }}</b></label>
 
                             <div class="offset-1 col-10">
-                                <span id="name">{{$material->plu}}</span>
+                                <span id="name">{{$product->plu}}</span>
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="name" class="col-md-12 col-form-label text-md-left"><b>{{ __('Material\'s Description') }}</b></label>
+                            <label for="name" class="col-md-12 col-form-label text-md-left"><b>{{ __('Product\'s Description') }}</b></label>
 
                             <div class="offset-1 col-10">
-                                <span id="name">{{$material->main_desc}}</span>
+                                <span id="name">{{$product->main_desc}}</span>
                             </div>
                         </div>
 
@@ -47,7 +47,7 @@
                             <label for="name" class="col-md-12 col-form-label text-md-left"><b>{{ __('Other Description') }}</b></label>
 
                             <div class="offset-1 col-10">
-                                <span id="name">{{$material->other_desc}}</span>
+                                <span id="name">{{$product->other_desc}}</span>
                             </div>
                         </div>
 
@@ -55,7 +55,7 @@
                             <label for="name" class="col-md-12 col-form-label text-md-left"><b>{{ __('Brand') }}</b></label>
 
                             <div class="offset-1 col-10">
-                                <span id="name">{{$material->brand}}</span>
+                                <span id="name">{{$product->brand}}</span>
                             </div>
                         </div>
 
@@ -63,7 +63,7 @@
                             <label for="name" class="col-md-12 col-form-label text-md-left"><b>{{ __('Supplier') }}</b></label>
 
                             <div class="offset-1 col-10">
-                                <span id="name">{{$material->supplier}}</span>
+                                <span id="name">{{$product->supplier}}</span>
                             </div>
                         </div>
 
@@ -71,7 +71,7 @@
                             <label for="name" class="col-md-12 col-form-label text-md-left"><b>{{ __('Category') }}</b></label>
 
                             <div class="offset-1 col-10">
-                                <span id="name">{{$material->category}}</span>
+                                <span id="name">{{$product->category}}</span>
                             </div>
                         </div>
 
@@ -79,7 +79,7 @@
                             <label for="name" class="col-md-12 col-form-label text-md-left"><b>{{ __('Tax') }}</b></label>
 
                             <div class="offset-1 col-10">
-                                <span id="name">{{$material->tax}}</span>
+                                <span id="name">{{$product->tax}}</span>
                             </div>
                         </div>
 
@@ -87,7 +87,7 @@
                             <label for="name" class="col-md-12 col-form-label text-md-left"><b>{{ __('For Bulk and Retail ?') }}</b></label>
 
                             <div class="offset-1 col-10">
-                                <span id="name">{{$material->retail == 1 ? 'YES' : 'NO'}}</span>
+                                <span id="name">{{$product->retail == 1 ? 'YES' : 'NO'}}</span>
                             </div>
                         </div>
 
@@ -95,7 +95,7 @@
                             <label for="name" class="col-md-12 col-form-label text-md-left"><b>{{ __('Primary Unit') }}</b></label>
 
                             <div class="offset-1 col-10">
-                                <span id="name">{{$material->primary_unit}}</span>
+                                <span id="name">{{$product->primary_unit}}</span>
                             </div>
                         </div>
 
@@ -103,7 +103,7 @@
                             <label for="name" class="col-md-12 col-form-label text-md-left"><b>{{ __('Unit of Measurement') }}</b></label>
 
                             <div class="offset-1 col-10">
-                                <span id="name">{{$material->unit_measurement}}</span>
+                                <span id="name">{{$product->unit_measurement}}</span>
                             </div>
                         </div>
 
@@ -111,7 +111,7 @@
                             <label for="name" class="col-md-12 col-form-label text-md-left"><b>{{ __('Inventory Type') }}</b></label>
 
                             <div class="offset-1 col-10">
-                                <span id="name">{{$material->type}}</span>
+                                <span id="name">{{$product->type}}</span>
                             </div>
                         </div>
 
@@ -119,7 +119,7 @@
                             <label for="name" class="col-md-12 col-form-label text-md-left"><b>{{ __('Suggested Retail Price (SRP)') }}</b></label>
 
                             <div class="offset-1 col-10">
-                                <span id="name">{{$material->srp}}</span>
+                                <span id="name">{{$product->srp}}</span>
                             </div>
                         </div>
 
@@ -127,7 +127,7 @@
                             <label for="name" class="col-md-12 col-form-label text-md-left"><b>{{ __('Discounted Price') }}</b></label>
 
                             <div class="offset-1 col-10">
-                                <span id="name">{{$material->discount}}</span>
+                                <span id="name">{{$product->discount}}</span>
                             </div>
                         </div>
 
@@ -135,7 +135,7 @@
                             <label for="name" class="col-md-12 col-form-label text-md-left"><b>{{ __('Dealer\'s Price') }}</b></label>
 
                             <div class="offset-1 col-10">
-                                <span id="name">{{$material->dealer_price}}</span>
+                                <span id="name">{{$product->dealer_price}}</span>
                             </div>
                         </div>
 
@@ -143,7 +143,7 @@
                             <label for="name" class="col-md-12 col-form-label text-md-left"><b>{{ __('Distributor\' Price') }}</b></label>
 
                             <div class="offset-1 col-10">
-                                <span id="name">{{$material->distributor_price}}</span>
+                                <span id="name">{{$product->distributor_price}}</span>
                             </div>
                         </div>
 
@@ -151,7 +151,7 @@
                             <label for="name" class="col-md-12 col-form-label text-md-left"><b>{{ __('Tax Exempt ?') }}</b></label>
 
                             <div class="offset-1 col-10">
-                                <span id="name">{{$material->tax_exempt == 1 ? 'YES' : 'NO'}}</span>
+                                <span id="name">{{$product->tax_exempt == 1 ? 'YES' : 'NO'}}</span>
                             </div>
                         </div>
 
@@ -159,7 +159,7 @@
                             <label for="name" class="col-md-12 col-form-label text-md-left"><b>{{ __('Public Price') }}</b></label>
 
                             <div class="offset-1 col-10">
-                                <span id="name">{{$material->public_price}}</span>
+                                <span id="name">{{$product->public_price}}</span>
                             </div>
                         </div>
 
@@ -167,7 +167,7 @@
                             <label for="name" class="col-md-12 col-form-label text-md-left"><b>{{ __('Purchase Cost') }}</b></label>
 
                             <div class="offset-1 col-10">
-                                <span id="name">{{$material->purchase_cost}}</span>
+                                <span id="name">{{$product->purchase_cost}}</span>
                             </div>
                         </div>
 
@@ -175,7 +175,7 @@
                             <label class="col-md-12 col-form-label text-md-left"><b>{{ __('Added at') }}</b></label>
 
                             <div class="offset-1 col-10">
-                                <span>{{ date('D M d, Y', strtotime($material->created_at)) }}</span>
+                                <span>{{ date('D M d, Y', strtotime($product->created_at)) }}</span>
                             </div>
                         </div>
 
@@ -183,11 +183,11 @@
                             <label class="col-md-12 col-form-label text-md-left"><b>{{ __('Updated at') }}</b></label>
 
                             <div class="offset-1 col-10">
-                                <span>{{ date('D M d, Y', strtotime($material->updated_at)) }}</span>
+                                <span>{{ date('D M d, Y', strtotime($product->updated_at)) }}</span>
                             </div>
                         </div>
 
-                        <a href="{{ action('MaterialController@edit', $material->id) }}" class="btn btn-outline-info float-left mr-2"><i class="fa fa-pencil-alt"></i> Edit</a>
+                        <a href="{{ action('ProductController@edit', $product->id) }}" class="btn btn-outline-info float-left mr-2"><i class="fa fa-pencil-alt"></i> Edit</a>
 
                         <button class="btn btn-outline-danger" data-toggle="modal" data-target="#delUserModal">
                             <i class="fas fa-trash fa-sm fa-fw"></i>
@@ -199,7 +199,7 @@
                 </div>
 
             </div>
-            <a href="/materials" class="btn btn-outline-primary mt-3"><i class="fas fa-chevron-left"></i> Back</a>
+            <a href="/products" class="btn btn-outline-primary mt-3"><i class="fas fa-chevron-left"></i> Back</a>
         </div>
     </div>
 
@@ -207,16 +207,16 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to delete this material?</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to delete this product?</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Select "Delete" below if you are sure on deleting this material.</div>
+                <div class="modal-body">Select "Delete" below if you are sure on deleting this product.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
 
-                    <form id="delete" method="POST" action="{{ action('MaterialController@destroy', $material->id) }}" class="float-left">
+                    <form id="delete" method="POST" action="{{ action('ProductController@destroy', $product->id) }}" class="float-left">
                         <input type="hidden" name="_method" value="DELETE">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <div>

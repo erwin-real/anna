@@ -5,19 +5,16 @@
     {{-- Right Content --}}
     <div class="body-right">
         <div class="container-fluid">
-            <h1 class="h2 mb-0 text-gray-800">Update Material</h1>
+            <h1 class="h2 mb-0 text-gray-800">Add Product</h1>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item" aria-current="page">
                         <a href="/">Dashboard</a>
                     </li>
                     <li class="breadcrumb-item" aria-current="page">
-                        <a href="/materials">Materials</a>
+                        <a href="/products">Products</a>
                     </li>
-                    <li class="breadcrumb-item" aria-current="page">
-                        <a href="/materials/{{$material->id}}">{{$material->main_desc}}</a>
-                    </li>
-                    <li class="breadcrumb-item active" aria-current="page">Update Material</li>
+                    <li class="breadcrumb-item active" aria-current="page">Add Product</li>
                 </ol>
             </nav>
 
@@ -25,19 +22,18 @@
 
             <div class="container-fluid mt-5 col-lg-6 col-sm-7">
                 <div class="card mb-4">
-                    <div class="card-header">{{ __('Material\'s Information') }}</div>
+                    <div class="card-header">{{ __('Product\'s Information') }}</div>
 
                     <div class="card-body">
 
-                        <form action="{{ action('MaterialController@update', $material->id) }}" method="POST">
-                            <input type="hidden" name="_method" value="PUT">
+                        <form method="POST" action="/products">
                             @csrf
 
                             <div class="form-group row">
                                 <label for="plu" class="col-md-12 col-form-label text-md-left">{{ __('PLU') }} <span class="text-danger">*</span></label>
 
                                 <div class="col-md-12">
-                                    <input id="plu" type="text" class="form-control{{ $errors->has('plu') ? ' is-invalid' : '' }}" name="plu" value="{{$material->plu}}" required autofocus>
+                                    <input id="plu" type="text" class="form-control{{ $errors->has('plu') ? ' is-invalid' : '' }}" name="plu" required autofocus>
 
                                     @if ($errors->has('plu'))
                                         <span class="invalid-feedback" role="alert">
@@ -48,10 +44,10 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="main_desc" class="col-md-12 col-form-label text-md-left">{{ __('Material\'s Description') }} <span class="text-danger">*</span></label>
+                                <label for="main_desc" class="col-md-12 col-form-label text-md-left">{{ __('Product\'s Description') }} <span class="text-danger">*</span></label>
 
                                 <div class="col-md-12">
-                                    <input id="main_desc" type="text" class="form-control{{ $errors->has('main_desc') ? ' is-invalid' : '' }}" name="main_desc" value="{{$material->main_desc}}" required autofocus>
+                                    <input id="main_desc" type="text" class="form-control{{ $errors->has('main_desc') ? ' is-invalid' : '' }}" name="main_desc" required autofocus>
 
                                     @if ($errors->has('main_desc'))
                                         <span class="invalid-feedback" role="alert">
@@ -65,7 +61,7 @@
                                 <label for="other_desc" class="col-md-12 col-form-label text-md-left">{{ __('Other Description') }}</label>
 
                                 <div class="col-md-12">
-                                    <input id="other_desc" type="text" class="form-control{{ $errors->has('other_desc') ? ' is-invalid' : '' }}" name="other_desc" value="{{$material->other_desc}}" autofocus>
+                                    <input id="other_desc" type="text" class="form-control{{ $errors->has('other_desc') ? ' is-invalid' : '' }}" name="other_desc" autofocus>
 
                                     @if ($errors->has('other_desc'))
                                         <span class="invalid-feedback" role="alert">
@@ -80,9 +76,9 @@
 
                                 <div class="col-md-12">
                                     <select id="brand" name="brand" class="form-control" required autofocus>
-                                        <option value="brand1" {{$material->brand == 'brand1' ? 'selected' : ''}}>brand1</option>
-                                        <option value="brand2" {{$material->brand == 'brand2' ? 'selected' : ''}}>brand2</option>
-                                        <option value="brand3" {{$material->brand == 'brand3' ? 'selected' : ''}}>brand3</option>
+                                        <option value="brand1">brand1</option>
+                                        <option value="brand2">brand2</option>
+                                        <option value="brand3">brand3</option>
                                     </select>
 
                                     @if ($errors->has('brand'))
@@ -98,9 +94,9 @@
 
                                 <div class="col-md-12">
                                     <select id="supplier" name="supplier" class="form-control" required autofocus>
-                                        <option value="supplier1" {{$material->supplier == 'supplier1' ? 'selected' : ''}}>supplier1</option>
-                                        <option value="supplier2" {{$material->supplier == 'supplier2' ? 'selected' : ''}}>supplier2</option>
-                                        <option value="supplier3" {{$material->supplier == 'supplier3' ? 'selected' : ''}}>supplier3</option>
+                                        <option value="supplier1">supplier1</option>
+                                        <option value="supplier2">supplier2</option>
+                                        <option value="supplier3">supplier3</option>
                                     </select>
 
                                     @if ($errors->has('supplier'))
@@ -116,9 +112,9 @@
 
                                 <div class="col-md-12">
                                     <select id="category" name="category" class="form-control" required autofocus>
-                                        <option value="category1" {{$material->category == 'category1' ? 'selected' : ''}}>category1</option>
-                                        <option value="category2" {{$material->category == 'category2' ? 'selected' : ''}}>category2</option>
-                                        <option value="category3" {{$material->category == 'category3' ? 'selected' : ''}}>category3</option>
+                                        <option value="category1">category1</option>
+                                        <option value="category2">category2</option>
+                                        <option value="category3">category3</option>
                                     </select>
 
                                     @if ($errors->has('supplier'))
@@ -134,9 +130,9 @@
 
                                 <div class="col-md-12">
                                     <select id="tax" name="tax" class="form-control" required autofocus>
-                                        <option value="tax1" {{$material->tax == 'tax1' ? 'selected' : ''}}>tax1</option>
-                                        <option value="tax2" {{$material->tax == 'tax2' ? 'selected' : ''}}>tax2</option>
-                                        <option value="tax3" {{$material->tax == 'tax3' ? 'selected' : ''}}>tax3</option>
+                                        <option value="tax1">tax1</option>
+                                        <option value="tax2">tax2</option>
+                                        <option value="tax3">tax3</option>
                                     </select>
 
                                     @if ($errors->has('tax'))
@@ -148,7 +144,7 @@
                             </div>
 
                             <div class="form-check row">
-                                <input class="form-check-input" type="checkbox" {{$material->retail == 1 ? 'checked' : ''}} name="retail" id="retail">
+                                <input class="form-check-input" type="checkbox" name="retail" id="retail">
                                 <label class="form-check-label" for="retail">
                                     For Bulk and Retail?
                                 </label>
@@ -165,9 +161,9 @@
 
                                 <div class="col-md-12">
                                     <select id="primary_unit" name="primary_unit" class="form-control" required autofocus>
-                                        <option value="primary_unit1" {{$material->primary_unit == 'primary_unit1' ? 'selected' : ''}}>primary_unit1</option>
-                                        <option value="primary_unit2" {{$material->primary_unit == 'primary_unit2' ? 'selected' : ''}}>primary_unit2</option>
-                                        <option value="primary_unit3" {{$material->primary_unit == 'primary_unit3' ? 'selected' : ''}}>primary_unit3</option>
+                                        <option value="primary_unit1">primary_unit1</option>
+                                        <option value="primary_unit2">primary_unit2</option>
+                                        <option value="primary_unit3">primary_unit3</option>
                                     </select>
 
                                     @if ($errors->has('primary_unit'))
@@ -183,9 +179,9 @@
 
                                 <div class="col-md-12">
                                     <select id="unit_measurement" name="unit_measurement" class="form-control" required autofocus>
-                                        <option value="unit_measurement1" {{$material->unit_measurement == 'unit_measurement1' ? 'selected' : ''}}>unit_measurement1</option>
-                                        <option value="unit_measurement2" {{$material->unit_measurement == 'unit_measurement2' ? 'selected' : ''}}>unit_measurement2</option>
-                                        <option value="unit_measurement3" {{$material->unit_measurement == 'unit_measurement3' ? 'selected' : ''}}>unit_measurement3</option>
+                                        <option value="unit_measurement1">unit_measurement1</option>
+                                        <option value="unit_measurement2">unit_measurement2</option>
+                                        <option value="unit_measurement3">unit_measurement3</option>
                                     </select>
 
                                     @if ($errors->has('unit_measurement'))
@@ -201,9 +197,9 @@
 
                                 <div class="col-md-12">
                                     <select id="type" name="type" class="form-control" required autofocus>
-                                        <option value="type1" {{$material->type == 'type1' ? 'selected' : ''}}>type1</option>
-                                        <option value="type2" {{$material->type == 'type2' ? 'selected' : ''}}>type2</option>
-                                        <option value="type3" {{$material->type == 'type3' ? 'selected' : ''}}>type3</option>
+                                        <option value="type1">type1</option>
+                                        <option value="type2">type2</option>
+                                        <option value="type3">type3</option>
                                     </select>
 
                                     @if ($errors->has('type'))
@@ -218,7 +214,7 @@
                                 <label for="srp" class="col-md-12 col-form-label text-md-left">{{ __('Suggested Retail Price (SRP)') }}</label>
 
                                 <div class="col-md-12">
-                                    <input id="srp" type="number" class="form-control{{ $errors->has('srp') ? ' is-invalid' : '' }}" value="{{$material->srp}}" name="srp" autofocus>
+                                    <input id="srp" type="number" class="form-control{{ $errors->has('srp') ? ' is-invalid' : '' }}" name="srp" autofocus>
 
                                     @if ($errors->has('srp'))
                                         <span class="invalid-feedback" role="alert">
@@ -229,14 +225,14 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="discount" class="col-md-12 col-form-label text-md-left">{{ __('Discounted Price') }}</label>
+                                <label for="wholesaler_price" class="col-md-12 col-form-label text-md-left">{{ __('Wholesaler Price') }}</label>
 
                                 <div class="col-md-12">
-                                    <input id="discount" type="number" class="form-control{{ $errors->has('discount') ? ' is-invalid' : '' }}" value="{{$material->descount}}" name="discount" autofocus>
+                                    <input id="wholesaler_price" type="number" class="form-control{{ $errors->has('wholesaler_price') ? ' is-invalid' : '' }}" name="wholesaler_price" autofocus>
 
-                                    @if ($errors->has('discount'))
+                                    @if ($errors->has('wholesaler_price'))
                                         <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('discount') }}</strong>
+                                        <strong>{{ $errors->first('wholesaler_price') }}</strong>
                                     </span>
                                     @endif
                                 </div>
@@ -246,7 +242,7 @@
                                 <label for="dealer_price" class="col-md-12 col-form-label text-md-left">{{ __('Dealer\'s Price') }}</label>
 
                                 <div class="col-md-12">
-                                    <input id="dealer_price" type="number" class="form-control{{ $errors->has('dealer_price') ? ' is-invalid' : '' }}" value="{{$material->dealer_price}}" name="dealer_price" autofocus>
+                                    <input id="dealer_price" type="number" class="form-control{{ $errors->has('dealer_price') ? ' is-invalid' : '' }}" name="dealer_price" autofocus>
 
                                     @if ($errors->has('dealer_price'))
                                         <span class="invalid-feedback" role="alert">
@@ -260,7 +256,7 @@
                                 <label for="distributor_price" class="col-md-12 col-form-label text-md-left">{{ __('Distributor\'s Price') }}</label>
 
                                 <div class="col-md-12">
-                                    <input id="distributor_price" type="number" class="form-control{{ $errors->has('distributor_price') ? ' is-invalid' : '' }}" value="{{$material->distributor_price}}" name="distributor_price" autofocus>
+                                    <input id="distributor_price" type="number" class="form-control{{ $errors->has('distributor_price') ? ' is-invalid' : '' }}" name="distributor_price" autofocus>
 
                                     @if ($errors->has('distributor_price'))
                                         <span class="invalid-feedback" role="alert">
@@ -271,7 +267,7 @@
                             </div>
 
                             <div class="form-check row">
-                                <input class="form-check-input" type="checkbox" {{$material->tax_exempt == 1 ? 'checked' : ''}} name="tax_exempt" id="tax_exempt">
+                                <input class="form-check-input" type="checkbox" name="tax_exempt" id="tax_exempt">
                                 <label class="form-check-label" for="tax_exempt">
                                     Tax Exempt?
                                 </label>
@@ -284,14 +280,14 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="public_price" class="col-md-12 col-form-label text-md-left">{{ __('Public Price') }}</label>
+                                <label for="reseller_price" class="col-md-12 col-form-label text-md-left">{{ __('Reseller Price') }}</label>
 
                                 <div class="col-md-12">
-                                    <input id="public_price" type="number" class="form-control{{ $errors->has('public_price') ? ' is-invalid' : '' }}" value="{{$material->public_price}}" name="public_price" autofocus>
+                                    <input id="reseller_price" type="number" class="form-control{{ $errors->has('reseller_price') ? ' is-invalid' : '' }}" name="reseller_price" autofocus>
 
-                                    @if ($errors->has('public_price'))
+                                    @if ($errors->has('reseller_price'))
                                         <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('public_price') }}</strong>
+                                        <strong>{{ $errors->first('reseller_price') }}</strong>
                                     </span>
                                     @endif
                                 </div>
@@ -301,11 +297,75 @@
                                 <label for="purchase_cost" class="col-md-12 col-form-label text-md-left">{{ __('Purchase Cost') }}</label>
 
                                 <div class="col-md-12">
-                                    <input id="purchase_cost" type="number" class="form-control{{ $errors->has('purchase_cost') ? ' is-invalid' : '' }}" value="{{$material->purchase_cost}}" name="purchase_cost" autofocus>
+                                    <input id="purchase_cost" type="number" class="form-control{{ $errors->has('purchase_cost') ? ' is-invalid' : '' }}" name="purchase_cost" autofocus>
 
                                     @if ($errors->has('purchase_cost'))
                                         <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('purchase_cost') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="warning_quantity" class="col-md-12 col-form-label text-md-left">{{ __('Warning Qauntity') }}</label>
+
+                                <div class="col-md-12">
+                                    <input id="warning_quantity" type="number" class="form-control{{ $errors->has('warning_quantity') ? ' is-invalid' : '' }}" name="warning_quantity" autofocus>
+
+                                    @if ($errors->has('warning_quantity'))
+                                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('warning_quantity') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="ideal_quantity" class="col-md-12 col-form-label text-md-left">{{ __('Ideal Quantity') }}</label>
+
+                                <div class="col-md-12">
+                                    <input id="ideal_quantity" type="number" class="form-control{{ $errors->has('ideal_quantity') ? ' is-invalid' : '' }}" name="ideal_quantity" autofocus>
+
+                                    @if ($errors->has('ideal_quantity'))
+                                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('ideal_quantity') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="credit" class="col-md-12 col-form-label text-md-left">{{ __('Link To Credit Account (For Sales Journal)') }} <span class="text-danger">*</span></label>
+
+                                <div class="col-md-12">
+                                    <select id="credit" name="credit" class="form-control" required autofocus>
+                                        <option value="credit1">credit1</option>
+                                        <option value="credit2">credit2</option>
+                                        <option value="credit3">credit3</option>
+                                    </select>
+
+                                    @if ($errors->has('credit'))
+                                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('credit') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="debit" class="col-md-12 col-form-label text-md-left">{{ __('Link To Debit Account (For Purchase Journal)') }} <span class="text-danger">*</span></label>
+
+                                <div class="col-md-12">
+                                    <select id="debit" name="debit" class="form-control" required autofocus>
+                                        <option value="debit1">debit1</option>
+                                        <option value="debit2">debit2</option>
+                                        <option value="debit3">debit3</option>
+                                    </select>
+
+                                    @if ($errors->has('debit'))
+                                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('debit') }}</strong>
                                     </span>
                                     @endif
                                 </div>
