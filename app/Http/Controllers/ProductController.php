@@ -66,12 +66,16 @@ class ProductController extends Controller
         $product->other_desc = $request->get('other_desc');
         $product->retail = $request->input('retail') == 'on' ? 1 : 0;
         $product->srp = $request->get('srp');
-        $product->discount = $request->get('discount');
+        $product->wholesaler_price = $request->get('wholesaler_price');
         $product->dealer_price = $request->get('dealer_price');
         $product->distributor_price = $request->get('distributor_price');
         $product->tax_exempt = $request->input('tax_exempt') == 'on' ? 1 : 0;
-        $product->public_price = $request->get('public_price');
+        $product->reseller_price = $request->get('reseller_price');
         $product->purchase_cost = $request->get('purchase_cost');
+        $product->warning_quantity = $request->get('warning_quantity');
+        $product->ideal_quantity = $request->get('ideal_quantity');
+        $product->credit = $request->get('credit');
+        $product->debit = $request->get('debit');
         $product->save();
 
         return redirect('/products')
@@ -132,16 +136,20 @@ class ProductController extends Controller
         $product->other_desc = $request->get('other_desc');
         $product->retail = $request->input('retail') == 'on' ? 1 : 0;
         $product->srp = $request->get('srp');
-        $product->discount = $request->get('discount');
+        $product->wholesaler_price = $request->get('wholesaler_price');
         $product->dealer_price = $request->get('dealer_price');
         $product->distributor_price = $request->get('distributor_price');
         $product->tax_exempt = $request->input('tax_exempt') == 'on' ? 1 : 0;
-        $product->public_price = $request->get('public_price');
+        $product->reseller_price = $request->get('reseller_price');
         $product->purchase_cost = $request->get('purchase_cost');
+        $product->warning_quantity = $request->get('warning_quantity');
+        $product->ideal_quantity = $request->get('ideal_quantity');
+        $product->credit = $request->get('credit');
+        $product->debit = $request->get('debit');
         $product->save();
 
         return redirect('/products')
-            ->with('success', 'Updated product Successfully!')
+            ->with('success', 'Updated Product Successfully!')
             ->with('products', Product::orderBy('updated_at', 'desc')->paginate(20));
     }
 
@@ -156,6 +164,6 @@ class ProductController extends Controller
         $product->delete();
 
         return redirect('/products')
-            ->with('success', 'Deleted product Successfully!');
+            ->with('success', 'Deleted Product Successfully!');
     }
 }

@@ -229,14 +229,16 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="discount" class="col-md-12 col-form-label text-md-left">{{ __('Discounted Price') }}</label>
+                                <label for="wholesaler_price" class="col-md-12 col-form-label text-md-left">{{ __('Wholesaler Price') }}</label>
 
                                 <div class="col-md-12">
-                                    <input id="discount" type="number" class="form-control{{ $errors->has('discount') ? ' is-invalid' : '' }}" value="{{$product->descount}}" name="discount" autofocus>
+                                    <input id="wholesaler_price" type="number"
+                                           class="form-control{{ $errors->has('wholesaler_price') ? ' is-invalid' : '' }}"
+                                           name="wholesaler_price" value="{{$product->wholesaler_price}}" autofocus>
 
-                                    @if ($errors->has('discount'))
+                                    @if ($errors->has('wholesaler_price'))
                                         <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('discount') }}</strong>
+                                        <strong>{{ $errors->first('wholesaler_price') }}</strong>
                                     </span>
                                     @endif
                                 </div>
@@ -284,14 +286,16 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="public_price" class="col-md-12 col-form-label text-md-left">{{ __('Public Price') }}</label>
+                                <label for="reseller_price" class="col-md-12 col-form-label text-md-left">{{ __('Reseller Price') }}</label>
 
                                 <div class="col-md-12">
-                                    <input id="public_price" type="number" class="form-control{{ $errors->has('public_price') ? ' is-invalid' : '' }}" value="{{$product->public_price}}" name="public_price" autofocus>
+                                    <input id="reseller_price" type="number"
+                                           class="form-control{{ $errors->has('reseller_price') ? ' is-invalid' : '' }}"
+                                           name="reseller_price" value="{{ $product->reseller_price }}" autofocus>
 
-                                    @if ($errors->has('public_price'))
+                                    @if ($errors->has('reseller_price'))
                                         <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('public_price') }}</strong>
+                                        <strong>{{ $errors->first('reseller_price') }}</strong>
                                     </span>
                                     @endif
                                 </div>
@@ -306,6 +310,74 @@
                                     @if ($errors->has('purchase_cost'))
                                         <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('purchase_cost') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="warning_quantity" class="col-md-12 col-form-label text-md-left">{{ __('Warning Qauntity') }}</label>
+
+                                <div class="col-md-12">
+                                    <input id="warning_quantity" type="number"
+                                           class="form-control{{ $errors->has('warning_quantity') ? ' is-invalid' : '' }}"
+                                           name="warning_quantity" value="{{$product->warning_quantity}}" autofocus>
+
+                                    @if ($errors->has('warning_quantity'))
+                                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('warning_quantity') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="ideal_quantity" class="col-md-12 col-form-label text-md-left">{{ __('Ideal Quantity') }}</label>
+
+                                <div class="col-md-12">
+                                    <input id="ideal_quantity" type="number"
+                                           class="form-control{{ $errors->has('ideal_quantity') ? ' is-invalid' : '' }}"
+                                           name="ideal_quantity" autofocus value="{{$product->ideal_quantity}}">
+
+                                    @if ($errors->has('ideal_quantity'))
+                                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('ideal_quantity') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="credit" class="col-md-12 col-form-label text-md-left">{{ __('Link To Credit Account (For Sales Journal)') }} <span class="text-danger">*</span></label>
+
+                                <div class="col-md-12">
+                                    <select id="credit" name="credit" class="form-control" required autofocus>
+                                        <option value="credit1" {{$product->credit == 'credit1' ? 'selected' : ''}}>credit1</option>
+                                        <option value="credit2" {{$product->credit == 'credit2' ? 'selected' : ''}}>credit2</option>
+                                        <option value="credit3" {{$product->credit == 'credit3' ? 'selected' : ''}}>credit3</option>
+                                    </select>
+
+                                    @if ($errors->has('credit'))
+                                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('credit') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="debit" class="col-md-12 col-form-label text-md-left">{{ __('Link To Debit Account (For Purchase Journal)') }} <span class="text-danger">*</span></label>
+
+                                <div class="col-md-12">
+                                    <select id="debit" name="debit" class="form-control" required autofocus>
+                                        <option value="debit1" {{$product->debit == 'debit1' ? 'selected' : ''}}>debit1</option>
+                                        <option value="debit2" {{$product->debit == 'debit2' ? 'selected' : ''}}>debit2</option>
+                                        <option value="debit3" {{$product->debit == 'debit3' ? 'selected' : ''}}>debit3</option>
+                                    </select>
+
+                                    @if ($errors->has('debit'))
+                                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('debit') }}</strong>
                                     </span>
                                     @endif
                                 </div>
