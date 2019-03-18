@@ -26,7 +26,7 @@
 
                     <div class="card-body">
 
-                        <form method="POST" action="/users">
+                        <form method="POST" action="/users" enctype="multipart/form-data">
                             @csrf
 
                             <div class="form-group row">
@@ -76,8 +76,15 @@
 
                                 <div class="col-md-12">
                                     <select id="User_Group" name="User_Group" class="form-control" required autofocus>
-                                        <option value="R&M Store: North and South">R&M Store: North and South</option>
-                                        <option value="R&M Structural (Facilities)">R&M Structural (Facilities)</option>
+                                        <option value="Service Group">Service Group</option>
+                                        <option value="Feedmill">Feedmill</option>
+                                        <option value="Poultry">Poultry</option>
+                                        <option value="Swine">Swine</option>
+                                        <option value="FO-Retail">FO-Retail</option>
+                                        <option value="FO-Production">FO-Production</option>
+                                        <option value="F&B">F&B</option>
+                                        {{--<option value="R&M Store: North and South">R&M Store: North and South</option>--}}
+                                        {{--<option value="R&M Structural (Facilities)">R&M Structural (Facilities)</option>--}}
                                     </select>
 
                                     @if ($errors->has('User_Group'))
@@ -189,6 +196,20 @@
                                     @if ($errors->has('mobile'))
                                         <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('mobile') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="cover_image" class="col-md-12 col-form-label text-md-left">{{ __('Photo') }}</label>
+
+                                <div class="col-md-12">
+                                    <input id="cover_image" type="file" class="form-control{{ $errors->has('nature') ? ' is-invalid' : '' }}" name="cover_image" autofocus>
+
+                                    @if ($errors->has('cover_image'))
+                                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('cover_image') }}</strong>
                                     </span>
                                     @endif
                                 </div>

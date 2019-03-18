@@ -26,7 +26,7 @@
 
                     <div class="card-body">
 
-                        <form action="{{ action('CompanyInfoController@update', $company_info->id) }}" method="POST">
+                        <form action="{{ action('CompanyInfoController@update', $company_info->id) }}" method="POST" enctype="multipart/form-data">
                             <input type="hidden" name="_method" value="PUT">
                             @csrf
 
@@ -161,9 +161,10 @@
 
                                 <div class="col-md-12">
                                     <select id="type" name="type" class="form-control" required autofocus>
-                                        <option value="Sole Proprietorship" {{$company_info->type == 'Sole Proprietorship' ? 'selected' : ''}}>Sole Proprietorship</option>
-                                        <option value="Manufacturing" {{$company_info->type == 'Manufacturing' ? 'selected=' : ''}}>Manufacturing</option>
-                                        <option value="Partnership" {{$company_info->type == 'Partnership' ? 'selected' : ''}}>Partnership</option>
+                                        <option value="Animal Production" {{$company_info->type == 'Animal Production' ? 'selected' : ''}}>Animal Production</option>
+                                        <option value="Feeds" {{$company_info->type == 'Feeds' ? 'selected' : ''}}>Feeds</option>
+                                        <option value="Meatshops" {{$company_info->type == 'Meatshops' ? 'selected' : ''}}>Meatshops</option>
+                                        <option value="Restaurants" {{$company_info->type == 'Restaurants' ? 'selected' : ''}}>Restaurants</option>
                                     </select>
 
                                     @if ($errors->has('type'))
@@ -175,18 +176,14 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="tax" class="col-md-12 col-form-label text-md-left">{{ __('Tax Type') }} <span class="text-danger">*</span></label>
+                                <label for="cover_image" class="col-md-12 col-form-label text-md-left">{{ __('Logo') }}</label>
 
                                 <div class="col-md-12">
-                                    <select id="tax" name="tax" class="form-control" required autofocus>
-                                        <option value="Non-vat" {{$company_info->tax == 'Non-vat' ? 'selected' : ''}}>Non-vat</option>
-                                        <option value="Property Tax" {{$company_info->tax == 'Property Tax' ? 'selected' : ''}}>Property Tax</option>
-                                        <option value="Progressive Tax" {{$company_info->tax == 'Progressive Tax' ? 'selected' : ''}}>Progressive Tax</option>
-                                    </select>
+                                    <input id="cover_image" type="file" class="form-control{{ $errors->has('nature') ? ' is-invalid' : '' }}" name="cover_image" autofocus>
 
-                                    @if ($errors->has('tax'))
+                                    @if ($errors->has('cover_image'))
                                         <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('tax') }}</strong>
+                                        <strong>{{ $errors->first('cover_image') }}</strong>
                                     </span>
                                     @endif
                                 </div>

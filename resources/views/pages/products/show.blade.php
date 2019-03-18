@@ -76,26 +76,10 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="name" class="col-md-12 col-form-label text-md-left"><b>{{ __('Tax') }}</b></label>
-
-                            <div class="offset-1 col-10">
-                                <span id="name">{{$product->tax}}</span>
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
                             <label for="name" class="col-md-12 col-form-label text-md-left"><b>{{ __('For Bulk and Retail ?') }}</b></label>
 
                             <div class="offset-1 col-10">
                                 <span id="name">{{$product->retail == 1 ? 'YES' : 'NO'}}</span>
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="name" class="col-md-12 col-form-label text-md-left"><b>{{ __('Primary Unit') }}</b></label>
-
-                            <div class="offset-1 col-10">
-                                <span id="name">{{$product->primary_unit}}</span>
                             </div>
                         </div>
 
@@ -108,7 +92,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="name" class="col-md-12 col-form-label text-md-left"><b>{{ __('Inventory Type') }}</b></label>
+                            <label for="name" class="col-md-12 col-form-label text-md-left"><b>{{ __('Transaction Type') }}</b></label>
 
                             <div class="offset-1 col-10">
                                 <span id="name">{{$product->type}}</span>
@@ -144,14 +128,6 @@
 
                             <div class="offset-1 col-10">
                                 <span id="name">{{$product->distributor_price}}</span>
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="name" class="col-md-12 col-form-label text-md-left"><b>{{ __('Tax Exempt ?') }}</b></label>
-
-                            <div class="offset-1 col-10">
-                                <span id="name">{{$product->tax_exempt == 1 ? 'YES' : 'NO'}}</span>
                             </div>
                         </div>
 
@@ -214,7 +190,7 @@
                 </div>
                 <div class="modal-body">Select "Delete" below if you are sure on deleting this product.</div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <button class="btn btn-outline-secondary" type="button" data-dismiss="modal">Cancel</button>
 
                     <form id="delete" method="POST" action="{{ action('ProductController@destroy', $product->id) }}" class="float-left">
                         <input type="hidden" name="_method" value="DELETE">

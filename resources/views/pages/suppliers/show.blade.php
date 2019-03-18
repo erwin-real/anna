@@ -27,6 +27,12 @@
                         <div class="clearfix"></div>
                     </div>
                     <div class="card-body">
+
+                        <div class="form-group row d-block text-center">
+                            <label class="col-md-12 col-form-label text-md-left"><b>{{ __('Photo') }}</b></label>
+                            <img class="h-75 w-75 rounded" src="/storage/supplier/{{$supplier->image}}" alt="">
+                        </div>
+
                         <div class="form-group row">
                             <label for="name" class="col-md-12 col-form-label text-md-left"><b>{{ __('Company Name') }}</b></label>
 
@@ -76,22 +82,6 @@
                         </div>
 
                         <div class="form-group row">
-                            <label class="col-md-12 col-form-label text-md-left"><b>{{ __('Tax Output %') }}</b></label>
-
-                            <div class="offset-1 col-10">
-                                <span>{{$supplier->tax_output}}</span>
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label class="col-md-12 col-form-label text-md-left"><b>{{ __('Tax') }}</b></label>
-
-                            <div class="offset-1 col-10">
-                                <span>{{$supplier->tax_type}}</span>
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
                             <label class="col-md-12 col-form-label text-md-left"><b>{{ __('Added at') }}</b></label>
 
                             <div class="offset-1 col-10">
@@ -134,7 +124,7 @@
                 </div>
                 <div class="modal-body">Select "Delete" below if you are sure on deleting this user.</div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <button class="btn btn-outline-secondary" type="button" data-dismiss="modal">Cancel</button>
 
                     <form id="delete" method="POST" action="{{ action('SupplierController@destroy', $supplier->id) }}" class="float-left">
                         <input type="hidden" name="_method" value="DELETE">

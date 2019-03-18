@@ -26,7 +26,7 @@
 
                     <div class="card-body">
 
-                        <form method="POST" action="/suppliers">
+                        <form method="POST" action="/suppliers" enctype="multipart/form-data">
                             @csrf
 
                             <div class="form-group row">
@@ -114,31 +114,14 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="tax_output" class="col-md-12 col-form-label text-md-left">{{ __('Tax Output %') }}</label>
+                                <label for="cover_image" class="col-md-12 col-form-label text-md-left">{{ __('Photo') }}</label>
 
                                 <div class="col-md-12">
-                                    <input id="tax_output" type="text" class="form-control{{ $errors->has('tax_output') ? ' is-invalid' : '' }}" name="tax_output">
+                                    <input id="cover_image" type="file" class="form-control{{ $errors->has('nature') ? ' is-invalid' : '' }}" name="cover_image" autofocus>
 
-                                    @if ($errors->has('tax_output'))
+                                    @if ($errors->has('cover_image'))
                                         <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('tax_output') }}</strong>
-                                    </span>
-                                    @endif
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="tax_type" class="col-md-12 col-form-label text-md-left">{{ __('Tax') }} <span class="text-danger">*</span></label>
-
-                                <div class="col-md-12">
-                                    <select id="tax_type" name="tax_type" class="form-control" required autofocus>
-                                        <option value="Non-vat">Non-vat</option>
-                                        <option value="Property Tax">Property Tax</option>
-                                    </select>
-
-                                    @if ($errors->has('tax_type'))
-                                        <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('tax_type') }}</strong>
+                                        <strong>{{ $errors->first('cover_image') }}</strong>
                                     </span>
                                     @endif
                                 </div>

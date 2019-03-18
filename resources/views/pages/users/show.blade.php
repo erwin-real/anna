@@ -27,6 +27,12 @@
                         <div class="clearfix"></div>
                     </div>
                     <div class="card-body">
+
+                        <div class="form-group row d-block text-center">
+                            <label class="col-md-12 col-form-label text-md-left"><b>{{ __('Photo') }}</b></label>
+                            <img class="h-75 w-75 rounded" src="/storage/user/{{$user->image}}" alt="">
+                        </div>
+
                         <p> <strong>Username</strong>: {{ $user->username }}</p>
                         <p> <strong>Email</strong>: {{ $user->email ? $user->email : 'none'}}</p>
                         <p> <strong>User Group</strong>: {{ $user->group }}</p>
@@ -66,7 +72,7 @@
                 </div>
                 <div class="modal-body">Select "Delete" below if you are sure on deleting this user.</div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <button class="btn btn-outline-secondary" type="button" data-dismiss="modal">Cancel</button>
 
                     <form id="delete" method="POST" action="{{ action('UsersController@destroyUser', $user->id) }}" class="float-left">
                         <input type="hidden" name="_method" value="DELETE">

@@ -29,7 +29,7 @@
 
                     <div class="card-body">
 
-                        <form action="{{ action('UsersController@updateUser', $user->id) }}" method="POST">
+                        <form action="{{ action('UsersController@updateUser', $user->id) }}" method="POST" enctype="multipart/form-data">
                             <input type="hidden" name="_method" value="PUT">
                             @csrf
                             <div class="form-group row">
@@ -79,8 +79,15 @@
 
                                 <div class="col-md-12">
                                     <select id="group" name="group" class="form-control" required autofocus>
-                                        <option {{$user->group == 'R&M Store: North and South' ? 'selected' : ''}} value="R&M Store: North and South">R&M Store: North and South</option>
-                                        <option {{$user->group == 'R&M Structural (Facilities)' ? 'selected' : ''}} value="R&M Structural (Facilities)">R&M Structural (Facilities)</option>
+                                        <option value="Service Group" {{$user->group == 'Service Group' ? 'selected' : ''}}>Service Group</option>
+                                        <option value="Feedmill" {{$user->group == 'Feedmill' ? 'selected' : ''}}>Feedmill</option>
+                                        <option value="Poultry" {{$user->group == 'Poultry' ? 'selected' : ''}}>Poultry</option>
+                                        <option value="Swine" {{$user->group == 'Swine' ? 'selected' : ''}}>Swine</option>
+                                        <option value="FO-Retail" {{$user->group == 'FO-Retail' ? 'selected' : ''}}>FO-Retail</option>
+                                        <option value="FO-Production" {{$user->group == 'FO-Production' ? 'selected' : ''}}>FO-Production</option>
+                                        <option value="F&B" {{$user->group == 'F&B' ? 'selected' : ''}}>F&B</option>
+                                        {{--<option {{$user->group == 'R&M Store: North and South' ? 'selected' : ''}} value="R&M Store: North and South">R&M Store: North and South</option>--}}
+                                        {{--<option {{$user->group == 'R&M Structural (Facilities)' ? 'selected' : ''}} value="R&M Structural (Facilities)">R&M Structural (Facilities)</option>--}}
                                     </select>
 
                                     @if ($errors->has('group'))
@@ -170,6 +177,20 @@
                                     @if ($errors->has('mobile'))
                                         <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('mobile') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="cover_image" class="col-md-12 col-form-label text-md-left">{{ __('Logo') }}</label>
+
+                                <div class="col-md-12">
+                                    <input id="cover_image" type="file" class="form-control{{ $errors->has('nature') ? ' is-invalid' : '' }}" name="cover_image" autofocus>
+
+                                    @if ($errors->has('cover_image'))
+                                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('cover_image') }}</strong>
                                     </span>
                                     @endif
                                 </div>

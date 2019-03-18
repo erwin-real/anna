@@ -41,8 +41,18 @@ class CustomerController extends Controller
     public function store(Request $request) {
         $validatedData = $request->validate([
             'name' => 'required',
-            'address' => 'required'
-        ]);
+            'address' => 'required',
+            'cover_image' => 'image|nullable|max:1999'
+            ]);
+
+        //Handle File Upload
+        if ($request->hasFile('cover_image')) {
+            $filenameWithExt = $request->file('cover_image')->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extension = $request->file('cover_image')->getClientOriginalExtension();
+            $fileNameToStore = $filename .'_'.time().'.'.$extension;
+            $path = $request->file('cover_image')->storeAs('public/customer', $fileNameToStore);
+        } else $fileNameToStore = 'noimage.jpg';
 
         $customer = new Customer(array(
             'name' => $validatedData['name'],
@@ -54,11 +64,12 @@ class CustomerController extends Controller
         $customer->email = $request->input('email');
         $customer->contact = $request->input('contact');
         $customer->tin = $request->input('tin');
+        $customer->image = $fileNameToStore;
 
         $customer->save();
 
         return redirect('/customers')
-            ->with('success', 'Added new customer '. $validatedData['name'])
+            ->with('success', 'Added New Customer '. $validatedData['name'] .' Successfully!')
             ->with('customers', Customer::orderBy('updated_at', 'desc')->paginate(20));
     }
 
@@ -93,9 +104,21 @@ class CustomerController extends Controller
         $validatedData = $request->validate([
             'name' => 'required',
             'address' => 'required',
+            'cover_image' => 'image|nullable|max:1999'
         ]);
 
         $customer = Customer::find($id);
+
+        //Handle File Upload
+        if ($request->hasFile('cover_image')) {
+            $filenameWithExt = $request->file('cover_image')->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extension = $request->file('cover_image')->getClientOriginalExtension();
+            $fileNameToStore = $filename .'_'.time().'.'.$extension;
+            $path = $request->file('cover_image')->storeAs('public/customer', $fileNameToStore);
+            $customer->image = $fileNameToStore;
+        }
+
         $customer->name = $validatedData['name'];
         $customer->address = $validatedData['address'];
         $customer->email = $request->input('email');
@@ -108,7 +131,7 @@ class CustomerController extends Controller
         $customer->save();
 
         return redirect('/customers')
-            ->with('success', 'Updated customer '. $validatedData['name'])
+            ->with('success', 'Updated Customer '. $validatedData['name'] .' Successfully!')
             ->with('customers', Customer::orderBy('updated_at', 'desc')->paginate(20));
     }
 
@@ -123,6 +146,6 @@ class CustomerController extends Controller
         $customer->delete();
 
         return redirect('/customers')
-            ->with('success', 'Deleted customer successfully!');
+            ->with('success', 'Deleted Customer Successfully!');
     }
 }

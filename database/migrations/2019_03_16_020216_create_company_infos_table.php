@@ -25,7 +25,6 @@ class CreateCompanyInfosTable extends Migration
             $table->string('rdo')->nullable();
             $table->string('nature')->nullable();
             $table->string('type');
-            $table->string('tax');
             $table->string('image')->nullable();
             $table->timestamps();
         });

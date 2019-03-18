@@ -36,8 +36,18 @@ class UsersController extends Controller {
                 'lname' => 'required',
                 'User_Group' => 'required',
                 'username' => 'required|string|max:255|unique:users',
-                'password' => 'required|string|min:6|confirmed'
+                'password' => 'required|string|min:6|confirmed',
+                'cover_image' => 'image|nullable|max:1999'
             ]);
+
+            //Handle File Upload
+            if ($request->hasFile('cover_image')) {
+                $filenameWithExt = $request->file('cover_image')->getClientOriginalName();
+                $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+                $extension = $request->file('cover_image')->getClientOriginalExtension();
+                $fileNameToStore = $filename .'_'.time().'.'.$extension;
+                $path = $request->file('cover_image')->storeAs('public/user', $fileNameToStore);
+            } else $fileNameToStore = 'noimage.jpg';
 
             $user = new User(array(
                 'username' => $validatedData['username'],
@@ -59,10 +69,11 @@ class UsersController extends Controller {
             $user->address = $request->get('address');
             $user->landline = $request->get('landline');
             $user->mobile = $request->get('mobile');
+            $user->image = $fileNameToStore;
             $user->save();
 
             return redirect('/users')
-                ->with('success', 'Added new user '. $validatedData['fname'].' '.$validatedData['lname'])
+                ->with('success', 'Added new user '. $validatedData['fname'].' '.$validatedData['lname'] .' Successfully!')
                 ->with('users', User::orderBy('updated_at', 'desc')->paginate(20));
         }
         return redirect('/')->with('error', 'You don\'t have the privilege');
@@ -90,17 +101,34 @@ class UsersController extends Controller {
             if ($request->get('email') != $user->email && $request->get('username') != $user->username) {
                 $validatedData = $request->validate([
                     'email' => 'string|email|max:255|unique:users',
-                    'username' => 'required|string|max:255|unique:users'
+                    'username' => 'required|string|max:255|unique:users',
+                    'cover_image' => 'image|nullable|max:1999'
                 ]);
                 $user->email = $validatedData['email'];
                 $user->username = $validatedData['username'];
             } else if ($request->get('email') != $user->email) {
-                $validatedData = $request->validate([ 'email' => 'string|email|max:255|unique:users' ]);
+                $validatedData = $request->validate([
+                    'email' => 'string|email|max:255|unique:users',
+                    'cover_image' => 'image|nullable|max:1999'
+                ]);
                 $user->email = $validatedData['email'];
             } else if ($request->get('username') != $user->username) {
-                $validatedData = $request->validate([ 'username' => 'required|string|max:255|unique:users' ]);
+                $validatedData = $request->validate([
+                    'username' => 'required|string|max:255|unique:users',
+                    'cover_image' => 'image|nullable|max:1999'
+                ]);
                 $user->username = $validatedData['username'];
                 $user->email = $request->get('email');
+            }
+
+            //Handle File Upload
+            if ($request->hasFile('cover_image')) {
+                $filenameWithExt = $request->file('cover_image')->getClientOriginalName();
+                $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+                $extension = $request->file('cover_image')->getClientOriginalExtension();
+                $fileNameToStore = $filename .'_'.time().'.'.$extension;
+                $path = $request->file('cover_image')->storeAs('public/user', $fileNameToStore);
+                $user->image = $fileNameToStore;
             }
 
             $user->remember_token = $request->get('_token');
@@ -116,7 +144,7 @@ class UsersController extends Controller {
             $user->save();
 
             return redirect('/users')
-                ->with('success', 'Updated user '. $user->fname .' '. $user->lname)
+                ->with('success', 'Updated user '. $user->fname .' '. $user->lname .' Successfully!')
                 ->with('users', User::orderBy('updated_at', 'desc')->paginate(20));
         }
         return redirect('/')->with('error', 'You don\'t have the privilege');
@@ -128,7 +156,7 @@ class UsersController extends Controller {
             $user->delete();
 
             return redirect('/users')
-                ->with('success', 'Deleted user ' . $user->name)
+                ->with('success', 'Deleted user ' . $user->name .' Successfully!')
                 ->with('users', User::orderBy('updated_at', 'desc')->paginate(20));
         }
         return redirect('/')->with('error', 'You don\'t have the privilege');

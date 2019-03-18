@@ -31,6 +31,13 @@
 
                     <div class="card-body">
 
+                        @if($company_info)
+                            <div class="form-group row d-block text-center">
+                                <label for="address" class="col-md-12 col-form-label text-md-left"><b>{{ __('Logo') }}</b></label>
+                                <img class="h-75 w-75 rounded" src="/storage/company/{{$company_info->image}}" alt="">
+                            </div>
+                        @endif
+
                         <div class="form-group row">
                             <label for="address" class="col-md-12 col-form-label text-md-left"><b>{{ __('Company Address') }}</b></label>
 
@@ -100,14 +107,6 @@
 
                             <div class="offset-1 col-10">
                                 <span id="type">{{$company_info ? $company_info->type : 'none'}}</span>
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="tax" class="col-md-12 col-form-label text-md-left"><b>{{ __('Tax Type') }}</b></label>
-
-                            <div class="offset-1 col-10">
-                                <span id="tax">{{$company_info ? $company_info->tax : 'none'}}</span>
                             </div>
                         </div>
 

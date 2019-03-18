@@ -42,11 +42,8 @@ class ProductController extends Controller
         $validatedData = $request->validate([
             'plu' => 'required',
             'main_desc' => 'required',
-            'brand' => 'required',
             'supplier' => 'required',
             'category' => 'required',
-            'tax' => 'required',
-            'primary_unit' => 'required',
             'unit_measurement' => 'required',
             'type' => 'required',
         ]);
@@ -54,28 +51,23 @@ class ProductController extends Controller
         $product = new Product(array(
             'plu' => $validatedData['plu'],
             'main_desc' => $validatedData['main_desc'],
-            'brand' => $validatedData['brand'],
             'supplier' => $validatedData['supplier'],
             'category' => $validatedData['category'],
-            'tax' => $validatedData['tax'],
-            'primary_unit' => $validatedData['primary_unit'],
             'unit_measurement' => $validatedData['unit_measurement'],
             'type' => $validatedData['type']
         ));
 
         $product->other_desc = $request->get('other_desc');
+        $product->brand = $request->get('brand');
         $product->retail = $request->input('retail') == 'on' ? 1 : 0;
         $product->srp = $request->get('srp');
         $product->wholesaler_price = $request->get('wholesaler_price');
         $product->dealer_price = $request->get('dealer_price');
         $product->distributor_price = $request->get('distributor_price');
-        $product->tax_exempt = $request->input('tax_exempt') == 'on' ? 1 : 0;
         $product->reseller_price = $request->get('reseller_price');
         $product->purchase_cost = $request->get('purchase_cost');
         $product->warning_quantity = $request->get('warning_quantity');
         $product->ideal_quantity = $request->get('ideal_quantity');
-        $product->credit = $request->get('credit');
-        $product->debit = $request->get('debit');
         $product->save();
 
         return redirect('/products')
@@ -113,11 +105,8 @@ class ProductController extends Controller
         $validatedData = $request->validate([
             'plu' => 'required',
             'main_desc' => 'required',
-            'brand' => 'required',
             'supplier' => 'required',
             'category' => 'required',
-            'tax' => 'required',
-            'primary_unit' => 'required',
             'unit_measurement' => 'required',
             'type' => 'required',
         ]);
@@ -125,27 +114,22 @@ class ProductController extends Controller
         $product = Product::find($id);
         $product->plu = $validatedData['plu'];
         $product->main_desc = $validatedData['main_desc'];
-        $product->brand = $validatedData['brand'];
         $product->supplier = $validatedData['supplier'];
         $product->category = $validatedData['category'];
-        $product->tax = $validatedData['tax'];
-        $product->primary_unit = $validatedData['primary_unit'];
         $product->unit_measurement = $validatedData['unit_measurement'];
         $product->type = $validatedData['type'];
 
+        $product->brand = $request->get('brand');
         $product->other_desc = $request->get('other_desc');
         $product->retail = $request->input('retail') == 'on' ? 1 : 0;
         $product->srp = $request->get('srp');
         $product->wholesaler_price = $request->get('wholesaler_price');
         $product->dealer_price = $request->get('dealer_price');
         $product->distributor_price = $request->get('distributor_price');
-        $product->tax_exempt = $request->input('tax_exempt') == 'on' ? 1 : 0;
         $product->reseller_price = $request->get('reseller_price');
         $product->purchase_cost = $request->get('purchase_cost');
         $product->warning_quantity = $request->get('warning_quantity');
         $product->ideal_quantity = $request->get('ideal_quantity');
-        $product->credit = $request->get('credit');
-        $product->debit = $request->get('debit');
         $product->save();
 
         return redirect('/products')

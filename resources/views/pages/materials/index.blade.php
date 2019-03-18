@@ -48,7 +48,7 @@
                                             <td><a href="/materials/{{$material->id}}">{{ $material->plu }}</a></td>
                                             <td>{{ $material->main_desc }}</td>
                                             <td>{{ $material->other_desc }}</td>
-                                            <td>{{ $material->primary_unit }}</td>
+                                            <td>{{ $material->unit_measurement }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>

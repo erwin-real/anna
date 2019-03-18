@@ -26,7 +26,7 @@
 
                     <div class="card-body">
 
-                        <form action="{{ action('CompanyInfoController@store') }}" method="POST">
+                        <form action="{{ action('CompanyInfoController@store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
 
                             <div class="form-group row">
@@ -160,9 +160,10 @@
 
                                 <div class="col-md-12">
                                     <select id="type" name="type" class="form-control" required autofocus>
-                                        <option value="Sole Proprietorship">Sole Proprietorship</option>
-                                        <option value="Manufacturing">Manufacturing</option>
-                                        <option value="Partnership">Partnership</option>
+                                        <option value="Animal Production">Animal Production</option>
+                                        <option value="Feeds">Feeds</option>
+                                        <option value="Meatshops">Meatshops</option>
+                                        <option value="Restaurants">Restaurants</option>
                                     </select>
 
                                     @if ($errors->has('type'))
@@ -174,18 +175,14 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="tax" class="col-md-12 col-form-label text-md-left">{{ __('Tax Type') }} <span class="text-danger">*</span></label>
+                                <label for="cover_image" class="col-md-12 col-form-label text-md-left">{{ __('Logo') }}</label>
 
                                 <div class="col-md-12">
-                                    <select id="tax" name="tax" class="form-control" required autofocus>
-                                        <option value="Non-vat">Non-vat</option>
-                                        <option value="Property Tax">Property Tax</option>
-                                        <option value="Progressive Tax">Progressive Tax</option>
-                                    </select>
+                                    <input id="cover_image" type="file" class="form-control{{ $errors->has('nature') ? ' is-invalid' : '' }}" name="cover_image" autofocus>
 
-                                    @if ($errors->has('tax'))
+                                    @if ($errors->has('cover_image'))
                                         <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('tax') }}</strong>
+                                        <strong>{{ $errors->first('cover_image') }}</strong>
                                     </span>
                                     @endif
                                 </div>

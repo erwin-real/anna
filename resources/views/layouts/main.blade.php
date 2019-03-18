@@ -18,10 +18,14 @@
     <!-- Custom styles for this template-->
     <link href="{{ URL::asset('css/sb-admin-2.css') }}" rel="stylesheet">
 
-    <script src="{{ URL::asset('vendor/jquery/jquery.min.js') }}"></script>
-    <script src="{{ URL::asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ URL::asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
-    <script src="{{ URL::asset('js/sb-admin-2.min.js') }}"></script>
+
+    {{--<script src="vendor/jquery/jquery.min.js"></script>--}}
+    {{--<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>--}}
+    {{--<script src="vendor/jquery-easing/jquery.easing.min.js"></script>--}}
+    {{--<script src="js/sb-admin-2.min.js"></script>--}}
+    {{--<script src="js/demo/chart-area-demo.js"></script>--}}
+    {{--<script src="js/demo/chart-pie-demo.js"></script>--}}
+
     {{--<script src="{{ URL::asset('js/app.js') }}" defer></script>--}}
 </head>
 
@@ -52,8 +56,8 @@
                 </div>
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="{{ route('logout') }}"
+                    <button class="btn btn-outline-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-outline-primary" href="{{ route('logout') }}"
                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                         {{ __('Logout') }}
@@ -67,6 +71,11 @@
             </div>
         </div>
     </div>
+
+    <script src="{{ URL::asset('vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ URL::asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ URL::asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+    <script src="{{ URL::asset('js/sb-admin-2.min.js') }}"></script>
 
 </body>
 </html>

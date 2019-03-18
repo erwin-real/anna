@@ -3,11 +3,11 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center my-3" href="/">
         <div class="sidebar-brand-icon rotate-n-15">
-            <i class="fas fa-laugh"></i>
+            <i class="fas fa-cogs"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">Admin</div>
+        <div class="sidebar-brand-text">Machineries & Equipments</div>
     </a>
 
     <!-- Divider -->
@@ -43,6 +43,11 @@
         <a class="nav-link" href="/products">
             <i class="fas fa-fw fa-stamp"></i>
             <span>Products</span></a>
+    </li>
+    <li class="nav-item {{ request()->is('purchaseRequests') || request()->is('purchaseRequests/*') ? 'active' : '' }}">
+        <a class="nav-link" href="/purchaseRequests">
+            <i class="fas fa-fw fa-first-order"></i>
+            <span>Purchase Requests</span></a>
     </li>
     <li class="nav-item {{ request()->is('users') || request()->is('users/*') ? 'active' : '' }}">
         <a class="nav-link" href="/users">

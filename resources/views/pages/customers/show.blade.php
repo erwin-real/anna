@@ -27,12 +27,10 @@
                         <div class="clearfix"></div>
                     </div>
                     <div class="card-body">
-                        <div class="form-group row">
-                            <label for="name" class="col-md-12 col-form-label text-md-left"><b>{{ __('Company Name') }}</b></label>
 
-                            <div class="offset-1 col-10">
-                                <span id="name">{{$customer->name}}</span>
-                            </div>
+                        <div class="form-group row d-block text-center">
+                            <label class="col-md-12 col-form-label text-md-left"><b>{{ __('Photo') }}</b></label>
+                            <img class="h-75 w-75 rounded" src="/storage/customer/{{$customer->image}}" alt="">
                         </div>
 
                         <div class="form-group row">
@@ -119,14 +117,14 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to delete this user?</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to delete this customer?</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Select "Delete" below if you are sure on deleting this user.</div>
+                <div class="modal-body">Select "Delete" below if you are sure on deleting this customer.</div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <button class="btn btn-outline-secondary" type="button" data-dismiss="modal">Cancel</button>
 
                     <form id="delete" method="POST" action="{{ action('CustomerController@destroy', $customer->id) }}" class="float-left">
                         <input type="hidden" name="_method" value="DELETE">

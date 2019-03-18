@@ -76,10 +76,11 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="brand" class="col-md-12 col-form-label text-md-left">{{ __('Brand') }} <span class="text-danger">*</span></label>
+                                <label for="brand" class="col-md-12 col-form-label text-md-left">{{ __('Brand') }}</label>
 
                                 <div class="col-md-12">
-                                    <select id="brand" name="brand" class="form-control" required autofocus>
+                                    <select id="brand" name="brand" class="form-control" autofocus>
+                                        <option disabled {{!$product->brand ? 'selected' : ''}}>Choose ...</option>
                                         <option value="brand1" {{$product->brand == 'brand1' ? 'selected' : ''}}>brand1</option>
                                         <option value="brand2" {{$product->brand == 'brand2' ? 'selected' : ''}}>brand2</option>
                                         <option value="brand3" {{$product->brand == 'brand3' ? 'selected' : ''}}>brand3</option>
@@ -116,32 +117,29 @@
 
                                 <div class="col-md-12">
                                     <select id="category" name="category" class="form-control" required autofocus>
-                                        <option value="category1" {{$product->category == 'category1' ? 'selected' : ''}}>category1</option>
-                                        <option value="category2" {{$product->category == 'category2' ? 'selected' : ''}}>category2</option>
-                                        <option value="category3" {{$product->category == 'category3' ? 'selected' : ''}}>category3</option>
+                                        <option value="AIR-CON & REFRIGERATION" {{$product->category == 'AIR-CON & REFRIGERATION' ? 'selected' : ''}}>AIR-CON & REFRIGERATION</option>
+                                        <option value="AUTOMOTIVE SUPPLIES" {{$product->category == 'AUTOMOTIVE SUPPLIES' ? 'selected' : ''}}>AUTOMOTIVE SUPPLIES</option>
+                                        <option value="BEARINGS" {{$product->category == 'BEARINGS' ? 'selected' : ''}}>BEARINGS</option>
+                                        <option value="CLEANING MATERIALS" {{$product->category == 'CLEANING MATERIALS' ? 'selected' : ''}}>CLEANING MATERIALS</option>
+                                        <option value="ELECTRICAL & MECHANICAL" {{$product->category == 'ELECTRICAL & MECHANICAL' ? 'selected' : ''}}>ELECTRICAL & MECHANICAL</option>
+                                        <option value="FURNITURE & FIXTURES" {{$product->category == 'FURNITURE & FIXTURES' ? 'selected' : ''}}>FURNITURE & FIXTURES</option>
+                                        <option value="FARM EQUIPMENT & SUPPLIES" {{$product->category == 'FARM EQUIPMENT & SUPPLIES' ? 'selected' : ''}}>FARM EQUIPMENT & SUPPLIES</option>
+                                        <option value="FANBELTS" {{$product->category == 'FANBELTS' ? 'selected' : ''}}>FANBELTS</option>
+                                        <option value="FILTERS" {{$product->category == 'FILTERS' ? 'selected' : ''}}>FILTERS</option>
+                                        <option value="FO SUPPLIES" {{$product->category == 'FO SUPPLIES' ? 'selected' : ''}}>FO SUPPLIES</option>
+                                        <option value="GASOLINE, OIL & LUBRICANTS" {{$product->category == 'GASOLINE, OIL & LUBRICANTS' ? 'selected' : ''}}>GASOLINE, OIL & LUBRICANTS</option>
+                                        <option value="HARDWARE & CONSTRUCTION" {{$product->category == 'HARDWARE & CONSTRUCTION' ? 'selected' : ''}}>HARDWARE & CONSTRUCTION</option>
+                                        <option value="INFORMATION TECHNOLOGIES" {{$product->category == 'INFORMATION TECHNOLOGIES' ? 'selected' : ''}}>INFORMATION TECHNOLOGIES</option>
+                                        <option value="MACHINERIES" {{$product->category == 'MACHINERIES' ? 'selected' : ''}}>MACHINERIES</option>
+                                        <option value="MARKETING MATERIALS" {{$product->category == 'MARKETING MATERIALS' ? 'selected' : ''}}>MARKETING MATERIALS</option>
+                                        <option value="OFFICE SUPPLIES" {{$product->category == 'OFFICE SUPPLIES' ? 'selected' : ''}}>OFFICE SUPPLIES</option>
+                                        <option value="PLUMBINGS" {{$product->category == 'PLUMBINGS' ? 'selected' : ''}}>PLUMBINGS</option>
+                                        <option value="UNIFORMS" {{$product->category == 'UNIFORMS' ? 'selected' : ''}}>UNIFORMS</option>
                                     </select>
 
                                     @if ($errors->has('supplier'))
                                         <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('supplier') }}</strong>
-                                    </span>
-                                    @endif
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="tax" class="col-md-12 col-form-label text-md-left">{{ __('Tax') }} <span class="text-danger">*</span></label>
-
-                                <div class="col-md-12">
-                                    <select id="tax" name="tax" class="form-control" required autofocus>
-                                        <option value="tax1" {{$product->tax == 'tax1' ? 'selected' : ''}}>tax1</option>
-                                        <option value="tax2" {{$product->tax == 'tax2' ? 'selected' : ''}}>tax2</option>
-                                        <option value="tax3" {{$product->tax == 'tax3' ? 'selected' : ''}}>tax3</option>
-                                    </select>
-
-                                    @if ($errors->has('tax'))
-                                        <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('tax') }}</strong>
                                     </span>
                                     @endif
                                 </div>
@@ -161,31 +159,38 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="primary_unit" class="col-md-12 col-form-label text-md-left">{{ __('Primary Unit') }} <span class="text-danger">*</span></label>
-
-                                <div class="col-md-12">
-                                    <select id="primary_unit" name="primary_unit" class="form-control" required autofocus>
-                                        <option value="primary_unit1" {{$product->primary_unit == 'primary_unit1' ? 'selected' : ''}}>primary_unit1</option>
-                                        <option value="primary_unit2" {{$product->primary_unit == 'primary_unit2' ? 'selected' : ''}}>primary_unit2</option>
-                                        <option value="primary_unit3" {{$product->primary_unit == 'primary_unit3' ? 'selected' : ''}}>primary_unit3</option>
-                                    </select>
-
-                                    @if ($errors->has('primary_unit'))
-                                        <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('primary_unit') }}</strong>
-                                    </span>
-                                    @endif
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
                                 <label for="unit_measurement" class="col-md-12 col-form-label text-md-left">{{ __('Unit of Measurement') }} <span class="text-danger">*</span></label>
 
                                 <div class="col-md-12">
                                     <select id="unit_measurement" name="unit_measurement" class="form-control" required autofocus>
-                                        <option value="unit_measurement1" {{$product->unit_measurement == 'unit_measurement1' ? 'selected' : ''}}>unit_measurement1</option>
-                                        <option value="unit_measurement2" {{$product->unit_measurement == 'unit_measurement2' ? 'selected' : ''}}>unit_measurement2</option>
-                                        <option value="unit_measurement3" {{$product->unit_measurement == 'unit_measurement3' ? 'selected' : ''}}>unit_measurement3</option>
+                                        <option value="ROLL" {{$product->unit_measurement == 'ROLL' ? 'selected' : ''}}>ROLL</option>
+                                        <option value="REAM" {{$product->unit_measurement == 'SHEET' ? 'selected' : ''}}>SHEET</option>
+                                        <option value="TANK" {{$product->unit_measurement == 'TANK' ? 'selected' : ''}}>TANK</option>
+                                        <option value="YARD" {{$product->unit_measurement == 'YARD' ? 'selected' : ''}}>YARD</option>
+                                        <option value="TRAY" {{$product->unit_measurement == 'TRAY' ? 'selected' : ''}}>TRAY</option>
+                                        <option value="TUBE" {{$product->unit_measurement == 'TUBE' ? 'selected' : ''}}>TUBE</option>
+                                        <option value="VIAL" {{$product->unit_measurement == 'VIAL' ? 'selected' : ''}}>VIAL</option>
+                                        <option value="EACH" {{$product->unit_measurement == 'EACH' ? 'selected' : ''}}>EACH</option>
+                                        <option value="SET" {{$product->unit_measurement == 'SET' ? 'selected' : ''}}>SET</option>
+                                        <option value="PAIR" {{$product->unit_measurement == 'PAIR' ? 'selected' : ''}}>PAIR</option>
+                                        <option value="BOX" {{$product->unit_measurement == 'BOX' ? 'selected' : ''}}>BOX</option>
+                                        <option value="LITER" {{$product->unit_measurement == 'LITER' ? 'selected' : ''}}>LITER</option>
+                                        <option value="GALLON" {{$product->unit_measurement == 'GALLON' ? 'selected' : ''}}>GALLON</option>
+                                        <option value="TRUCKLOAD" {{$product->unit_measurement == 'TRUCKLOAD' ? 'selected' : ''}}>TRUCKLOAD</option>
+                                        <option value="ELF" {{$product->unit_measurement == 'ELF' ? 'selected' : ''}}>ELF</option>
+                                        <option value="BAG" {{$product->unit_measurement == 'BAG' ? 'selected' : ''}}>BAG</option>
+                                        <option value="CUBIC METER" {{$product->unit_measurement == 'CUBIC METER' ? 'selected' : ''}}>CUBIC METER</option>
+                                        <option value="BOOKLET" {{$product->unit_measurement == 'BOOKLET' ? 'selected' : ''}}>BOOKLET</option>
+                                        <option value="BOTTLE" {{$product->unit_measurement == 'BOTTLE' ? 'selected' : ''}}>BOTTLE</option>
+                                        <option value="BUNDLE" {{$product->unit_measurement == 'BUNDLE' ? 'selected' : ''}}>BUNDLE</option>
+                                        <option value="CAN" {{$product->unit_measurement == 'CAN' ? 'selected' : ''}}>CAN</option>
+                                        <option value="CANISTER" {{$product->unit_measurement == 'CANISTER' ? 'selected' : ''}}>CANISTER</option>
+                                        <option value="CASE" {{$product->unit_measurement == 'CASE' ? 'selected' : ''}}>CASE</option>
+                                        <option value="DOZEN" {{$product->unit_measurement == 'DOZEN' ? 'selected' : ''}}>DOZEN</option>
+                                        <option value="FOOT" {{$product->unit_measurement == 'FOOT' ? 'selected' : ''}}>FOOT</option>
+                                        <option value="METER" {{$product->unit_measurement == 'METER' ? 'selected' : ''}}>METER</option>
+                                        <option value="GRAM" {{$product->unit_measurement == 'GRAM' ? 'selected' : ''}}>GRAM</option>
+                                        <option value="PACK" {{$product->unit_measurement == 'PACK' ? 'selected' : ''}}>PACK</option>
                                     </select>
 
                                     @if ($errors->has('unit_measurement'))
@@ -197,13 +202,15 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="type" class="col-md-12 col-form-label text-md-left">{{ __('Inventory Type') }} <span class="text-danger">*</span></label>
+                                <label for="type" class="col-md-12 col-form-label text-md-left">{{ __('Transaction Type') }} <span class="text-danger">*</span></label>
 
                                 <div class="col-md-12">
                                     <select id="type" name="type" class="form-control" required autofocus>
-                                        <option value="type1" {{$product->type == 'type1' ? 'selected' : ''}}>type1</option>
-                                        <option value="type2" {{$product->type == 'type2' ? 'selected' : ''}}>type2</option>
-                                        <option value="type3" {{$product->type == 'type3' ? 'selected' : ''}}>type3</option>
+                                        <option value="PO RECEIPT" {{$product->type == 'PO RECEIPT' ? 'selected' : ''}}>PO RECEIPT</option>
+                                        <option value="MOVE ORDER ISSUE" {{$product->type == 'MOVE ORDER ISSUE' ? 'selected' : ''}}>MOVE ORDER ISSUE</option>
+                                        <option value="RETURN TO VENDOR" {{$product->type == 'RETURN TO VENDOR' ? 'selected' : ''}}>RETURN TO VENDOR</option>
+                                        <option value="MISCELLANEOUS REPORT" {{$product->type == 'MISCELLANEOUS REPORT' ? 'selected' : ''}}>MISCELLANEOUS REPORT</option>
+                                        <option value="MISCELLANEOUS ISSUE" {{$product->type == 'MISCELLANEOUS ISSUE' ? 'selected' : ''}}>MISCELLANEOUS ISSUE</option>
                                     </select>
 
                                     @if ($errors->has('type'))
@@ -272,19 +279,6 @@
                                 </div>
                             </div>
 
-                            <div class="form-check row">
-                                <input class="form-check-input" type="checkbox" {{$product->tax_exempt == 1 ? 'checked' : ''}} name="tax_exempt" id="tax_exempt">
-                                <label class="form-check-label" for="tax_exempt">
-                                    Tax Exempt?
-                                </label>
-
-                                @if ($errors->has('tax_exempt'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('tax_exempt') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-
                             <div class="form-group row">
                                 <label for="reseller_price" class="col-md-12 col-form-label text-md-left">{{ __('Reseller Price') }}</label>
 
@@ -342,42 +336,6 @@
                                     @if ($errors->has('ideal_quantity'))
                                         <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('ideal_quantity') }}</strong>
-                                    </span>
-                                    @endif
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="credit" class="col-md-12 col-form-label text-md-left">{{ __('Link To Credit Account (For Sales Journal)') }} <span class="text-danger">*</span></label>
-
-                                <div class="col-md-12">
-                                    <select id="credit" name="credit" class="form-control" required autofocus>
-                                        <option value="credit1" {{$product->credit == 'credit1' ? 'selected' : ''}}>credit1</option>
-                                        <option value="credit2" {{$product->credit == 'credit2' ? 'selected' : ''}}>credit2</option>
-                                        <option value="credit3" {{$product->credit == 'credit3' ? 'selected' : ''}}>credit3</option>
-                                    </select>
-
-                                    @if ($errors->has('credit'))
-                                        <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('credit') }}</strong>
-                                    </span>
-                                    @endif
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="debit" class="col-md-12 col-form-label text-md-left">{{ __('Link To Debit Account (For Purchase Journal)') }} <span class="text-danger">*</span></label>
-
-                                <div class="col-md-12">
-                                    <select id="debit" name="debit" class="form-control" required autofocus>
-                                        <option value="debit1" {{$product->debit == 'debit1' ? 'selected' : ''}}>debit1</option>
-                                        <option value="debit2" {{$product->debit == 'debit2' ? 'selected' : ''}}>debit2</option>
-                                        <option value="debit3" {{$product->debit == 'debit3' ? 'selected' : ''}}>debit3</option>
-                                    </select>
-
-                                    @if ($errors->has('debit'))
-                                        <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('debit') }}</strong>
                                     </span>
                                     @endif
                                 </div>

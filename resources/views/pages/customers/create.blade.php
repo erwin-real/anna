@@ -26,7 +26,7 @@
 
                     <div class="card-body">
 
-                        <form method="POST" action="/customers">
+                        <form method="POST" action="/customers" enctype="multipart/form-data">
                             @csrf
 
                             <div class="form-group row">
@@ -103,7 +103,7 @@
                                 <label for="tin" class="col-md-12 col-form-label text-md-left">{{ __('TIN #') }}</label>
 
                                 <div class="col-md-12">
-                                    <input id="tin" type="number" class="form-control{{ $errors->has('tin') ? ' is-invalid' : '' }}" name="tin">
+                                    <input id="tin" type="number" class="form-control{  { $errors->has('tin') ? ' is-invalid' : '' }}" name="tin">
 
                                     @if ($errors->has('tin'))
                                         <span class="invalid-feedback" role="alert">
@@ -114,18 +114,33 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="type" class="col-md-12 col-form-label text-md-left">{{ __('Customer Type') }} <span class="text-danger">*</span></label>
+                                <label for="type" class="col-md-12 col-form-label text-md-left">{{ __('Customer Type') }}</label>
 
                                 <div class="col-md-12">
-                                    <select id="type" name="type" class="form-control" required autofocus>
-                                        <option value="Type1">Type1</option>
-                                        <option value="Type2">Type2</option>
-                                        <option value="Type3">Type3</option>
+                                    <select id="type" name="type" class="form-control" autofocus>
+                                        <option value="Walk-in">Walk-in</option>
+                                        <option value="Web Form">Web Form</option>
+                                        <option value="Phone Call">Phone Call</option>
+                                        <option value="Viber">Viber</option>
                                     </select>
 
-                                    @if ($errors->has('tax_type'))
+                                    @if ($errors->has('type'))
                                         <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('tax_type') }}</strong>
+                                        <strong>{{ $errors->first('type') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="cover_image" class="col-md-12 col-form-label text-md-left">{{ __('Photo') }}</label>
+
+                                <div class="col-md-12">
+                                    <input id="cover_image" type="file" class="form-control{{ $errors->has('nature') ? ' is-invalid' : '' }}" name="cover_image" autofocus>
+
+                                    @if ($errors->has('cover_image'))
+                                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('cover_image') }}</strong>
                                     </span>
                                     @endif
                                 </div>

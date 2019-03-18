@@ -42,11 +42,8 @@ class MaterialController extends Controller
         $validatedData = $request->validate([
             'plu' => 'required',
             'main_desc' => 'required',
-            'brand' => 'required',
             'supplier' => 'required',
             'category' => 'required',
-            'tax' => 'required',
-            'primary_unit' => 'required',
             'unit_measurement' => 'required',
             'type' => 'required',
         ]);
@@ -54,22 +51,19 @@ class MaterialController extends Controller
         $material = new Material(array(
             'plu' => $validatedData['plu'],
             'main_desc' => $validatedData['main_desc'],
-            'brand' => $validatedData['brand'],
             'supplier' => $validatedData['supplier'],
             'category' => $validatedData['category'],
-            'tax' => $validatedData['tax'],
-            'primary_unit' => $validatedData['primary_unit'],
             'unit_measurement' => $validatedData['unit_measurement'],
             'type' => $validatedData['type']
         ));
 
+        $material->brand = $request->get('brand');
         $material->other_desc = $request->get('other_desc');
         $material->retail = $request->input('retail') == 'on' ? 1 : 0;
         $material->srp = $request->get('srp');
         $material->discount = $request->get('discount');
         $material->dealer_price = $request->get('dealer_price');
         $material->distributor_price = $request->get('distributor_price');
-        $material->tax_exempt = $request->input('tax_exempt') == 'on' ? 1 : 0;
         $material->public_price = $request->get('public_price');
         $material->purchase_cost = $request->get('purchase_cost');
         $material->save();
@@ -109,11 +103,8 @@ class MaterialController extends Controller
         $validatedData = $request->validate([
             'plu' => 'required',
             'main_desc' => 'required',
-            'brand' => 'required',
             'supplier' => 'required',
             'category' => 'required',
-            'tax' => 'required',
-            'primary_unit' => 'required',
             'unit_measurement' => 'required',
             'type' => 'required',
         ]);
@@ -121,27 +112,24 @@ class MaterialController extends Controller
         $material = Material::find($id);
         $material->plu = $validatedData['plu'];
         $material->main_desc = $validatedData['main_desc'];
-        $material->brand = $validatedData['brand'];
         $material->supplier = $validatedData['supplier'];
         $material->category = $validatedData['category'];
-        $material->tax = $validatedData['tax'];
-        $material->primary_unit = $validatedData['primary_unit'];
         $material->unit_measurement = $validatedData['unit_measurement'];
         $material->type = $validatedData['type'];
 
+        $material->brand = $request->get('brand');
         $material->other_desc = $request->get('other_desc');
         $material->retail = $request->input('retail') == 'on' ? 1 : 0;
         $material->srp = $request->get('srp');
         $material->discount = $request->get('discount');
         $material->dealer_price = $request->get('dealer_price');
         $material->distributor_price = $request->get('distributor_price');
-        $material->tax_exempt = $request->input('tax_exempt') == 'on' ? 1 : 0;
         $material->public_price = $request->get('public_price');
         $material->purchase_cost = $request->get('purchase_cost');
         $material->save();
 
         return redirect('/materials')
-            ->with('success', 'Updated material Successfully!')
+            ->with('success', 'Updated Material Successfully!')
             ->with('materials', Material::orderBy('updated_at', 'desc')->paginate(20));
     }
 
@@ -156,6 +144,6 @@ class MaterialController extends Controller
         $material->delete();
 
         return redirect('/materials')
-            ->with('success', 'Deleted material Successfully!');
+            ->with('success', 'Deleted Material Successfully!');
     }
 }

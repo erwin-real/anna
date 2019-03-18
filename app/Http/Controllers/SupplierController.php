@@ -43,26 +43,33 @@ class SupplierController extends Controller
             'name' => 'required',
             'person' => 'required',
             'address' => 'required',
-            'tax_type' => 'required'
+            'cover_image' => 'image|nullable|max:1999'
         ]);
+
+        //Handle File Upload
+        if ($request->hasFile('cover_image')) {
+            $filenameWithExt = $request->file('cover_image')->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extension = $request->file('cover_image')->getClientOriginalExtension();
+            $fileNameToStore = $filename .'_'.time().'.'.$extension;
+            $path = $request->file('cover_image')->storeAs('public/supplier', $fileNameToStore);
+        } else $fileNameToStore = 'noimage.jpg';
 
         $supplier = new Supplier(array(
             'name' => $validatedData['name'],
             'person' => $validatedData['person'],
-            'address' => $validatedData['address'],
-            'tax_type' => $validatedData['tax_type']
+            'address' => $validatedData['address']
         ));
 
-        $supplier->tax_type = $validatedData['tax_type'];
         $supplier->email = $request->input('email');
         $supplier->contact = $request->input('contact');
         $supplier->tin = $request->input('tin');
-        $supplier->tax_output = $request->input('tax_output');
+        $supplier->image = $fileNameToStore;
 
         $supplier->save();
 
         return redirect('/suppliers')
-            ->with('success', 'Added new supplier '. $validatedData['name'])
+            ->with('success', 'Added New Supplier '. $validatedData['name'] .' Successfully!')
             ->with('suppliers', Supplier::orderBy('updated_at', 'desc')->paginate(20));
     }
 
@@ -98,23 +105,32 @@ class SupplierController extends Controller
             'name' => 'required',
             'person' => 'required',
             'address' => 'required',
-            'tax_type' => 'required'
+            'cover_image' => 'image|nullable|max:1999'
         ]);
 
         $supplier = Supplier::find($id);
+
+        //Handle File Upload
+        if ($request->hasFile('cover_image')) {
+            $filenameWithExt = $request->file('cover_image')->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extension = $request->file('cover_image')->getClientOriginalExtension();
+            $fileNameToStore = $filename .'_'.time().'.'.$extension;
+            $path = $request->file('cover_image')->storeAs('public/supplier', $fileNameToStore);
+            $supplier->image = $fileNameToStore;
+        }
+
         $supplier->name = $validatedData['name'];
         $supplier->person = $validatedData['person'];
         $supplier->address = $validatedData['address'];
-        $supplier->tax_type = $validatedData['tax_type'];
         $supplier->email = $request->input('email');
         $supplier->contact = $request->input('contact');
         $supplier->tin = $request->input('tin');
-        $supplier->tax_output = $request->input('tax_output');
 
         $supplier->save();
 
         return redirect('/suppliers')
-            ->with('success', 'Updated supplier '. $validatedData['name'])
+            ->with('success', 'Updated Supplier '. $validatedData['name'] .' Successfully!')
             ->with('suppliers', Supplier::orderBy('updated_at', 'desc')->paginate(20));
     }
 
@@ -129,6 +145,6 @@ class SupplierController extends Controller
         $supplier->delete();
 
         return redirect('/suppliers')
-            ->with('success', 'Deleted supplier successfully!');
+            ->with('success', 'Deleted Supplier Successfully!');
     }
 }

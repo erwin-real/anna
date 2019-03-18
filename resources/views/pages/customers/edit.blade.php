@@ -29,7 +29,7 @@
 
                     <div class="card-body">
 
-                        <form action="{{ action('CustomerController@update', $customer->id) }}" method="POST">
+                        <form action="{{ action('CustomerController@update', $customer->id) }}" method="POST" enctype="multipart/form-data">
                             <input type="hidden" name="_method" value="PUT">
                             @csrf
 
@@ -104,7 +104,7 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="tin" class="col-md-12 col-form-label text-md-left">{{ __('TIN') }}</label>
+                                <label for="tin" class="col-md-12 col-form-label text-md-left">{{ __('TIN #') }}</label>
 
                                 <div class="col-md-12">
                                     <input id="tin" type="number" class="form-control{{ $errors->has('tin') ? ' is-invalid' : '' }}" name="tin" value="{{$customer->tin}}">
@@ -122,14 +122,29 @@
 
                                 <div class="col-md-12">
                                     <select id="type" name="type" class="form-control" autofocus>
-                                        <option value="Type1" {{$customer->type == 'Type1' ? 'selected' : ''}}>Type1</option>
-                                        <option value="Type2" {{$customer->type == 'Type2' ? 'selected' : ''}}>Type2</option>
-                                        <option value="Type3" {{$customer->type == 'Type3' ? 'selected' : ''}}>Type3</option>
+                                        <option value="Walk-in" {{$customer->type == 'Walk-in' ? 'selected' : ''}}>Walk-in</option>
+                                        <option value="Web Form" {{$customer->type == 'Web Form' ? 'selected' : ''}}>Web Form</option>
+                                        <option value="Phone Call" {{$customer->type == '`Phone Call' ? 'selected' : ''}}>Phone Call</option>
+                                        <option value="Viber" {{$customer->type == 'Viber' ? 'selected' : ''}}>Viber</option>
                                     </select>
 
                                     @if ($errors->has('type'))
                                         <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('type') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="cover_image" class="col-md-12 col-form-label text-md-left">{{ __('Logo') }}</label>
+
+                                <div class="col-md-12">
+                                    <input id="cover_image" type="file" class="form-control{{ $errors->has('nature') ? ' is-invalid' : '' }}" name="cover_image" autofocus>
+
+                                    @if ($errors->has('cover_image'))
+                                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('cover_image') }}</strong>
                                     </span>
                                     @endif
                                 </div>

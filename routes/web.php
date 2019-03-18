@@ -39,6 +39,7 @@ Route::post('register', 'Auth\RegisterController@register');
 //Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
 //Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 //Route::post('password/reset', 'Auth\ResetPasswordController@reset');
+Route::resource('purchaseRequests', 'PurchaseRequestController');
 Route::resource('materials', 'MaterialController');
 Route::resource('products', 'ProductController');
 Route::resource('suppliers', 'SupplierController');
