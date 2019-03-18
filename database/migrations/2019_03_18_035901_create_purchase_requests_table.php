@@ -15,6 +15,13 @@ class CreatePurchaseRequestsTable extends Migration
     {
         Schema::create('purchase_requests', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('department');
+            $table->unsignedInteger('customer_id');
+            $table->unsignedInteger('supplier_id');
+            $table->string('assistant')->nullable();
+            $table->string('pr')->nullable();
+            $table->timestamp('order_date')->nullable();
+            $table->string('remarks')->nullable();
             $table->timestamps();
         });
     }

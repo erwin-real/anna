@@ -46,7 +46,7 @@
     </li>
     <li class="nav-item {{ request()->is('purchaseRequests') || request()->is('purchaseRequests/*') ? 'active' : '' }}">
         <a class="nav-link" href="/purchaseRequests">
-            <i class="fas fa-fw fa-first-order"></i>
+            <i class="fas fa-fw fa-user-tag"></i>
             <span>Purchase Requests</span></a>
     </li>
     <li class="nav-item {{ request()->is('users') || request()->is('users/*') ? 'active' : '' }}">

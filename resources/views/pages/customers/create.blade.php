@@ -103,7 +103,7 @@
                                 <label for="tin" class="col-md-12 col-form-label text-md-left">{{ __('TIN #') }}</label>
 
                                 <div class="col-md-12">
-                                    <input id="tin" type="number" class="form-control{  { $errors->has('tin') ? ' is-invalid' : '' }}" name="tin">
+                                    <input id="tin" type="number" class="form-control {{ $errors->has('tin') ? ' is-invalid' : '' }}" name="tin">
 
                                     @if ($errors->has('tin'))
                                         <span class="invalid-feedback" role="alert">
@@ -132,11 +132,12 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row">
-                                <label for="cover_image" class="col-md-12 col-form-label text-md-left">{{ __('Photo') }}</label>
+                            <div class="custom-file">
+                                <label for="cover_image" class="col-md-12 col-form-label pl-0 text-md-left">{{ __('Photo') }}</label>
 
                                 <div class="col-md-12">
-                                    <input id="cover_image" type="file" class="form-control{{ $errors->has('nature') ? ' is-invalid' : '' }}" name="cover_image" autofocus>
+                                    <input id="cover_image" type="file" class="custom-file-input {{ $errors->has('cover_image') ? ' is-invalid' : '' }}" name="cover_image" autofocus>
+                                    <label class="custom-file-label" for="cover_image">Choose file...</label>
 
                                     @if ($errors->has('cover_image'))
                                         <span class="invalid-feedback" role="alert">
@@ -146,7 +147,8 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row mb-0 text-center">
+
+                            <div class="form-group row mb-0 mt-5 text-center">
                                 <div class="col-md-12">
                                     <button type="submit" class="btn btn-outline-primary">
                                         <i class="fa fa-check"></i> {{ __('Save') }}
@@ -160,4 +162,12 @@
             </div>
         </div>
     </div>
+
+    <script>
+        // Add the following code if you want the name of the file appear on select
+        $(".custom-file-input").on("change", function() {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
+    </script>
 @endsection

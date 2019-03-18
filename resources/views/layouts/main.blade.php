@@ -27,6 +27,7 @@
     {{--<script src="js/demo/chart-pie-demo.js"></script>--}}
 
     {{--<script src="{{ URL::asset('js/app.js') }}" defer></script>--}}
+    <script src="{{ URL::asset('vendor/jquery/jquery.min.js') }}"></script>
 </head>
 
 <body id="page-top">
@@ -72,7 +73,6 @@
         </div>
     </div>
 
-    <script src="{{ URL::asset('vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ URL::asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ URL::asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
     <script src="{{ URL::asset('js/sb-admin-2.min.js') }}"></script>

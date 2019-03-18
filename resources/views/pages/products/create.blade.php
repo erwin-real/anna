@@ -95,9 +95,9 @@
 
                                 <div class="col-md-12">
                                     <select id="supplier" name="supplier" class="form-control" required autofocus>
-                                        <option value="supplier1">supplier1</option>
-                                        <option value="supplier2">supplier2</option>
-                                        <option value="supplier3">supplier3</option>
+                                        @foreach($suppliers as $supplier)
+                                            <option value="{{$supplier->name}}">{{$supplier->name}}</option>
+                                        @endforeach
                                     </select>
 
                                     @if ($errors->has('supplier'))

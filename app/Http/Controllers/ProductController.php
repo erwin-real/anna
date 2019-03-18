@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Product;
+use App\Supplier;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -29,7 +30,8 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create() {
-        return view('pages.products.create');
+        return view('pages.products.create')
+            ->with('suppliers', Supplier::all());
     }
 
     /**
@@ -91,7 +93,9 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id) {
-        return view('pages.products.edit')->with('product', Product::find($id));
+        return view('pages.products.edit')
+            ->with('product', Product::find($id))
+            ->with('suppliers', Supplier::all());
     }
 
     /**

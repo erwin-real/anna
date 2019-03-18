@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Material;
+use App\Supplier;
 use Illuminate\Http\Request;
 
 class MaterialController extends Controller
@@ -29,7 +30,8 @@ class MaterialController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create() {
-        return view('pages.materials.create');
+        return view('pages.materials.create')
+            ->with('suppliers', Supplier::all());
     }
 
     /**
@@ -89,7 +91,9 @@ class MaterialController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id) {
-        return view('pages.materials.edit')->with('material', Material::find($id));
+        return view('pages.materials.edit')
+            ->with('material', Material::find($id))
+            ->with('suppliers', Supplier::all());
     }
 
     /**
