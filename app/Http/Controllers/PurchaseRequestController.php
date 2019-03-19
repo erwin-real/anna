@@ -7,6 +7,7 @@ use App\Material;
 use App\PurchaseRequest;
 use App\SinglePurchaseRequest;
 use App\Supplier;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class PurchaseRequestController extends Controller
@@ -144,7 +145,7 @@ class PurchaseRequestController extends Controller
                 }
             }
         }
-        if ($dups) return redirect('/purchaseRequests/create')
+        if ($dups) return redirect('/purchaseRequests/'.$id.'/edit')
             ->with('error', 'Cannot update the request because it has duplicate materials!');
 
         $validatedData = $request->validate([
@@ -196,5 +197,19 @@ class PurchaseRequestController extends Controller
 
         return redirect('/purchaseRequests')
             ->with('success', 'Deleted Purchase Request Successfully!');
+    }
+
+    public function updateStatus($id, Request $request) {
+//        dd($id, $request);
+        $purchaseRequest = PurchaseRequest::find($id);
+
+        if ($request->get('type') == "MNE") {
+            $purchaseRequest->mne = $request->input('status') == 'on' ? 1 : 0;
+            $purchaseRequest->mne_date = Carbon::now();
+            $purchaseRequest->mne_remarks = $request->input('remarks');
+        }
+
+        return redirect('/purchaseRequests')
+            ->with('success', 'Updated Purchase Request Successfully!');
     }
 }

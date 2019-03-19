@@ -14,22 +14,22 @@ class UsersController extends Controller {
     public function __construct() { $this->middleware('auth'); }
 
     public function users() {
-        if ($this->isUserType('admin')) {
+//        if ($this->isUserType('admin')) {
             return view('pages.users.index')
                 ->with('users', User::orderBy('updated_at', 'desc')->paginate(10));
-        }
-        return redirect('/')->with('error', 'You don\'t have the privilege');
+//        }
+//        return redirect('/')->with('error', 'You don\'t have the privilege');
     }
 
     public function addUser() {
-        if ($this->isUserType('admin'))
+//        if ($this->isUserType('admin'))
             return view('pages.users.create');
 
-        return redirect('/')->with('error', 'You don\'t have the privilege');
+//        return redirect('/')->with('error', 'You don\'t have the privilege');
     }
 
     public function saveUser(Request $request) {
-        if ($this->isUserType('admin')) {
+//        if ($this->isUserType('admin')) {
 
             $validatedData = $request->validate([
                 'fname' => 'required',
@@ -61,6 +61,7 @@ class UsersController extends Controller {
             }
 
             $user->remember_token = $request->get('_token');
+            $user->type = 'coordinator';
             $user->group = $request->get('User_Group');
             $user->fname = $request->get('fname');
             $user->mname = $request->get('mname');
@@ -75,27 +76,27 @@ class UsersController extends Controller {
             return redirect('/users')
                 ->with('success', 'Added new user '. $validatedData['fname'].' '.$validatedData['lname'] .' Successfully!')
                 ->with('users', User::orderBy('updated_at', 'desc')->paginate(20));
-        }
-        return redirect('/')->with('error', 'You don\'t have the privilege');
+//        }
+//        return redirect('/')->with('error', 'You don\'t have the privilege');
     }
 
     public function showUser($id) {
-        if ($this->isUserType('admin'))
+//        if ($this->isUserType('admin'))
             return view('pages.users.show')->with('user', User::find($id));
 
-        return redirect('/')->with('error', 'You don\'t have the privilege');
+//        return redirect('/')->with('error', 'You don\'t have the privilege');
     }
 
     public function editUser($id) {
-        if ($this->isUserType('admin')) {
+//        if ($this->isUserType('admin')) {
             return view('pages.users.edit')
                 ->with('user', User::find($id));
-        }
-        return redirect('/')->with('error', 'You don\'t have the privilege');
+//        }
+//        return redirect('/')->with('error', 'You don\'t have the privilege');
     }
 
     public function updateUser(Request $request, $id) {
-        if ($this->isUserType('admin')) {
+//        if ($this->isUserType('admin')) {
             $user = User::find($id);
 
             if ($request->get('email') != $user->email && $request->get('username') != $user->username) {
@@ -132,6 +133,7 @@ class UsersController extends Controller {
             }
 
             $user->remember_token = $request->get('_token');
+//            $user->type = 'coordinator';
             $user->group = $request->get('group');
             $user->fname = $request->get('fname');
             $user->mname = $request->get('mname');
@@ -146,20 +148,20 @@ class UsersController extends Controller {
             return redirect('/users')
                 ->with('success', 'Updated user '. $user->fname .' '. $user->lname .' Successfully!')
                 ->with('users', User::orderBy('updated_at', 'desc')->paginate(20));
-        }
-        return redirect('/')->with('error', 'You don\'t have the privilege');
+//        }
+//        return redirect('/')->with('error', 'You don\'t have the privilege');
     }
 
     public function destroyUser($id) {
-        if ($this->isUserType('admin')) {
+//        if ($this->isUserType('admin')) {
             $user = User::find($id);
             $user->delete();
 
             return redirect('/users')
                 ->with('success', 'Deleted user ' . $user->name .' Successfully!')
                 ->with('users', User::orderBy('updated_at', 'desc')->paginate(20));
-        }
-        return redirect('/')->with('error', 'You don\'t have the privilege');
+//        }
+//        return redirect('/')->with('error', 'You don\'t have the privilege');
     }
 
     public function isUserType($type) {

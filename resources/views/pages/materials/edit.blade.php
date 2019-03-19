@@ -145,7 +145,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-check row">
+                            <div class="form-check row ml-0">
                                 <input class="form-check-input" type="checkbox" {{$material->retail == 1 ? 'checked' : ''}} name="retail" id="retail">
                                 <label class="form-check-label" for="retail">
                                     For Bulk and Retail?
@@ -164,7 +164,8 @@
                                 <div class="col-md-12">
                                     <select id="unit_measurement" name="unit_measurement" class="form-control" required autofocus>
                                         <option value="ROLL" {{$material->unit_measurement == 'ROLL' ? 'selected' : ''}}>ROLL</option>
-                                        <option value="REAM" {{$material->unit_measurement == 'SHEET' ? 'selected' : ''}}>SHEET</option>
+                                        <option value="REAM" {{$material->unit_measurement == 'REAM' ? 'selected' : ''}}>REAM</option>
+                                        <option value="SHEET" {{$material->unit_measurement == 'SHEET' ? 'selected' : ''}}>SHEET</option>
                                         <option value="TANK" {{$material->unit_measurement == 'TANK' ? 'selected' : ''}}>TANK</option>
                                         <option value="YARD" {{$material->unit_measurement == 'YARD' ? 'selected' : ''}}>YARD</option>
                                         <option value="TRAY" {{$material->unit_measurement == 'TRAY' ? 'selected' : ''}}>TRAY</option>
@@ -300,6 +301,38 @@
                                     @if ($errors->has('purchase_cost'))
                                         <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('purchase_cost') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="warning_quantity" class="col-md-12 col-form-label text-md-left">{{ __('Warning Qauntity') }}</label>
+
+                                <div class="col-md-12">
+                                    <input id="warning_quantity" type="number"
+                                           class="form-control{{ $errors->has('warning_quantity') ? ' is-invalid' : '' }}"
+                                           name="warning_quantity" value="{{$material->warning_quantity}}" autofocus>
+
+                                    @if ($errors->has('warning_quantity'))
+                                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('warning_quantity') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="ideal_quantity" class="col-md-12 col-form-label text-md-left">{{ __('Ideal Quantity') }}</label>
+
+                                <div class="col-md-12">
+                                    <input id="ideal_quantity" type="number"
+                                           class="form-control{{ $errors->has('ideal_quantity') ? ' is-invalid' : '' }}"
+                                           name="ideal_quantity" autofocus value="{{$material->ideal_quantity}}">
+
+                                    @if ($errors->has('ideal_quantity'))
+                                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('ideal_quantity') }}</strong>
                                     </span>
                                     @endif
                                 </div>

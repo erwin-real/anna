@@ -26,6 +26,9 @@ Route::get('/users/{id}/edit','UsersController@editUser');
 Route::delete('/users/{id}','UsersController@destroyUser');
 Route::put('/users/{id}','UsersController@updateUser');
 
+// PURCHASE REQUESTS
+Route::post('/purchaseRequests/{id}','PurchaseRequestController@updateStatus');
+
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');

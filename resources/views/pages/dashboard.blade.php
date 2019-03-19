@@ -58,17 +58,8 @@
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Materials</div>
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col-auto">
-                                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{count($materials)}}</div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="progress progress-sm mr-2">
-                                            <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Materials</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{count($materials)}}</div>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-puzzle-piece fa-2x text-gray-300"></i>
@@ -115,26 +106,30 @@
                     <!-- Card Body -->
 
                     <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                <thead>
-                                <tr>
-                                    <th>Customer</th>
-                                    <th>Type</th>
-                                    <th>Email Address</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @for ($i = 0; ($i < 5 && $i < count($customers)); $i++)
+                        @if(count($customers) > 0)
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
                                     <tr>
-                                        <td>{{$customers[$i]->name}}</td>
-                                        <td>{{$customers[$i]->type}}</td>
-                                        <td>{{$customers[$i]->email}}</td>
+                                        <th>Customer</th>
+                                        <th>Type</th>
+                                        <th>Email Address</th>
                                     </tr>
-                                @endfor
-                                </tbody>
-                            </table>
-                        </div>
+                                    </thead>
+                                    <tbody>
+                                    @for ($i = 0; ($i < 5 && $i < count($customers)); $i++)
+                                        <tr>
+                                            <td>{{$customers[$i]->name}}</td>
+                                            <td>{{$customers[$i]->type}}</td>
+                                            <td>{{$customers[$i]->email}}</td>
+                                        </tr>
+                                    @endfor
+                                    </tbody>
+                                </table>
+                            </div>
+                        @else
+                            No customers yet ...
+                        @endif
                     </div>
                 </div>
             </div>
@@ -154,6 +149,7 @@
                     <!-- Card Body -->
 
                     <div class="card-body">
+                        @if(count($suppliers) > 0)
                         <div class="table-responsive">
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
@@ -174,6 +170,9 @@
                                 </tbody>
                             </table>
                         </div>
+                        @else
+                            No suppliers yet ...
+                        @endif
                     </div>
                 </div>
             </div>
@@ -193,26 +192,30 @@
                     <!-- Card Body -->
 
                     <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                <thead>
-                                <tr>
-                                    <th>PLU</th>
-                                    <th>Description</th>
-                                    <th>Unit</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @for ($i = 0; ($i < 5 && $i < count($materials)); $i++)
+                        @if(count($materials) > 0)
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
                                     <tr>
-                                        <td>{{$materials[$i]->plu}}</td>
-                                        <td>{{$materials[$i]->main_desc}}</td>
-                                        <td>{{$materials[$i]->unit_measurement}}</td>
+                                        <th>PLU</th>
+                                        <th>Description</th>
+                                        <th>Unit</th>
                                     </tr>
-                                @endfor
-                                </tbody>
-                            </table>
-                        </div>
+                                    </thead>
+                                    <tbody>
+                                    @for ($i = 0; ($i < 5 && $i < count($materials)); $i++)
+                                        <tr>
+                                            <td>{{$materials[$i]->plu}}</td>
+                                            <td>{{$materials[$i]->main_desc}}</td>
+                                            <td>{{$materials[$i]->unit_measurement}}</td>
+                                        </tr>
+                                    @endfor
+                                    </tbody>
+                                </table>
+                            </div>
+                        @else
+                            No materials yet ...
+                        @endif
                     </div>
                 </div>
             </div>
@@ -232,26 +235,30 @@
                     <!-- Card Body -->
 
                     <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                <thead>
-                                <tr>
-                                    <th>PR #</th>
-                                    <th>Department</th>
-                                    <th>Warehouse Assistant</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @for ($i = 0; ($i < 5 && $i < count($purchaseRequests)); $i++)
+                        @if(count($purchaseRequests) > 0)
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
                                     <tr>
-                                        <td>{{$purchaseRequests[$i]->pr}}</td>
-                                        <td>{{$purchaseRequests[$i]->department}}</td>
-                                        <td>{{$purchaseRequests[$i]->assistant}}</td>
+                                        <th>PR #</th>
+                                        <th>Department</th>
+                                        <th>Warehouse Assistant</th>
                                     </tr>
-                                @endfor
-                                </tbody>
-                            </table>
-                        </div>
+                                    </thead>
+                                    <tbody>
+                                    @for ($i = 0; ($i < 5 && $i < count($purchaseRequests)); $i++)
+                                        <tr>
+                                            <td>{{$purchaseRequests[$i]->pr}}</td>
+                                            <td>{{$purchaseRequests[$i]->department}}</td>
+                                            <td>{{$purchaseRequests[$i]->assistant}}</td>
+                                        </tr>
+                                    @endfor
+                                    </tbody>
+                                </table>
+                            </div>
+                        @else
+                            No purchase requests yet ...
+                        @endif
                     </div>
                 </div>
             </div>

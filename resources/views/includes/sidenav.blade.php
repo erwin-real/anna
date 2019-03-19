@@ -39,11 +39,11 @@
             <i class="fas fa-fw fa-puzzle-piece"></i>
             <span>Materials</span></a>
     </li>
-    <li class="nav-item {{ request()->is('products') || request()->is('products/*') ? 'active' : '' }}">
-        <a class="nav-link" href="/products">
-            <i class="fas fa-fw fa-stamp"></i>
-            <span>Products</span></a>
-    </li>
+    {{--<li class="nav-item {{ request()->is('products') || request()->is('products/*') ? 'active' : '' }}">--}}
+        {{--<a class="nav-link" href="/products">--}}
+            {{--<i class="fas fa-fw fa-stamp"></i>--}}
+            {{--<span>Products</span></a>--}}
+    {{--</li>--}}
     <li class="nav-item {{ request()->is('purchaseRequests') || request()->is('purchaseRequests/*') ? 'active' : '' }}">
         <a class="nav-link" href="/purchaseRequests">
             <i class="fas fa-fw fa-user-tag"></i>

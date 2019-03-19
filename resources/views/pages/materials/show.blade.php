@@ -14,7 +14,7 @@
                     <li class="breadcrumb-item" aria-current="page">
                         <a href="/materials">Materials</a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">{{$material->main_desc}}</li>
+                    <li class="breadcrumb-item active" aria-current="page">{{$material->plu}}</li>
                 </ol>
             </nav>
 
@@ -100,6 +100,14 @@
                         </div>
 
                         <div class="form-group row">
+                            <label for="name" class="col-md-12 col-form-label text-md-left"><b>{{ __('Quantity') }}</b></label>
+
+                            <div class="offset-1 col-10">
+                                <span id="name">{{$material->stocks}}</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="name" class="col-md-12 col-form-label text-md-left"><b>{{ __('Suggested Retail Price (SRP)') }}</b></label>
 
                             <div class="offset-1 col-10">
@@ -144,6 +152,22 @@
 
                             <div class="offset-1 col-10">
                                 <span id="name">{{$material->purchase_cost}}</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="name" class="col-md-12 col-form-label text-md-left"><b>{{ __('Warning Quantity') }}</b></label>
+
+                            <div class="offset-1 col-10">
+                                <span id="name">{{$material->warning_quantity}}</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="name" class="col-md-12 col-form-label text-md-left"><b>{{ __('Ideal Quantity') }}</b></label>
+
+                            <div class="offset-1 col-10">
+                                <span id="name">{{$material->ideal_quantity}}</span>
                             </div>
                         </div>
 

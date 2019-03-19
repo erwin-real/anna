@@ -141,7 +141,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-check row">
+                            <div class="form-check row ml-0">
                                 <input class="form-check-input" type="checkbox" name="retail" id="retail">
                                 <label class="form-check-label" for="retail">
                                     For Bulk and Retail?
@@ -160,7 +160,8 @@
                                 <div class="col-md-12">
                                     <select id="unit_measurement" name="unit_measurement" class="form-control" required autofocus>
                                         <option value="ROLL">ROLL</option>
-                                        <option value="REAM">SHEET</option>
+                                        <option value="REAM">REAM</option>
+                                        <option value="SHEET">SHEET</option>
                                         <option value="TANK">TANK</option>
                                         <option value="YARD">YARD</option>
                                         <option value="TRAY">TRAY</option>
@@ -212,6 +213,20 @@
                                     @if ($errors->has('type'))
                                         <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('type') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="stocks" class="col-md-12 col-form-label text-md-left">{{ __('Current Number of Stocks') }} <span class="text-danger">*</span></label>
+
+                                <div class="col-md-12">
+                                    <input id="stocks" type="number" class="form-control{{ $errors->has('stocks') ? ' is-invalid' : '' }}" name="stocks" required autofocus>
+
+                                    @if ($errors->has('stocks'))
+                                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('stocks') }}</strong>
                                     </span>
                                     @endif
                                 </div>
@@ -296,6 +311,34 @@
                                     @if ($errors->has('purchase_cost'))
                                         <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('purchase_cost') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="warning_quantity" class="col-md-12 col-form-label text-md-left">{{ __('Warning Qauntity') }}</label>
+
+                                <div class="col-md-12">
+                                    <input id="warning_quantity" type="number" class="form-control{{ $errors->has('warning_quantity') ? ' is-invalid' : '' }}" name="warning_quantity" autofocus>
+
+                                    @if ($errors->has('warning_quantity'))
+                                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('warning_quantity') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="ideal_quantity" class="col-md-12 col-form-label text-md-left">{{ __('Ideal Quantity') }}</label>
+
+                                <div class="col-md-12">
+                                    <input id="ideal_quantity" type="number" class="form-control{{ $errors->has('ideal_quantity') ? ' is-invalid' : '' }}" name="ideal_quantity" autofocus>
+
+                                    @if ($errors->has('ideal_quantity'))
+                                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('ideal_quantity') }}</strong>
                                     </span>
                                     @endif
                                 </div>

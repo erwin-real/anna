@@ -48,6 +48,7 @@ class MaterialController extends Controller
             'category' => 'required',
             'unit_measurement' => 'required',
             'type' => 'required',
+            'stocks' => 'required'
         ]);
 
         $material = new Material(array(
@@ -56,7 +57,8 @@ class MaterialController extends Controller
             'supplier' => $validatedData['supplier'],
             'category' => $validatedData['category'],
             'unit_measurement' => $validatedData['unit_measurement'],
-            'type' => $validatedData['type']
+            'type' => $validatedData['type'],
+            'stocks' => $validatedData['stocks']
         ));
 
         $material->brand = $request->get('brand');
@@ -68,6 +70,8 @@ class MaterialController extends Controller
         $material->distributor_price = $request->get('distributor_price');
         $material->public_price = $request->get('public_price');
         $material->purchase_cost = $request->get('purchase_cost');
+        $material->warning_quantity = $request->get('warning_quantity');
+        $material->ideal_quantity = $request->get('ideal_quantity');
         $material->save();
 
         return redirect('/materials')
@@ -130,6 +134,8 @@ class MaterialController extends Controller
         $material->distributor_price = $request->get('distributor_price');
         $material->public_price = $request->get('public_price');
         $material->purchase_cost = $request->get('purchase_cost');
+        $material->warning_quantity = $request->get('warning_quantity');
+        $material->ideal_quantity = $request->get('ideal_quantity');
         $material->save();
 
         return redirect('/materials')

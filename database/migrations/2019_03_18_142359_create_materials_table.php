@@ -24,12 +24,15 @@ class CreateMaterialsTable extends Migration
             $table->boolean('retail')->default(0);
             $table->string('unit_measurement');
             $table->string('type');
+            $table->integer('stocks');
             $table->string('srp')->nullable();
             $table->string('discount')->nullable();
             $table->string('dealer_price')->nullable();
             $table->string('distributor_price')->nullable();
             $table->string('public_price')->nullable();
             $table->string('purchase_cost')->nullable();
+            $table->integer('warning_quantity')->nullable();
+            $table->integer('ideal_quantity')->nullable();
             $table->timestamps();
         });
     }

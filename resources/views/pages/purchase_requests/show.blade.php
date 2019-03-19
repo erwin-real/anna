@@ -76,35 +76,151 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="name" class="col-md-12 col-form-label text-md-left"><b>{{ __('Remarks') }}</b></label>
+                            <label for="name" class="col-md-12 col-form-label text-md-left"><b>{{ __('Coordinator\'s Remarks') }}</b></label>
 
                             <div class="offset-1 col-10">
                                 <span id="name">{{$purchaseRequest->remarks}}</span>
                             </div>
                         </div>
 
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                    <tr>
-                                        <th>PLU</th>
-                                        <th>Main Description</th>
-                                        <th>Qty</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    @foreach($purchaseRequest->singlePurchaseRequests as $singlePurchaseRequest)
+                        <div class="form-group row">
+                            <label for="name" class="col-md-12 col-form-label text-md-left"><b>{{ __('Materials') }}</b></label>
+
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                        <thead>
                                         <tr>
-                                            <td>{{$singlePurchaseRequest->material['plu']}}</td>
-                                            <td>{{$singlePurchaseRequest->material['main_desc']}}</td>
-                                            <td>{{$singlePurchaseRequest->quantity}}</td>
+                                            <th>PLU</th>
+                                            <th>Main Description</th>
+                                            <th>Qty</th>
                                         </tr>
-                                    @endforeach
-                                    </tbody>
-                                </table>
+                                        </thead>
+                                        <tbody>
+                                        @foreach($purchaseRequest->singlePurchaseRequests as $singlePurchaseRequest)
+                                            <tr>
+                                                <td>{{$singlePurchaseRequest->material['plu']}}</td>
+                                                <td>{{$singlePurchaseRequest->material['main_desc']}}</td>
+                                                <td>{{$singlePurchaseRequest->quantity}}</td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
+
+                        {{-- MNE --}}
+                        @if($purchaseRequest->mne != 2)
+                            <div class="form-group row">
+                                <label for="name" class="col-md-12 col-form-label text-md-left"><b>{{ __('MNE') }}</b></label>
+
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                            <thead>
+                                            <tr>
+                                                <th>Status</th>
+                                                <th>Date</th>
+                                                <th>Remarks</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td>{{ $purchaseRequest->mne == 1 ? 'Approved' : 'Reject' }}</td>
+                                                <td>{{ date('D M d, Y', strtotime($purchaseRequest->mne_date))}}</td>
+                                                <td>{{ $purchaseRequest->mne_remarks }}</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+
+                        {{-- AMG --}}
+                        @if($purchaseRequest->amg != 2)
+                            <div class="form-group row">
+                                <label for="name" class="col-md-12 col-form-label text-md-left"><b>{{ __('AMG') }}</b></label>
+
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                            <thead>
+                                            <tr>
+                                                <th>Status</th>
+                                                <th>Date</th>
+                                                <th>Remarks</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td>{{ $purchaseRequest->amg == 1 ? 'Approved' : 'Reject' }}</td>
+                                                <td>{{ date('D M d, Y', strtotime($purchaseRequest->amg_date))}}</td>
+                                                <td>{{ $purchaseRequest->amg_remarks }}</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+
+                        {{-- COO --}}
+                        @if($purchaseRequest->coo != 2)
+                            <div class="form-group row">
+                                <label for="name" class="col-md-12 col-form-label text-md-left"><b>{{ __('COO') }}</b></label>
+
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                            <thead>
+                                            <tr>
+                                                <th>Status</th>
+                                                <th>Date</th>
+                                                <th>Remarks</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td>{{ $purchaseRequest->coo == 1 ? 'Approved' : 'Reject' }}</td>
+                                                <td>{{ date('D M d, Y', strtotime($purchaseRequest->coo_date))}}</td>
+                                                <td>{{ $purchaseRequest->coo_remarks }}</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+
+                        {{-- PURCHASING --}}
+                        @if($purchaseRequest->purchasing != 2)
+                            <div class="form-group row">
+                                <label for="name" class="col-md-12 col-form-label text-md-left"><b>{{ __('PURCHASING') }}</b></label>
+
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                            <thead>
+                                            <tr>
+                                                <th>Status</th>
+                                                <th>Date</th>
+                                                <th>Remarks</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td>{{ $purchaseRequest->purchasing == 1 ? 'Approved' : 'Reject' }}</td>
+                                                <td>{{ date('D M d, Y', strtotime($purchaseRequest->purchasing_date))}}</td>
+                                                <td>{{ $purchaseRequest->purchasing_remarks }}</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
 
                         <div class="form-group row">
                             <label class="col-md-12 col-form-label text-md-left"><b>{{ __('Added at') }}</b></label>
@@ -122,12 +238,54 @@
                             </div>
                         </div>
 
-                        <a href="{{ action('PurchaseRequestController@edit', $purchaseRequest->id) }}" class="btn btn-outline-info float-left mr-2"><i class="fa fa-pencil-alt"></i> Edit</a>
+                        @if(Auth::user()->type != "COORDINATOR")
+                            <div class="form-group row">
+                                <label class="col-md-12 col-form-label text-md-left"><b>{{ __('Update Status') }}</b></label>
 
-                        <button class="btn btn-outline-danger" data-toggle="modal" data-target="#delUserModal">
-                            <i class="fas fa-trash fa-sm fa-fw"></i>
-                            Delete
-                        </button>
+                                <div class="col-12 text-center">
+                                    <form id="delete" method="POST" action="{{ action('PurchaseRequestController@updateStatus', $purchaseRequest->id) }}" class="m-auto">
+                                        @csrf
+                                        <input type="hidden" name="type" value="{{Auth::user()->type}}">
+                                        <div class="form-check row ml-0">
+                                            <input class="form-check-input" type="checkbox" name="status" id="status">
+                                            <label class="form-check-label" for="status">
+                                                Approve ?
+                                            </label>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="remarks" class="col-md-12 col-form-label text-md-left"><b>{{ __('Remarks') }}</b></label>
+
+                                            <div class="col-md-12">
+                                                <textarea id="remarks" type="text" class="form-control{{ $errors->has('remarks') ? ' is-invalid' : '' }}" name="remarks" autofocus></textarea>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <button type="submit" class="btn btn-outline-success"><i class="fas fa-save"></i> Submit</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                {{--<div class="offset-1 col-4">--}}
+                                    {{--<form id="delete" method="POST" action="{{ action('PurchaseRequestController@updateStatus', $purchaseRequest->id, 1) }}" class="float-left">--}}
+                                        {{--<input type="hidden" name="_method" value="PUT">--}}
+                                        {{--<input type="hidden" name="status" value="1">--}}
+                                        {{--<input type="hidden" name="_token" value="{{ csrf_token() }}">--}}
+                                        {{--<div>--}}
+                                            {{--<button type="submit" class="btn btn-outline-success"><i class="fas fa-check"></i> Approve</button>--}}
+                                        {{--</div>--}}
+                                    {{--</form>--}}
+                                {{--</div>--}}
+                            </div>
+                        @endif
+
+                        @if(Auth::user()->type == "COORDINATOR")
+                            {{--<a href="{{ action('PurchaseRequestController@edit', $purchaseRequest->id) }}" class="btn btn-outline-info float-left mr-2"><i class="fa fa-pencil-alt"></i> Edit</a>--}}
+
+                            <button class="btn btn-outline-danger" data-toggle="modal" data-target="#delUserModal">
+                                <i class="fas fa-trash fa-sm fa-fw"></i>
+                                Delete
+                            </button>
+                        @endif
                         <div class="clearfix"></div>
                     </div>
 

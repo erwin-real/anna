@@ -40,6 +40,7 @@
                                 <tr>
                                     <th>First Name</th>
                                     <th>Last Name</th>
+                                    <th>Type</th>
                                     <th>Username</th>
                                     <th>Email-address</th>
                                     <th>User Group</th>
@@ -50,6 +51,7 @@
                                     <tr>
                                         <td><a href="/users/{{$user->id}}">{{ $user->fname }}</a></td>
                                         <td>{{ $user->lname }}</td>
+                                        <td>{{ $user->type }}</td>
                                         <td>{{ $user->username }}</td>
                                         <td>{{ ($user->email == null) ? "none" : $user->email }}</td>
                                         <td>{{ $user->group }}</td>

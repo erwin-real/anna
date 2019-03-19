@@ -46,14 +46,16 @@
                                 </thead>
                                 <tbody>
                                     @foreach($purchaseRequests as $purchaseRequest)
-                                        <tr>
-                                            <td><a href="/purchaseRequests/{{$purchaseRequest->id}}">{{$purchaseRequest->pr}}</a></td>
-                                            <td>{{ $purchaseRequest->department }}</td>
-                                            <td><a href="/customers/{{$purchaseRequest->customer->id}}">{{ $purchaseRequest->customer->name }}</a></td>
-                                            <td><a href="/suppliers/{{$purchaseRequest->supplier->id}}">{{ $purchaseRequest->supplier->name }}</a></td>
-                                            <td>{{ $purchaseRequest->assistant }}</td>
-                                            <td>{{date('D M d, Y', strtotime($purchaseRequest->order_date))}}</td>
-                                        </tr>
+{{--                                        @if($purchaseRequest->mne == 2 && Auth::user()->type == 'MNE')--}}
+                                            <tr>
+                                                <td><a href="/purchaseRequests/{{$purchaseRequest->id}}">{{$purchaseRequest->pr}}</a></td>
+                                                <td>{{ $purchaseRequest->department }}</td>
+                                                <td><a href="/customers/{{$purchaseRequest->customer->id}}">{{ $purchaseRequest->customer->name }}</a></td>
+                                                <td><a href="/suppliers/{{$purchaseRequest->supplier->id}}">{{ $purchaseRequest->supplier->name }}</a></td>
+                                                <td>{{ $purchaseRequest->assistant }}</td>
+                                                <td>{{date('D M d, Y', strtotime($purchaseRequest->order_date))}}</td>
+                                            </tr>
+                                        {{--@endif--}}
                                     @endforeach
                                 </tbody>
                             </table>
