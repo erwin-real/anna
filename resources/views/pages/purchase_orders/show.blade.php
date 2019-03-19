@@ -12,7 +12,7 @@
                         <a href="/">Dashboard</a>
                     </li>
                     <li class="breadcrumb-item" aria-current="page">
-                        <a href="/purchaseRequests">Purchase Requests</a>
+                        <a href="/purchaseOrders">Purchase Orders</a>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">{{$purchaseRequest->pr}}</li>
                 </ol>
@@ -23,7 +23,7 @@
             <div class="mt-5 col-lg-7 col-sm-8">
                 <div class="card">
                     <div class="card-header ">
-                        <h5>Purchase Request's Information</h5>
+                        <h5>Purchase Order's Information</h5>
                         <div class="clearfix"></div>
                     </div>
                     <div class="card-body">
@@ -128,15 +128,28 @@
                             </div>
                         </div>
 
-                        @include('pages.purchase_requests.approval')
+                        @if(Auth::user()->type == "COORDINATOR")
+{{--                            <a href="{{ action('PurchaseRequestController@edit', $purchaseRequest->id) }}" class="btn btn-outline-info float-left mr-2"><i class="fa fa-pencil-alt"></i> Edit</a>--}}
 
-                        @if(Auth::user()->type == "COORDINATOR" && $purchaseRequest->purchasing == 2)
+                            <div class="form-group row m-auto text-center">
+                                <form id="delete" method="POST" action="{{ action('PurchaseRequestController@createRR', $purchaseRequest->id) }}" class="w-100 text-center">
+                                    <input type="hidden" name="_method" value="POST">
+                                    <input type="hidden" name="id" value="{{$purchaseRequest->id}}">
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                    <div>
+                                        <button type="submit" class="btn btn-outline-success"><i class="fas fa-check"></i> If you received the requested materials, click here to create a receiving receipt for this purchase order.</button>
+                                    </div>
+                                </form>
+                            </div>
+                        @endif
+
+                        @if(Auth::user()->type == "COORDINATOR")
                             {{--<a href="{{ action('PurchaseRequestController@edit', $purchaseRequest->id) }}" class="btn btn-outline-info float-left mr-2"><i class="fa fa-pencil-alt"></i> Edit</a>--}}
 
-                            <button class="btn btn-outline-danger" data-toggle="modal" data-target="#delUserModal">
-                                <i class="fas fa-trash fa-sm fa-fw"></i>
-                                Delete
-                            </button>
+                            {{--<button class="btn btn-outline-danger" data-toggle="modal" data-target="#delUserModal">--}}
+                                {{--<i class="fas fa-trash fa-sm fa-fw"></i>--}}
+                                {{--Delete--}}
+                            {{--</button>--}}
                         @endif
                         <div class="clearfix"></div>
                     </div>
@@ -144,7 +157,7 @@
                 </div>
 
             </div>
-            <a href="/purchaseRequests" class="btn btn-outline-primary mt-3"><i class="fas fa-chevron-left"></i> Back</a>
+            <a href="/purchaseOrders" class="btn btn-outline-primary mt-3"><i class="fas fa-chevron-left"></i> Back</a>
         </div>
     </div>
 

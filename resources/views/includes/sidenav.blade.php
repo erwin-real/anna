@@ -49,6 +49,21 @@
             <i class="fas fa-fw fa-user-tag"></i>
             <span>Purchase Requests</span></a>
     </li>
+    <li class="nav-item {{ request()->is('purchaseOrders') || request()->is('purchaseOrders/*') ? 'active' : '' }}">
+        <a class="nav-link" href="/purchaseOrders">
+            <i class="fas fa-fw fa-user-check"></i>
+            <span>Purchase Orders</span></a>
+    </li>
+    <li class="nav-item {{ request()->is('receivingReceipts') || request()->is('receivingReceipts/*') ? 'active' : '' }}">
+        <a class="nav-link" href="/receivingReceipts">
+            <i class="fas fa-fw fa-receipt"></i>
+            <span>Receiving Receipt</span></a>
+    </li>
+    <li class="nav-item {{ request()->is('encodingOuts') || request()->is('encodingOuts/*') ? 'active' : '' }}">
+        <a class="nav-link" href="/encodingOuts">
+            <i class="fas fa-fw fa-outdent"></i>
+            <span>MIR Encoding Outs</span></a>
+    </li>
     <li class="nav-item {{ request()->is('users') || request()->is('users/*') ? 'active' : '' }}">
         <a class="nav-link" href="/users">
             <i class="fas fa-fw fa-users"></i>

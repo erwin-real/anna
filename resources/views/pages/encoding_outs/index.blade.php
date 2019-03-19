@@ -5,13 +5,13 @@
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <h1 class="h2 mb-0 text-gray-800">Purchase Requests</h1>
+        <h1 class="h2 mb-0 text-gray-800">MIR Encoding Outs</h1>
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item" aria-current="page">
                     <a href="/">Dashboard</a>
                 </li>
-                <li class="breadcrumb-item active" aria-current="page">Purchase Requests</li>
+                <li class="breadcrumb-item active" aria-current="page">MIR Encoding Outs</li>
             </ol>
         </nav>
 
@@ -22,18 +22,18 @@
             <div class="container-fluid">
                 <div class="card">
                     <div class="card-header">
-                        <h5 class="float-left">Purchase Requests</h5>
+                        <h5 class="float-left">MIR Encoding Outs</h5>
                         @if(strtoupper(Auth::user()->type) == 'COORDINATOR')
-                            <a href="/purchaseRequests/create" class="btn btn-outline-primary float-right"><i class="fas fa-plus"></i> Add Purchase Request</a>
+                            <a href="/encodingOuts/create" class="btn btn-outline-primary float-right"><i class="fas fa-plus"></i> Add MIR Encoding Out</a>
                         @endif
                         <div class="clearfix"></div>
                     </div>
 
                     <div class="card-body mt-2">
-                        @if ($purchaseRequests->isEmpty())
-                            <p> There are no purchase requests yet.</p>
+                        @if ($encodingOuts->isEmpty())
+                            <p> There are no encoding outs yet.</p>
                         @else
-                            {{--{{$purchaseRequests->links()}}--}}
+                            {{--{{$encodingOuts->links()}}--}}
                             <div class="table-responsive">
                                 <table class="table table-hover">
                                     <thead>
@@ -44,17 +44,19 @@
                                         <th>Supplier</th>
                                         <th>Warehouse Assistant</th>
                                         <th>Order Date</th>
+                                        <th>Date Delivered</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($purchaseRequests as $purchaseRequest)
+                                        @foreach($encodingOuts as $encodingOut)
                                             <tr>
-                                                <td><a href="/purchaseRequests/{{$purchaseRequest->id}}">{{$purchaseRequest->pr}}</a></td>
-                                                <td>{{ $purchaseRequest->department }}</td>
-                                                <td><a href="/customers/{{$purchaseRequest->customer->id}}">{{ $purchaseRequest->customer->name }}</a></td>
-                                                <td><a href="/suppliers/{{$purchaseRequest->supplier->id}}">{{ $purchaseRequest->supplier->name }}</a></td>
-                                                <td>{{ $purchaseRequest->assistant }}</td>
-                                                <td>{{date('D M d, Y', strtotime($purchaseRequest->order_date))}}</td>
+                                                <td><a href="/encodingOuts/{{$encodingOut->id}}">{{$encodingOut->pr}}</a></td>
+                                                <td>{{ $encodingOut->department }}</td>
+                                                <td><a href="/customers/{{$encodingOut->customer->id}}">{{ $encodingOut->customer->name }}</a></td>
+                                                <td><a href="/suppliers/{{$encodingOut->supplier->id}}">{{ $encodingOut->supplier->name }}</a></td>
+                                                <td>{{ $encodingOut->assistant }}</td>
+                                                <td>{{date('D M d, Y', strtotime($encodingOut->order_date))}}</td>
+                                                <td>{{date('D M d, Y', strtotime($encodingOut->date_delivered))}}</td>
                                             </tr>
                                         @endforeach
                                     </tbody>

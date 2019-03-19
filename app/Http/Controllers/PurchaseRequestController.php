@@ -7,7 +7,9 @@ use App\Material;
 use App\PurchaseRequest;
 use App\SinglePurchaseRequest;
 use App\Supplier;
+use App\Track;
 use Carbon\Carbon;
+use function Couchbase\defaultDecoder;
 use Illuminate\Http\Request;
 
 class PurchaseRequestController extends Controller
@@ -26,7 +28,12 @@ class PurchaseRequestController extends Controller
      */
     public function index() {
         return view('pages.purchase_requests.index')
-            ->with('purchaseRequests', PurchaseRequest::all());
+            ->with('purchaseRequests',
+                PurchaseRequest::where('mne', '=', '2')
+                    ->orWhere('amg', '=', '2')
+                    ->orWhere('coo', '=', '2')
+                    ->orWhere('purchasing', '=', '2')->get()
+            );
     }
 
     /**
@@ -61,8 +68,7 @@ class PurchaseRequestController extends Controller
                 }
             }
         }
-        if ($dups) return redirect('/purchaseRequests/create')
-            ->with('error', 'Cannot create the request because it has duplicate materials!');
+        if ($dups) return redirect('/purchaseRequests/create')->with('error', 'Cannot create the request because it has duplicate materials!');
 
         $validatedData = $request->validate([
             'department' => 'required',
@@ -200,16 +206,86 @@ class PurchaseRequestController extends Controller
     }
 
     public function updateStatus($id, Request $request) {
-//        dd($id, $request);
         $purchaseRequest = PurchaseRequest::find($id);
 
         if ($request->get('type') == "MNE") {
-            $purchaseRequest->mne = $request->input('status') == 'on' ? 1 : 0;
+            $purchaseRequest->mne = $request->input('status');
             $purchaseRequest->mne_date = Carbon::now();
             $purchaseRequest->mne_remarks = $request->input('remarks');
+        } elseif ($request->get('type') == "AMG") {
+            $purchaseRequest->amg = $request->input('status');
+            $purchaseRequest->amg_date = Carbon::now();
+            $purchaseRequest->amg_remarks = $request->input('remarks');
+        } elseif ($request->get('type') == "COO") {
+            $purchaseRequest->coo = $request->input('status');
+            $purchaseRequest->coo_date = Carbon::now();
+            $purchaseRequest->coo_remarks = $request->input('remarks');
+        } elseif ($request->get('type') == "PURCHASING") {
+            $purchaseRequest->purchasing = $request->input('status');
+            $purchaseRequest->purchasing_date = Carbon::now();
+            $purchaseRequest->purchasing_remarks = $request->input('remarks');
         }
+        $purchaseRequest->save();
 
         return redirect('/purchaseRequests')
             ->with('success', 'Updated Purchase Request Successfully!');
+    }
+
+    public function purchaseOrders() {
+        $matchThese = ['mne' => 1, 'amg' => 1, 'coo' => 1, 'purchasing' => 1, 'received' => 0];
+        return view('pages.purchase_orders.index')
+            ->with('purchaseRequests', PurchaseRequest::where($matchThese)->get());
+    }
+
+    public function showPurchaseOrders($id) {
+        return view('pages.purchase_orders.show')
+            ->with('purchaseRequest', PurchaseRequest::find($id));
+    }
+
+    public function receivingReceipt() {
+        return view('pages.receiving_receipt.index')
+            ->with('purchaseRequests', PurchaseRequest::where('received', '=', '1')->get());
+    }
+
+    public function createRR(Request $request) {
+        $purchaseRequest = PurchaseRequest::find($request->input('id'));
+        if ($purchaseRequest->mne == 1 && $purchaseRequest->amg == 1 &&
+            $purchaseRequest->coo == 1 && $purchaseRequest->purchasing == 1) {
+            $purchaseRequest->received = true;
+            foreach ($purchaseRequest->singlePurchaseRequests as $singlePurchaseRequest) {
+                $material = Material::find($singlePurchaseRequest->material_id);
+
+                $track = new Track(array(
+                    'material_id' => $material->id,
+                    'previous' => $material->stocks,
+                    'user_id' => auth()->user()->id
+                ));
+
+                $material->stocks += $singlePurchaseRequest->quantity;
+                $material->save();
+
+                $track->updated = $material->stocks;
+                $track->date_modified = $material->updated_at;
+                $track->save();
+            }
+            $purchaseRequest->save();
+
+            return redirect('/receivingReceipts')
+                ->with('success', 'Created Receiving Receipt Successfully!');
+        }
+    }
+
+    public function receivingReceiptShow($id) {
+        return view('pages.receiving_receipt.show')
+            ->with('purchaseRequest', PurchaseRequest::find($id));
+    }
+
+    public function destroyRR($id) {
+        $purchaseRequest = PurchaseRequest::find($id);
+        foreach ($purchaseRequest->singlePurchaseRequests as $singlePurchaseRequest) $singlePurchaseRequest->delete();
+        $purchaseRequest->delete();
+
+        return redirect('/receivingReceipts')
+            ->with('success', 'Deleted Receiving Receipt Successfully!');
     }
 }

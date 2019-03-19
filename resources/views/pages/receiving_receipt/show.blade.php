@@ -12,7 +12,7 @@
                         <a href="/">Dashboard</a>
                     </li>
                     <li class="breadcrumb-item" aria-current="page">
-                        <a href="/purchaseRequests">Purchase Requests</a>
+                        <a href="/receivingReceipts">Receiving Receipts</a>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">{{$purchaseRequest->pr}}</li>
                 </ol>
@@ -23,7 +23,7 @@
             <div class="mt-5 col-lg-7 col-sm-8">
                 <div class="card">
                     <div class="card-header ">
-                        <h5>Purchase Request's Information</h5>
+                        <h5>Receiving Receipt's Information</h5>
                         <div class="clearfix"></div>
                     </div>
                     <div class="card-body">
@@ -121,16 +121,14 @@
                         </div>
 
                         <div class="form-group row">
-                            <label class="col-md-12 col-form-label text-md-left"><b>{{ __('Updated at') }}</b></label>
+                            <label class="col-md-12 col-form-label text-md-left"><b>{{ __('Received at') }}</b></label>
 
                             <div class="offset-1 col-10">
                                 <span>{{ date('D M d, Y', strtotime($purchaseRequest->updated_at)) }}</span>
                             </div>
                         </div>
 
-                        @include('pages.purchase_requests.approval')
-
-                        @if(Auth::user()->type == "COORDINATOR" && $purchaseRequest->purchasing == 2)
+                        @if(Auth::user()->type == "COORDINATOR")
                             {{--<a href="{{ action('PurchaseRequestController@edit', $purchaseRequest->id) }}" class="btn btn-outline-info float-left mr-2"><i class="fa fa-pencil-alt"></i> Edit</a>--}}
 
                             <button class="btn btn-outline-danger" data-toggle="modal" data-target="#delUserModal">
@@ -144,7 +142,7 @@
                 </div>
 
             </div>
-            <a href="/purchaseRequests" class="btn btn-outline-primary mt-3"><i class="fas fa-chevron-left"></i> Back</a>
+            <a href="/receivingReceipts" class="btn btn-outline-primary mt-3"><i class="fas fa-chevron-left"></i> Back</a>
         </div>
     </div>
 
@@ -152,16 +150,16 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to delete this purchase request?</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to delete this receiving receipt?</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Select "Delete" below if you are sure on deleting this purchase request.</div>
+                <div class="modal-body">Select "Delete" below if you are sure on deleting this receiving receipt.</div>
                 <div class="modal-footer">
                     <button class="btn btn-outline-secondary" type="button" data-dismiss="modal">Cancel</button>
 
-                    <form id="delete" method="POST" action="{{ action('PurchaseRequestController@destroy', $purchaseRequest->id) }}" class="float-left">
+                    <form id="delete" method="POST" action="{{ action('PurchaseRequestController@destroyRR', $purchaseRequest->id) }}" class="float-left">
                         <input type="hidden" name="_method" value="DELETE">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <div>

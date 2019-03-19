@@ -5,7 +5,7 @@
     {{-- Right Content --}}
     <div class="body-right">
         <div class="container-fluid mb-5">
-            <h1 class="h2 mb-0 text-gray-800">{{$material->name}}</h1>
+            <h1 class="h2 mb-0 text-gray-800">{{$material->plu}}</h1>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item" aria-current="page">
@@ -184,6 +184,35 @@
 
                             <div class="offset-1 col-10">
                                 <span>{{ date('D M d, Y', strtotime($material->updated_at)) }}</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="name" class="col-md-12 col-form-label text-md-left"><b>{{ __('Materials') }}</b></label>
+
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                        <thead>
+                                        <tr>
+                                            <th>Previous</th>
+                                            <th>Updated</th>
+                                            <th>Difference</th>
+                                            <th>Date</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        @foreach($tracks as $track)
+                                            <tr>
+                                                <td>{{$track->previous}}</td>
+                                                <td>{{$track->updated}}</td>
+                                                <td>{{$track->updated - $track->previous}}</td>
+                                                <td>{{ date('D M d, Y', strtotime($track->date_modified)) }}</td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
 
