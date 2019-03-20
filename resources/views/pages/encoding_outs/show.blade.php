@@ -28,6 +28,14 @@
                     </div>
                     <div class="card-body">
                         <div class="form-group row">
+                            <label for="name" class="col-md-12 col-form-label text-md-left"><b>{{ __('MIR #') }}</b></label>
+
+                            <div class="offset-1 col-10">
+                                <span id="name">{{$encodingOut->mir}}</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="name" class="col-md-12 col-form-label text-md-left"><b>{{ __('PR #') }}</b></label>
 
                             <div class="offset-1 col-10">
@@ -76,7 +84,15 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="name" class="col-md-12 col-form-label text-md-left"><b>{{ __('Coordinator\'s Remarks') }}</b></label>
+                            <label for="name" class="col-md-12 col-form-label text-md-left"><b>{{ __('Date Delivered') }}</b></label>
+
+                            <div class="offset-1 col-10">
+                                <span id="name">{{ date('D M d, Y', strtotime($encodingOut->date_delivered)) }}</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="name" class="col-md-12 col-form-label text-md-left"><b>{{ __('Remarks') }}</b></label>
 
                             <div class="offset-1 col-10">
                                 <span id="name">{{$encodingOut->remarks}}</span>
@@ -152,12 +168,12 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to delete this purchase request?</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to delete this MIR Encoding Out?</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Select "Delete" below if you are sure on deleting this purchase request.</div>
+                <div class="modal-body">Select "Delete" below if you are sure on deleting this MIR Encoding Out.</div>
                 <div class="modal-footer">
                     <button class="btn btn-outline-secondary" type="button" data-dismiss="modal">Cancel</button>
 

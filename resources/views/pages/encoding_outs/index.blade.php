@@ -38,6 +38,7 @@
                                 <table class="table table-hover">
                                     <thead>
                                     <tr>
+                                        <th>MIR #</th>
                                         <th>PR #</th>
                                         <th>Department</th>
                                         <th>Customer</th>
@@ -50,7 +51,8 @@
                                     <tbody>
                                         @foreach($encodingOuts as $encodingOut)
                                             <tr>
-                                                <td><a href="/encodingOuts/{{$encodingOut->id}}">{{$encodingOut->pr}}</a></td>
+                                                <td><a href="/encodingOuts/{{$encodingOut->id}}">{{$encodingOut->mir}}</a></td>
+                                                <td>{{ $encodingOut->pr }}</td>
                                                 <td>{{ $encodingOut->department }}</td>
                                                 <td><a href="/customers/{{$encodingOut->customer->id}}">{{ $encodingOut->customer->name }}</a></td>
                                                 <td><a href="/suppliers/{{$encodingOut->supplier->id}}">{{ $encodingOut->supplier->name }}</a></td>
