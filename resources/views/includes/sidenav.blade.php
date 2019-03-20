@@ -62,7 +62,7 @@
     <li class="nav-item {{ request()->is('encodingOuts') || request()->is('encodingOuts/*') ? 'active' : '' }}">
         <a class="nav-link" href="/encodingOuts">
             <i class="fas fa-fw fa-outdent"></i>
-            <span>MIR Encoding Outs</span></a>
+            <span>MIR Encoding Out</span></a>
     </li>
     <li class="nav-item {{ request()->is('users') || request()->is('users/*') ? 'active' : '' }}">
         <a class="nav-link" href="/users">

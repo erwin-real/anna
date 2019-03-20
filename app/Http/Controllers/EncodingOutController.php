@@ -70,7 +70,8 @@ class EncodingOutController extends Controller
             'customer' => 'required',
             'supplier' => 'required',
             'assistant' => 'required',
-            'eo' => 'required',
+            'mir' => 'required',
+            'pr' => 'required',
             'order_date' => 'required',
             'date_delivered' => 'required'
         ]);
@@ -80,7 +81,8 @@ class EncodingOutController extends Controller
             'customer_id' => $validatedData['customer'],
             'supplier_id' => $validatedData['supplier'],
             'assistant' => $validatedData['assistant'],
-            'eo' => $validatedData['eo'],
+            'mir' => $validatedData['mir'],
+            'pr' => $validatedData['pr'],
             'order_date' => $validatedData['order_date'],
             'date_delivered' => $validatedData['date_delivered']
         ));
@@ -96,6 +98,20 @@ class EncodingOutController extends Controller
             ));
 
             $singleEncodingOut->save();
+
+            $material = Material::find($singleEncodingOut->material_id);
+            $track = new Track(array(
+                'material_id' => $material->id,
+                'previous' => $material->stocks,
+                'user_id' => auth()->user()->id
+            ));
+
+            $material->stocks -= $singleEncodingOut->quantity;
+            $material->save();
+
+            $track->updated = $material->stocks;
+            $track->date_modified = $material->updated_at;
+            $track->save();
         }
 
         return redirect('/encodingOuts')

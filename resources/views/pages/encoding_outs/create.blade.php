@@ -102,14 +102,28 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="eo" class="col-md-12 col-form-label text-md-left">{{ __('EO #') }} <span class="text-danger">*</span></label>
+                                <label for="mir" class="col-md-12 col-form-label text-md-left">{{ __('MIR #') }} <span class="text-danger">*</span></label>
 
                                 <div class="col-md-12">
-                                    <input id="eo" type="text" class="form-control{{ $errors->has('eo') ? ' is-invalid' : '' }}" name="eo" required autofocus>
+                                    <input id="mir" type="text" class="form-control{{ $errors->has('mir') ? ' is-invalid' : '' }}" name="mir" required autofocus>
 
-                                    @if ($errors->has('eo'))
+                                    @if ($errors->has('mir'))
                                         <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('eo') }}</strong>
+                                        <strong>{{ $errors->first('mir') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="pr" class="col-md-12 col-form-label text-md-left">{{ __('PR #') }} <span class="text-danger">*</span></label>
+
+                                <div class="col-md-12">
+                                    <input id="pr" type="text" class="form-control{{ $errors->has('pr') ? ' is-invalid' : '' }}" name="pr" required autofocus>
+
+                                    @if ($errors->has('pr'))
+                                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('pr') }}</strong>
                                     </span>
                                     @endif
                                 </div>
@@ -133,7 +147,7 @@
                                 <label for="date_delivered" class="col-md-12 col-form-label text-md-left">{{ __('Date Delivered') }} <span class="text-danger">*</span></label>
 
                                 <div class="col-md-12">
-                                    <input id="date_delivered" type="date" class="form-control{{ $errors->has('date_delivered') ? ' is-invalid' : '' }}" name="order_date" required autofocus>
+                                    <input id="date_delivered" type="date" class="form-control{{ $errors->has('date_delivered') ? ' is-invalid' : '' }}" name="date_delivered" required autofocus>
 
                                     @if ($errors->has('date_delivered'))
                                         <span class="invalid-feedback" role="alert">

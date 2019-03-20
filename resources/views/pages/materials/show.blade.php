@@ -187,34 +187,72 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="name" class="col-md-12 col-form-label text-md-left"><b>{{ __('Materials') }}</b></label>
+                        @if(count($tracks) > 0)
+                            <div class="form-group row">
+                                <label for="name" class="col-md-12 col-form-label text-md-left"><b>{{ __('Materials') }}</b></label>
 
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                        <thead>
-                                        <tr>
-                                            <th>Previous</th>
-                                            <th>Updated</th>
-                                            <th>Difference</th>
-                                            <th>Date</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        @foreach($tracks as $track)
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                            <thead>
                                             <tr>
-                                                <td>{{$track->previous}}</td>
-                                                <td>{{$track->updated}}</td>
-                                                <td>{{$track->updated - $track->previous}}</td>
-                                                <td>{{ date('D M d, Y', strtotime($track->date_modified)) }}</td>
+                                                <th>IN</th>
+                                                <th>OUT</th>
+                                                <th>Date</th>
                                             </tr>
-                                        @endforeach
-                                        </tbody>
-                                    </table>
+                                            </thead>
+                                            <tbody>
+                                            @foreach($tracks as $track)
+                                                <tr>
+
+                                                    @if(($track->updated - $track->previous) > 0)
+                                                        <td>{{$track->updated - $track->previous}}</td>
+                                                        <td></td>
+                                                    @else
+                                                        <td></td>
+                                                        <td>{{($track->updated - $track->previous)*(-1)}}</td>
+                                                    @endif
+
+                                                    <td>{{ date('D M d, Y', strtotime($track->date_modified)) }}</td>
+                                                </tr>
+                                            @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        @endif
+
+                        {{--@if(count($tracks) > 0)--}}
+                            {{--<div class="form-group row">--}}
+                                {{--<label for="name" class="col-md-12 col-form-label text-md-left"><b>{{ __('Materials') }}</b></label>--}}
+
+                                {{--<div class="card-body">--}}
+                                    {{--<div class="table-responsive">--}}
+                                        {{--<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">--}}
+                                            {{--<thead>--}}
+                                            {{--<tr>--}}
+                                                {{--<th>Previous</th>--}}
+                                                {{--<th>Updated</th>--}}
+                                                {{--<th>Difference</th>--}}
+                                                {{--<th>Date</th>--}}
+                                            {{--</tr>--}}
+                                            {{--</thead>--}}
+                                            {{--<tbody>--}}
+                                            {{--@foreach($tracks as $track)--}}
+                                                {{--<tr>--}}
+                                                    {{--<td>{{$track->previous}}</td>--}}
+                                                    {{--<td>{{$track->updated}}</td>--}}
+                                                    {{--<td>{{$track->updated - $track->previous}}</td>--}}
+                                                    {{--<td>{{ date('D M d, Y', strtotime($track->date_modified)) }}</td>--}}
+                                                {{--</tr>--}}
+                                            {{--@endforeach--}}
+                                            {{--</tbody>--}}
+                                        {{--</table>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--@endif--}}
 
                         <a href="{{ action('MaterialController@edit', $material->id) }}" class="btn btn-outline-info float-left mr-2"><i class="fa fa-pencil-alt"></i> Edit</a>
 

@@ -19,7 +19,8 @@ class CreateEncodingOutsTable extends Migration
             $table->unsignedInteger('customer_id');
             $table->unsignedInteger('supplier_id');
             $table->string('assistant')->nullable();
-            $table->string('eo')->nullable();
+            $table->string('mir')->nullable();
+            $table->string('pr')->nullable();
             $table->timestamp('order_date')->nullable();
             $table->timestamp('date_delivered')->nullable();
             $table->string('remarks')->nullable();

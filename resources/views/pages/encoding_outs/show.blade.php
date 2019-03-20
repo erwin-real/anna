@@ -110,7 +110,7 @@
                             </div>
                         </div>
 
-                        @include('pages.purchase_requests.status')
+                        {{--@include('pages.purchase_requests.status')--}}
 
                         <div class="form-group row">
                             <label class="col-md-12 col-form-label text-md-left"><b>{{ __('Added at') }}</b></label>
@@ -128,9 +128,9 @@
                             </div>
                         </div>
 
-                        @include('pages.purchase_requests.approval')
+                        {{--@include('pages.purchase_requests.approval')--}}
 
-                        @if(Auth::user()->type == "COORDINATOR" && $encodingOut->purchasing == 2)
+                        @if(Auth::user()->type == "COORDINATOR")
                             {{--<a href="{{ action('EncodingOutController@edit', $encodingOut->id) }}" class="btn btn-outline-info float-left mr-2"><i class="fa fa-pencil-alt"></i> Edit</a>--}}
 
                             <button class="btn btn-outline-danger" data-toggle="modal" data-target="#delUserModal">
