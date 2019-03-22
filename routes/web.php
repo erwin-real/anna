@@ -51,7 +51,8 @@ Route::post('register', 'Auth\RegisterController@register');
 Route::resource('purchaseRequests', 'PurchaseRequestController');
 Route::resource('encodingOuts', 'EncodingOutController');
 Route::resource('materials', 'MaterialController');
-Route::resource('products', 'ProductController');
+Route::resource('forecasts', 'ForecastController');
+//Route::resource('products', 'ProductController');
 Route::resource('suppliers', 'SupplierController');
 Route::resource('customers', 'CustomerController');
 Route::resource('companyInfo', 'CompanyInfoController')->except([

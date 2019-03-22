@@ -43,8 +43,10 @@
                                 <div class="col-12">
                                     <div class="p-5">
                                         <div class="text-center">
-                                            <h1 class="h4 text-gray-900 mb-4">Welcome!</h1>
+                                            <h1 class="h2 text-gray-900">Welcome!</h1>
+                                            <h6 class="h5 text-gray-900 mb-4">Machineries & Equipments</h6>
                                         </div>
+                                        <hr>
 
                                         <form method="POST" action="{{ route('login') }}" aria-label="{{ __('Login') }}" class="user">
                                             @csrf
@@ -76,9 +78,9 @@
                                             <button type="submit" class="btn btn-primary btn-user btn-block">Login</button>
                                         </form>
                                         <hr>
-                                        <div class="text-center">
-                                            <a class="small" href="/register">Create an Account!</a>
-                                        </div>
+                                        {{--<div class="text-center">--}}
+                                            {{--<a class="small" href="/register">Create an Account!</a>--}}
+                                        {{--</div>--}}
                                     </div>
                                 </div>
                             </div>

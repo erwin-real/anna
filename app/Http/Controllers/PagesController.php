@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Charts\MyChart;
 use App\Customer;
 use App\Material;
 use App\PurchaseRequest;
