@@ -20,7 +20,7 @@
         <!-- Content Row -->
         <div class="row">
             <div class="container-fluid">
-            <div class="card">
+            <div class="card shadow">
                 <div class="card-header">
                     <h5 class="float-left">Products</h5>
                     <a href="/products/create" class="btn btn-outline-primary float-right"><i class="fas fa-plus"></i> Add Product</a>

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateForecastsTable extends Migration
+class CreateToolsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class CreateForecastsTable extends Migration
      */
     public function up()
     {
-        Schema::create('forecasts', function (Blueprint $table) {
+        Schema::create('tools', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ class CreateForecastsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('forecasts');
+        Schema::dropIfExists('tools');
     }
 }

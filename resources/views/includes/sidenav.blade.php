@@ -36,14 +36,14 @@
     </li>
     <li class="nav-item {{ request()->is('materials') || request()->is('materials/*') ? 'active border-left-info' : '' }}">
         <a class="nav-link" href="/materials">
-            <i class="fas fa-fw fa-puzzle-piece"></i>
+            <i class="fas fa-fw fa-tools"></i>
             <span>Materials</span></a>
     </li>
-    {{--<li class="nav-item {{ request()->is('products') || request()->is('products/*') ? 'active border-left-info' : '' }}">--}}
-        {{--<a class="nav-link" href="/products">--}}
-            {{--<i class="fas fa-fw fa-stamp"></i>--}}
-            {{--<span>Products</span></a>--}}
-    {{--</li>--}}
+    <li class="nav-item {{ request()->is('tools') || request()->is('tools/*') ? 'active border-left-info' : '' }}">
+        <a class="nav-link" href="/tools">
+            <i class="fas fa-fw fa-toolbox"></i>
+            <span>Tool Life</span></a>
+    </li>
     <li class="nav-item {{ request()->is('purchaseRequests') || request()->is('purchaseRequests/*') ? 'active border-left-info' : '' }}">
         <a class="nav-link" href="/purchaseRequests">
             <i class="fas fa-fw fa-user-tag"></i>

@@ -24,7 +24,7 @@
             @include('includes.messages')
 
             <div class="container-fluid mt-5 col-lg-6 col-sm-7">
-                <div class="card mb-4">
+                <div class="card shadow mb-4">
                     <div class="card-header">{{ __('Product\'s Information') }}</div>
 
                     <div class="card-body">

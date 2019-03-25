@@ -5,7 +5,7 @@
     {{-- Right Content --}}
     <div class="body-right">
         <div class="container-fluid mb-5">
-            <h1 class="h2 mb-0 text-gray-800">{{$encodingOut->pr}}</h1>
+            <h1 class="h2 mb-0 text-gray-800">{{$encodingOut->mir}}</h1>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item" aria-current="page">
@@ -14,14 +14,14 @@
                     <li class="breadcrumb-item" aria-current="page">
                         <a href="/encodingOuts">MIR Encoding Outs</a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">{{$encodingOut->pr}}</li>
+                    <li class="breadcrumb-item active" aria-current="page">{{$encodingOut->mir}}</li>
                 </ol>
             </nav>
 
             @include('includes.messages')
 
             <div class="mt-5 col-lg-7 col-sm-8">
-                <div class="card">
+                <div class="card shadow">
                     <div class="card-header ">
                         <h5>MIR Encoding Out's Information</h5>
                         <div class="clearfix"></div>

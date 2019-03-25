@@ -21,7 +21,7 @@
             @include('includes.messages')
 
             <div class="mt-5 col-lg-7 col-sm-8">
-                <div class="card">
+                <div class="card shadow">
                     <div class="card-header ">
                         <h5>Supplier's Information</h5>
                         <div class="clearfix"></div>

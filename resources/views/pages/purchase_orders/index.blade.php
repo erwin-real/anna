@@ -20,7 +20,7 @@
         <!-- Content Row -->
         <div class="row">
             <div class="container-fluid">
-                <div class="card">
+                <div class="card shadow">
                     <div class="card-header">
                         <h5 class="float-left">Purchase Orders</h5>
                         @if(strtoupper(Auth::user()->type) == 'COORDINATOR')

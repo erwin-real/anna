@@ -20,7 +20,7 @@
         <!-- Content Row -->
         <div class="row">
             <div class="container-fluid">
-            <div class="card">
+            <div class="card shadow">
                 <div class="card-header">
                     <h5 class="float-left">Forecasts</h5>
                     <a href="/forecasts/create" class="btn btn-outline-primary float-right"><i class="fas fa-plus"></i> Add Forecast</a>
@@ -59,9 +59,9 @@
                     @endif
                 </div>
 
-                <div class="card-body mt-2">
-                    {!! $chart->container() !!}
-                </div>
+                {{--<div class="card-body mt-2">--}}
+                    {{--{!! $chart->container() !!}--}}
+                {{--</div>--}}
             </div>
 
         </div>
@@ -72,8 +72,8 @@
 
 @endsection
 
-<script src="/js/vue.js"></script>
-<script src="/js/echarts-en.min.js"></script>
-{!! $chart->script() !!}
+{{--<script src="/js/vue.js"></script>--}}
+{{--<script src="/js/echarts-en.min.js"></script>--}}
+{{--{!! $chart->script() !!}--}}
 
-<script src="/js/highcharts.js"></script>
+{{--<script src="/js/highcharts.js"></script>--}}

@@ -20,8 +20,8 @@
 
             @include('includes.messages')
 
-            <div class="container-fluid mt-5 col-lg-6 col-sm-7">
-                <div class="card mb-4">
+            <div class="container-fluid mt-5 col-lg-8 col-sm-10">
+                <div class="card shadow mb-4">
                     <div class="card-header">{{ __('Forecast\'s Information') }}</div>
 
                     <div class="card-body">
@@ -30,128 +30,91 @@
                             @csrf
 
                             <div class="form-group row">
-                                <label for="name" class="col-md-12 col-form-label text-md-left">{{ __('Forecast Name') }} <span class="text-danger">*</span></label>
+                                <label for="item" class="col-md-12 col-form-label text-md-left">{{ __('Item') }} <span class="text-danger">*</span></label>
 
-                                <div class="col-md-12">
-                                    <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" required autofocus>
+                                <div class="col-md-9">
+                                    <input id="item" type="text" class="form-control{{ $errors->has('item') ? ' is-invalid' : '' }}" name="item" required autofocus>
 
-                                    @if ($errors->has('name'))
+                                    @if ($errors->has('item'))
                                         <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('name') }}</strong>
+                                        <strong>{{ $errors->first('item') }}</strong>
                                     </span>
                                     @endif
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                <label for="person" class="col-md-12 col-form-label text-md-left">{{ __('Contact Person') }}</label>
-
-                                <div class="col-md-12">
-                                    <input id="person" type="text" class="form-control{{ $errors->has('person') ? ' is-invalid' : '' }}" name="person" autofocus>
-
-                                    @if ($errors->has('person'))
-                                        <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('person') }}</strong>
-                                    </span>
-                                    @endif
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                        <thead>
+                                        <tr>
+                                            <th>Year</th>
+                                            <th>Quarter</th>
+                                            <th>Demand <span class="text-danger">*</span></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <select class="form-control" id="year" name="year" required onchange="updateYear(this)">
+                                                        <option value="2015">2015</option>
+                                                        <option value="2016">2016</option>
+                                                        <option value="2017">2017</option>
+                                                        <option value="2018">2018</option>
+                                                        <option value="2019">2019</option>
+                                                        <option value="2020">2020</option>
+                                                        <option value="2021">2021</option>
+                                                        <option value="2022">2022</option>
+                                                        <option value="2023">2023</option>
+                                                        <option value="2024">2024</option>
+                                                        <option value="2025">2025</option>
+                                                        <option value="2026">2026</option>
+                                                        <option value="2027">2027</option>
+                                                        <option value="2028">2028</option>
+                                                        <option value="2029">2029</option>
+                                                        <option value="2030">2030</option>
+                                                        <option value="2031">2031</option>
+                                                        <option value="2032">2032</option>
+                                                        <option value="2033">2033</option>
+                                                        <option value="2034">2034</option>
+                                                        <option value="2035">2035</option>
+                                                        <option value="2036">2036</option>
+                                                    </select>
+                                                </td>
+                                                <td>1</td>
+                                                <td><input class="form-control" type="number" id="demand" name="demand[]" required/></td>
+                                            </tr>
+                                            @php
+                                                for ($i = 0; $i < 3; $i++) {
+                                                    for ($j = 0; $j < 4; $j++) {
+                                                        if ($i == 0 && $j <= 2) {
+                                                            echo
+                                                            '<tr>
+                                                                <td>'. (2015+$i) .'</td>
+                                                                <td>'. ($j+2) .'</td>
+                                                                <td><input class="form-control" type="number" id="demand" name="demand[]" required/></td>
+                                                            </tr>';
+                                                        } elseif ($i == 0 && $j==3) break;
+                                                        else {
+                                                            echo
+                                                            '<tr>
+                                                                <td>'. (2015+$i) .'</td>
+                                                                <td>'. ($j+1) .'</td>
+                                                                <td><input class="form-control" type="number" id="demand" name="demand[]" required/></td>
+                                                            </tr>';
+                                                        }
+                                                    }
+                                                }
+                                            @endphp
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
-
-                            <div class="form-group row">
-                                <label for="address" class="col-md-12 col-form-label text-md-left">{{ __('Address') }} <span class="text-danger">*</span></label>
-
-                                <div class="col-md-12">
-                                    <input id="address" type="text" class="form-control{{ $errors->has('address') ? ' is-invalid' : '' }}" name="address" required autofocus>
-
-                                    @if ($errors->has('address'))
-                                        <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('address') }}</strong>
-                                    </span>
-                                    @endif
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="email" class="col-md-12 col-form-label text-md-left">{{ __('Email Address') }}</label>
-
-                                <div class="col-md-12">
-                                    <input id="email" type="text" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email">
-
-                                    @if ($errors->has('email'))
-                                        <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                    @endif
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="contact" class="col-md-12 col-form-label text-md-left">{{ __('Contact No.') }}</label>
-
-                                <div class="col-md-12">
-                                    <input id="contact" type="number" class="form-control{{ $errors->has('contact') ? ' is-invalid' : '' }}" name="contact">
-
-                                    @if ($errors->has('contact'))
-                                        <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('contact') }}</strong>
-                                    </span>
-                                    @endif
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="tin" class="col-md-12 col-form-label text-md-left">{{ __('TIN #') }}</label>
-
-                                <div class="col-md-12">
-                                    <input id="tin" type="number" class="form-control {{ $errors->has('tin') ? ' is-invalid' : '' }}" name="tin">
-
-                                    @if ($errors->has('tin'))
-                                        <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('tin') }}</strong>
-                                    </span>
-                                    @endif
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="type" class="col-md-12 col-form-label text-md-left">{{ __('Forecast Type') }}</label>
-
-                                <div class="col-md-12">
-                                    <select id="type" name="type" class="form-control" autofocus>
-                                        <option value="Walk-in">Walk-in</option>
-                                        <option value="Web Form">Web Form</option>
-                                        <option value="Phone Call">Phone Call</option>
-                                        <option value="Viber">Viber</option>
-                                    </select>
-
-                                    @if ($errors->has('type'))
-                                        <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('type') }}</strong>
-                                    </span>
-                                    @endif
-                                </div>
-                            </div>
-
-                            <div class="custom-file">
-                                <label for="cover_image" class="col-md-12 col-form-label pl-0 text-md-left">{{ __('Photo') }}</label>
-
-                                <div class="col-md-12">
-                                    <input id="cover_image" type="file" class="custom-file-input {{ $errors->has('cover_image') ? ' is-invalid' : '' }}" name="cover_image" autofocus>
-                                    <label class="custom-file-label" for="cover_image">Choose file...</label>
-
-                                    @if ($errors->has('cover_image'))
-                                        <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('cover_image') }}</strong>
-                                    </span>
-                                    @endif
-                                </div>
-                            </div>
-
 
                             <div class="form-group row mb-0 mt-5 text-center">
                                 <div class="col-md-12">
                                     <button type="submit" class="btn btn-outline-primary">
-                                        <i class="fa fa-check"></i> {{ __('Save') }}
+                                        <i class="fa fa-check"></i> {{ __('Submit') }}
                                     </button>
                                 </div>
                             </div>
@@ -165,9 +128,17 @@
 
     <script>
         // Add the following code if you want the name of the file appear on select
-        $(".custom-file-input").on("change", function() {
-            var fileName = $(this).val().split("\\").pop();
-            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-        });
+
+        function updateYear(r) {
+            // document.getElementById('submit').disabled = false;
+            // for (let i = 0; i < years.length; i++) {
+            //     if (years[i] === r.value) document.getElementById('submit').disabled = true;
+            // }
+
+            let node = r.parentNode.parentNode.parentNode.children;
+            for (let i = 1; i < 4; i++) node[i].children[0].innerText = r.value;
+            for (let i = 4; i < 8; i++) node[i].children[0].innerText = parseInt(r.value) + 1;
+            for (let i = 8; i < 12; i++) node[i].children[0].innerText = parseInt(r.value) + 2;
+        }
     </script>
 @endsection

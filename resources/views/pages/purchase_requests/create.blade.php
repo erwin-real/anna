@@ -21,7 +21,7 @@
             @include('includes.messages')
 
             <div class="container-fluid mt-5 col-sm-12 col-lg-10 col-xl-7">
-                <div class="card mb-4">
+                <div class="card shadow mb-4">
                     <div class="card-header">{{ __('Purchase Request\'s Information') }}</div>
 
                     <div class="card-body">
@@ -235,9 +235,7 @@
             document.getElementById("materialsTable").deleteRow(i);
         }
 
-        function check() {
-            return document.getElementById("materialsBody").children.length > 0;
-        }
+        function check() { return document.getElementById("materialsBody").children.length > 0; }
 
     </script>
 @endsection

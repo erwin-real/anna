@@ -24,7 +24,7 @@
             @include('includes.messages')
 
             <div class="container-fluid mt-5 col-sm-12 col-lg-10 col-xl-7">
-                <div class="card mb-4">
+                <div class="card shadow mb-4">
                     <div class="card-header">{{ __('MIR Encoding Out\'s Information') }}</div>
 
                     <div class="card-body">
