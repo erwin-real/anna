@@ -34,6 +34,7 @@ Route::get('/receivingReceipts', 'PurchaseRequestController@receivingReceipt');
 Route::post('/receivingReceipts','PurchaseRequestController@createRR');
 Route::get('/receivingReceipts/{id}', 'PurchaseRequestController@receivingReceiptShow');
 Route::delete('/receivingReceipts/{id}','PurchaseRequestController@destroyRR');
+Route::get('/purchaseSummary', 'PurchaseRequestController@purchaseSummary');
 
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');

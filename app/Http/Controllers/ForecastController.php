@@ -48,14 +48,13 @@ class ForecastController extends Controller
             'year' => 'required',
             'demand' => 'required'
         ]);
-//        dd($validatedData);
 
         $forecast = new Forecast(array(
             'item' => $validatedData['item'],
             'year' => $validatedData['year']
         ));
 
-//        $forecast->save();
+        $forecast->save();
         $count = 0;
 
         for ($i = 0; $i < 3; $i++) {
@@ -67,16 +66,16 @@ class ForecastController extends Controller
                     'demand' => $validatedData['demand'][$count]
                 ));
                 $count++;
-//                $singleForecast->save();
-//                echo ($validatedData['year']+$i).'<br>';
+                $singleForecast->save();
             }
         }
 
-        $chart = $this->createChart( $validatedData['demand']);
+        $data = $this->createChart($validatedData['demand'], $validatedData['year']);
 
         return redirect('/forecasts/'.$forecast->id)
             ->with('success', 'Added New Forecast for '. $validatedData['item'] .' Successfully!')
-            ->with('forecast', Forecast::find($forecast->id));
+            ->with('forecast', Forecast::find($forecast->id))
+            ->with('chart', $data['chart']);
     }
 
     /**
@@ -86,7 +85,18 @@ class ForecastController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id) {
-        return view('pages.forecasts.show')->with('forecast', Forecast::find($id));
+        $forecast = Forecast::find($id);
+        $demands = collect();
+        foreach ($forecast->singleForecasts as $singleForecast) $demands->push($singleForecast->demand);
+
+        $data = $this->createChart($demands, $forecast->year);
+
+        return view('pages.forecasts.show')
+            ->with('forecast', $forecast)
+            ->with('chart', $data['chart'])
+            ->with('forecastsFinal', $data['forecasts'])
+            ->with('CMAFinal', $data['CMAFinal'])
+            ->with('demandsFinal', $data['demandsFinal']);
     }
 
     /**
@@ -108,37 +118,39 @@ class ForecastController extends Controller
      */
     public function update(Request $request, $id) {
         $validatedData = $request->validate([
-            'name' => 'required',
-            'address' => 'required',
-            'cover_image' => 'image|nullable|max:1999'
+            'item' => 'required',
+            'year' => 'required',
+            'demand' => 'required'
         ]);
 
         $forecast = Forecast::find($id);
-
-        //Handle File Upload
-        if ($request->hasFile('cover_image')) {
-            $filenameWithExt = $request->file('cover_image')->getClientOriginalName();
-            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-            $extension = $request->file('cover_image')->getClientOriginalExtension();
-            $fileNameToStore = $filename .'_'.time().'.'.$extension;
-            $path = $request->file('cover_image')->storeAs('public/forecast', $fileNameToStore);
-            $forecast->image = $fileNameToStore;
-        }
-
-        $forecast->name = $validatedData['name'];
-        $forecast->address = $validatedData['address'];
-        $forecast->email = $request->input('email');
-        $forecast->person = $request->input('person');
-        $forecast->email = $request->input('email');
-        $forecast->contact = $request->input('contact');
-        $forecast->tin = $request->input('tin');
-        $forecast->type = $request->input('type');
-
+        $forecast->item = $validatedData['item'];
+        $forecast->year = $validatedData['year'];
         $forecast->save();
 
-        return redirect('/forecasts')
-            ->with('success', 'Updated Forecast '. $validatedData['name'] .' Successfully!')
-            ->with('forecasts', Forecast::orderBy('updated_at', 'desc')->paginate(20));
+        foreach ($forecast->singleForecasts as $singleForecast) $singleForecast->delete();
+
+        $count = 0;
+
+        for ($i = 0; $i < 3; $i++) {
+            for ($j = 0; $j < 4; $j++) {
+                $singleForecast = new SingleForecast(array(
+                    'forecast_id' => $forecast->id,
+                    'year' => ($validatedData['year']+$i),
+                    'quarter' => $j+1,
+                    'demand' => $validatedData['demand'][$count]
+                ));
+                $count++;
+                $singleForecast->save();
+            }
+        }
+
+        $data = $this->createChart($validatedData['demand'], $validatedData['year']);
+
+        return redirect('/forecasts/'.$forecast->id)
+            ->with('success', 'Updated Forecast for '. $validatedData['item'] .' Successfully!')
+            ->with('forecast', Forecast::find($forecast->id))
+            ->with('chart', $data['chart']);
     }
 
     /**
@@ -149,38 +161,53 @@ class ForecastController extends Controller
      */
     public function destroy($id) {
         $forecast = Forecast::find($id);
+        foreach ($forecast->singleForecasts as $singleForecast) $singleForecast->delete();
         $forecast->delete();
 
         return redirect('/forecasts')
             ->with('success', 'Deleted Forecast Successfully!');
     }
 
-    public function createChart($demands) {
+    public function createChart($demands, $year) {
         $data = $this->calculate($demands);
 
+        $dates = collect();
+        for ($i = 0; $i < 4; $i++) {
+            for ($j = 1; $j <= 4; $j++) $dates->push($j.'Q '.($year+$i));
+        }
+
         $chart = new MyChart;
-        $chart->labels([1,2,3,4]);
-        $chart->dataset('Total', 'line', [3,1,5,2])->options(['color' => '#3490dc',]);
-        $chart->dataset('Capital', 'line', [7,2,5,3])->options(['color' => '#6c757d',]);
-        $chart->dataset('Income', 'line', [4,1,7,5])->options(['color' => '#38c172',]);
+        $chart->labels($dates->toArray());
+        $chart->dataset('Forecast', 'line', $data['forecasts']->toArray())->options(['color' => '#38c172',]);
+        $chart->dataset('Center Moving Average (4-Period)', 'line', $data['CMAFinal']->toArray())->options(['color' => '#e74a3b ',]);
+        $chart->dataset('Demand', 'line', $data['demandsFinal']->toArray())->options(['color' => '#3490dc',]);
 
-    //        $chart = new MyChart;
-    //        $chart->labels(array_slice($data['dates']->toArray(), -7));
-    //        $chart->dataset('Total', 'line', array_slice($data['totals']->toArray(), -7))->options(['color' => '#3490dc',]);
-    //        $chart->dataset('Capital', 'line', array_slice($data['capitals']->toArray(), -7))->options(['color' => '#6c757d',]);
-    //        $chart->dataset('Income', 'line', array_slice($data['incomes']->toArray(), -7))->options(['color' => '#38c172',]);
-
-        return $chart;
+        return array(
+            'chart' => $chart,
+            'forecasts' => $data['forecasts'],
+            'CMAFinal' => $data['CMAFinal'],
+            'demandsFinal' => $data['demandsFinal']
+        );
     }
 
     public function calculate($demands) {
         $MA = collect();
         $CMA = collect();
         $SI = collect();
-        $S = collect();
+        $St = collect();
         $deseasonalize = collect();
-        $T = collect();
-        $forecast = collect();
+
+        $xy = collect();
+        $xTotal = 0;
+        $yTotal = 0;
+        $xyTotal = 0;
+        $x2Total = 0;
+
+        $Tt = collect();
+        $forecasts = collect();
+
+        $CMAFinal = collect();
+        $demandsFinal = collect();
 
         for ($i = 0; $i < 9; $i++) $MA->push(($demands[$i] + $demands[$i+1] + $demands[$i+2] + $demands[$i+3])/4);
         for ($i = 0; $i < 8; $i++) {
@@ -188,18 +215,42 @@ class ForecastController extends Controller
             $SI->push($demands[$i+2]/$CMA[$i]);
         }
 
-        dd($SI);
+        for ($i = 0; $i < 4; $i++) {
+            $St->push(($SI[2] + $SI[6])/2);
+            $St->push(($SI[3] + $SI[7])/2);
+            $St->push(($SI[0] + $SI[4])/2);
+            $St->push(($SI[1] + $SI[5])/2);
+        }
 
+        for ($i = 0; $i < 12; $i++) {
+            $deseasonalize->push($demands[$i]/$St[$i]);
+            $xTotal += ($i+1);
+            $xy->push(($deseasonalize[$i]*($i+1)));
+            $xyTotal += ($deseasonalize[$i]*($i+1));
+            $yTotal += $deseasonalize[$i];
+            $x2Total += (($i+1) * ($i+1));
+        }
+        $xBar = ($xTotal/12);
+        $yBar = ($yTotal/12);
 
+        $b = ( ($xyTotal-(12*$xBar*$yBar))/($x2Total-(12*$xBar*$xBar)) );
+        $a = ($yBar-($b*$xBar));
 
-//        $xy1->push((($demands[$i + 24]) * ($i+1)));
-//        $x2->push(($i+1)*($i+1));
-//        $xTotal += ($i+1);
-//        $y1Total += $size4Raw[$i + 24];
-//        $xBar = ($xTotal/12);
-//        $y1Bar = ($y1Total/12);
-//        $a1 = ($y1Bar-($b1*$xBar));
-//        $b1 = ( ($xy1Total-(12*$xBar*$y1Bar))/($x2Total-(12*$xBar*$xBar)) );
-//        $size4LRF->push(ceil($a1+($b1*$i)));
+        for ($i = 1; $i <= 16; $i++) $Tt->push($a + ($b * $i));
+        for ($i = 0; $i < 16; $i++) $forecasts->push(round(($St[$i] * $Tt[$i]),2));
+
+        for ($i = 0; $i < 16; $i++) {
+            if ($i < 12) $demandsFinal->push($demands[$i]);
+            else $demandsFinal->push(null);
+
+            if ($i >= 2 && $i <= 9) $CMAFinal->push(round($CMA[($i-2)], 2));
+            else $CMAFinal->push(null);
+        }
+
+        return array(
+            'forecasts' => $forecasts,
+            'CMAFinal' => $CMAFinal,
+            'demandsFinal' => $demandsFinal
+        );
     }
 }

@@ -65,7 +65,7 @@
                             <label class="col-md-12 col-form-label text-md-left"><b>{{ __('Added at') }}</b></label>
 
                             <div class="offset-1 col-10">
-                                <span>{{ date('D M d, Y', strtotime($tool->created_at)) }}</span>
+                                <span>{{ date('D M d, Y h:i a', strtotime($tool->created_at)) }}</span>
                             </div>
                         </div>
 
@@ -73,7 +73,7 @@
                             <label class="col-md-12 col-form-label text-md-left"><b>{{ __('Updated at') }}</b></label>
 
                             <div class="offset-1 col-10">
-                                <span>{{ date('D M d, Y', strtotime($tool->updated_at)) }}</span>
+                                <span>{{ date('D M d, Y h:i a', strtotime($tool->updated_at)) }}</span>
                             </div>
                         </div>
 

@@ -163,8 +163,8 @@
                                 @for ($i = 0; ($i < 5 && $i < count($suppliers)); $i++)
                                     <tr>
                                         <td>{{$suppliers[$i]->name}}</td>
-                                        <td>{{$customers[$i]->contact}}</td>
-                                        <td>{{$customers[$i]->email}}</td>
+                                        <td>{{$suppliers[$i]->person}}</td>
+                                        <td>{{$suppliers[$i]->email}}</td>
                                     </tr>
                                 @endfor
                                 </tbody>

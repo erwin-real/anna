@@ -5,7 +5,7 @@
     {{-- Right Content --}}
     <div class="body-right">
         <div class="container-fluid mb-5">
-            <h1 class="h2 mb-0 text-gray-800">{{$forecast->name}}</h1>
+            <h1 class="h2 mb-0 text-gray-800">{{$forecast->item}}</h1>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item" aria-current="page">
@@ -14,13 +14,13 @@
                     <li class="breadcrumb-item" aria-current="page">
                         <a href="/forecasts">Forecasts</a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">{{$forecast->name}}</li>
+                    <li class="breadcrumb-item active" aria-current="page">{{$forecast->item}} {{$forecast->year}}</li>
                 </ol>
             </nav>
 
             @include('includes.messages')
 
-            <div class="mt-5 col-lg-7 col-sm-8">
+            <div class="mt-5 col-12">
                 <div class="card shadow">
                     <div class="card-header ">
                         <h5>Forecast's Information</h5>
@@ -28,56 +28,54 @@
                     </div>
                     <div class="card-body">
 
-                        <div class="form-group row d-block text-center">
-                            <label class="col-md-12 col-form-label text-md-left"><b>{{ __('Photo') }}</b></label>
-                            <img class="h-75 w-75 rounded" src="/storage/forecast/{{$forecast->image}}" alt="">
-                        </div>
-
                         <div class="form-group row">
-                            <label class="col-md-12 col-form-label text-md-left"><b>{{ __('Contact Person') }}</b></label>
+                            <label class="col-md-12 col-form-label text-md-left"><b>{{ __('Item') }}</b></label>
 
                             <div class="offset-1 col-10">
-                                <span>{{$forecast->person}}</span>
+                                <span>{{$forecast->item}}</span>
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label class="col-md-12 col-form-label text-md-left"><b>{{ __('Address') }}</b></label>
-
-                            <div class="offset-1 col-10">
-                                <span>{{$forecast->address}}</span>
+                            <label class="col-12 text-center"><b>Time Series of {{$forecast->item}}</b></label>
+                            <div class="col-12">
+                                {!! $chart->container() !!}
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label class="col-md-12 col-form-label text-md-left"><b>{{ __('Email Address') }}</b></label>
-
-                            <div class="offset-1 col-10">
-                                <span>{{$forecast->email}}</span>
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label class="col-md-12 col-form-label text-md-left"><b>{{ __('Contact No.') }}</b></label>
-
-                            <div class="offset-1 col-10">
-                                <span>{{$forecast->contact}}</span>
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label class="col-md-12 col-form-label text-md-left"><b>{{ __('TIN #') }}</b></label>
-
-                            <div class="offset-1 col-10">
-                                <span>{{$forecast->tin}}</span>
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label class="col-md-12 col-form-label text-md-left"><b>{{ __('Forecast Type') }}</b></label>
-
-                            <div class="offset-1 col-10">
-                                <span>{{$forecast->type}}</span>
+                            <div class="col-12 table-responsive text-center">
+                                <table class="table table-hover table-bordered text-center">
+                                    <thead>
+                                        <tr>
+                                            <th>Year</th>
+                                            <th>Quarter</th>
+                                            <th>Demand</th>
+                                            <th>Center Moving Average (4-Period)</th>
+                                            <th>Forecast</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @php
+                                            $quarter = 1;
+                                            $year = $forecast->year;
+                                            for ($i = 0; $i < 16; $i++) {
+                                                echo '<tr>';
+                                                echo '<td class="p-0">'. $year . '</td>';
+                                                echo '<td class="p-0">'. $quarter .'</td>';
+                                                echo '<td class="p-0">'. $demandsFinal[$i] .'</td>';
+                                                echo '<td class="p-0">'. $CMAFinal[$i] .'</td>';
+                                                echo '<td class="p-0">'. $forecastsFinal[$i] .'</td>';
+                                                echo '</tr>';
+                                                $quarter++;
+                                                if ($quarter == 5) {
+                                                    $quarter = 1;
+                                                    $year++;
+                                                }
+                                            }
+                                        @endphp
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
 
@@ -85,7 +83,7 @@
                             <label class="col-md-12 col-form-label text-md-left"><b>{{ __('Added at') }}</b></label>
 
                             <div class="offset-1 col-10">
-                                <span>{{ date('D M d, Y', strtotime($forecast->created_at)) }}</span>
+                                <span>{{ date('D M d, Y h:i a', strtotime($forecast->created_at)) }}</span>
                             </div>
                         </div>
 
@@ -93,7 +91,7 @@
                             <label class="col-md-12 col-form-label text-md-left"><b>{{ __('Updated at') }}</b></label>
 
                             <div class="offset-1 col-10">
-                                <span>{{ date('D M d, Y', strtotime($forecast->updated_at)) }}</span>
+                                <span>{{ date('D M d, Y h:i a', strtotime($forecast->updated_at)) }}</span>
                             </div>
                         </div>
 
@@ -126,7 +124,7 @@
                 <div class="modal-footer">
                     <button class="btn btn-outline-secondary" type="button" data-dismiss="modal">Cancel</button>
 
-                    <form id="delete" method="POST" action="{{ action('ForecastController@destroy', $forecast->id) }}" class="float-left">
+                    <form id="delete" method="POST" action="{{ action('ForecastController@destroy', $forecast->id) }}" class="float-left mb-0">
                         <input type="hidden" name="_method" value="DELETE">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <div>
@@ -140,3 +138,9 @@
     </div>
 
 @endsection
+
+<script src="/js/vue.js"></script>
+<script src="/js/echarts-en.min.js"></script>
+{!! $chart->script() !!}
+
+<script src="/js/highcharts.js"></script>

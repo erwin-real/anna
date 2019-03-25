@@ -280,6 +280,11 @@ class PurchaseRequestController extends Controller
             ->with('purchaseRequest', PurchaseRequest::find($id));
     }
 
+    public function purchaseSummary() {
+        return view('pages.purchase_summary.index')
+            ->with('purchaseRequests', PurchaseRequest::all());
+    }
+
     public function destroyRR($id) {
         $purchaseRequest = PurchaseRequest::find($id);
         foreach ($purchaseRequest->singlePurchaseRequests as $singlePurchaseRequest) $singlePurchaseRequest->delete();

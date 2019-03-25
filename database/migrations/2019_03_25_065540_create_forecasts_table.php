@@ -16,7 +16,7 @@ class CreateForecastsTable extends Migration
         Schema::create('forecasts', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedInteger('year');
-            $table->unsignedInteger('item');
+            $table->string('item');
             $table->timestamps();
         });
     }

@@ -59,6 +59,11 @@
             <i class="fas fa-fw fa-receipt"></i>
             <span>Receiving Receipt</span></a>
     </li>
+    <li class="nav-item {{ request()->is('purchaseSummary') || request()->is('purchaseSummary/*') ? 'active border-left-info' : '' }}">
+        <a class="nav-link" href="/purchaseSummary">
+            <i class="fas fa-fw fa-list-ul"></i>
+            <span>Purchase Summary</span></a>
+    </li>
     <li class="nav-item {{ request()->is('encodingOuts') || request()->is('encodingOuts/*') ? 'active border-left-info' : '' }}">
         <a class="nav-link" href="/encodingOuts">
             <i class="fas fa-fw fa-outdent"></i>

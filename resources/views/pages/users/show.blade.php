@@ -40,8 +40,8 @@
                         <p> <strong>Address</strong>: {{ $user->address ? $user->address : 'none'}}</p>
                         <p> <strong>Landline</strong>: {{ $user->landline ? $user->landline : 'none'}}</p>
                         <p> <strong>Mobile No.</strong>: {{ $user->mobile ? $user->mobile : 'none'}}</p>
-                        <p> <strong>Created at</strong>: {{ date('D m-d-Y', strtotime($user->created_at)) }}</p>
-                        <p> <strong>Updated at</strong>: {{ date('D m-d-Y', strtotime($user->updated_at)) }}</p>
+                        <p> <strong>Created at</strong>: {{ date('D m-d-Y h:i a', strtotime($user->created_at)) }}</p>
+                        <p> <strong>Updated at</strong>: {{ date('D m-d-Y h:i a', strtotime($user->updated_at)) }}</p>
                         <a href="{{ action('UsersController@editUser', $user->id) }}" class="btn btn-outline-info float-left mr-2"><i class="fa fa-pencil-alt"></i> Edit</a>
 
                         @if(Auth::user()->username != $user->username)
