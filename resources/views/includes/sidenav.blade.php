@@ -39,6 +39,11 @@
             <i class="fas fa-fw fa-tools"></i>
             <span>Materials</span></a>
     </li>
+    <li class="nav-item {{ request()->is('tracks') || request()->is('tracks/*') ? 'active border-left-info' : '' }}">
+        <a class="nav-link" href="/tracks">
+            <i class="fas fa-fw fa-stamp"></i>
+            <span>Materials Inventory</span></a>
+    </li>
     <li class="nav-item {{ request()->is('tools') || request()->is('tools/*') ? 'active border-left-info' : '' }}">
         <a class="nav-link" href="/tools">
             <i class="fas fa-fw fa-toolbox"></i>

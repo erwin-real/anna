@@ -68,10 +68,10 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="name" class="col-md-12 col-form-label text-md-left"><b>{{ __('Warehouse Assistant') }}</b></label>
+                            <label for="name" class="col-md-12 col-form-label text-md-left"><b>{{ __('Coordinator') }}</b></label>
 
                             <div class="offset-1 col-10">
-                                <span id="name">{{$encodingOut->assistant}}</span>
+                                <span id="name"><a href="/users/{{$encodingOut->user->id}}">{{$encodingOut->user->fname}} {{$encodingOut->user->lname}}</a></span>
                             </div>
                         </div>
 
@@ -87,7 +87,7 @@
                             <label for="name" class="col-md-12 col-form-label text-md-left"><b>{{ __('Date Delivered') }}</b></label>
 
                             <div class="offset-1 col-10">
-                                <span id="name">{{ date('D M d, Y', strtotime($encodingOut->date_delivered)) }}</span>
+                                <span id="name">{{ ($encodingOut->date_delivered) ? date('D M d, Y', strtotime($encodingOut->date_delivered)) : 'N/A' }}</span>
                             </div>
                         </div>
 

@@ -38,6 +38,8 @@ class CreatePurchaseRequestsTable extends Migration
             $table->string('amg_remarks')->nullable();
 
             $table->boolean('received')->default(0);
+            $table->unsignedInteger('received_id')->nullable();
+            $table->timestamp('date_received')->nullable();
 
             $table->timestamps();
         });

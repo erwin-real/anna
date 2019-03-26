@@ -63,7 +63,7 @@
                             <label for="name" class="col-md-12 col-form-label text-md-left"><b>{{ __('Coordinator') }}</b></label>
 
                             <div class="offset-1 col-10">
-                                <span id="name">{{$purchaseRequest->user['name']}}</span>
+                                <span id="name">{{$purchaseRequest->user->fname}} {{$purchaseRequest->user->lname}}</span>
                             </div>
                         </div>
 
@@ -112,6 +112,16 @@
 
                         @include('pages.purchase_requests.status')
 
+                        @if($purchaseRequest->date_received)
+                            <div class="form-group row">
+                                <label class="col-md-12 col-form-label text-md-left"><b>{{ __('Date Received') }}</b></label>
+
+                                <div class="offset-1 col-10">
+                                    <span>{{ date('D M d, Y h:i a', strtotime($purchaseRequest->date_received)) }}</span>
+                                </div>
+                            </div>
+                        @endif
+
                         <div class="form-group row">
                             <label class="col-md-12 col-form-label text-md-left"><b>{{ __('Added at') }}</b></label>
 
@@ -130,7 +140,7 @@
 
                         @include('pages.purchase_requests.approval')
 
-                        @if(Auth::user()->id == $purchaseRequest->user['id'] && $purchaseRequest->amg == 2)
+                        @if(Auth::user()->id == $purchaseRequest->user->id && $purchaseRequest->amg == 2)
                             {{--<a href="{{ action('PurchaseRequestController@edit', $purchaseRequest->id) }}" class="btn btn-outline-info float-left mr-2"><i class="fa fa-pencil-alt"></i> Edit</a>--}}
 
                             <button class="btn btn-outline-danger" data-toggle="modal" data-target="#delUserModal">

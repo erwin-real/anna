@@ -42,9 +42,10 @@
                                         <th>Department</th>
                                         <th>Customer</th>
                                         <th>Supplier</th>
-                                        <th>Warehouse Assistant</th>
+                                        <th>Coordinator</th>
                                         <th>Approval</th>
                                         <th>Order Date</th>
+                                        <th>Date Created</th>
                                         <th>Date Received</th>
                                     </tr>
                                     </thead>
@@ -60,15 +61,15 @@
                                                 <td>{{ $purchaseRequest->department }}</td>
                                                 <td><a href="/customers/{{$purchaseRequest->customer->id}}">{{ $purchaseRequest->customer->name }}</a></td>
                                                 <td><a href="/suppliers/{{$purchaseRequest->supplier->id}}">{{ $purchaseRequest->supplier->name }}</a></td>
-                                                <td>{{ $purchaseRequest->assistant }}</td>
+                                                <td><a href="/users/{{$purchaseRequest->user->id}}">{{ $purchaseRequest->user->fname }} {{ $purchaseRequest->user->lname }}</a></td>
                                                 <td>
                                                     <span><i class="{{ $purchaseRequest->mne == 1 ? 'fas fa-check' : 'fas fa-times' }}"></i> MNE</span><br>
-                                                    <span><i class="{{ $purchaseRequest->amg == 1 ? 'fas fa-check' : 'fas fa-times' }}"></i> AMG</span><br>
-                                                    <span><i class="{{ $purchaseRequest->coo == 1 ? 'fas fa-check' : 'fas fa-times' }}"></i> COO</span><br>
-                                                    <span><i class="{{ $purchaseRequest->purchasing == 1 ? 'fas fa-check' : 'fas fa-times' }}"></i> Purchasing</span>
+                                                    <span><i class="{{ $purchaseRequest->warehouse == 1 ? 'fas fa-check' : 'fas fa-times' }}"></i> Warehouse</span><br>
+                                                    <span><i class="{{ $purchaseRequest->amg == 1 ? 'fas fa-check' : 'fas fa-times' }}"></i> COO</span><br>
                                                 </td>
-                                                <td>{{date('D M d, Y', strtotime($purchaseRequest->order_date))}}</td>
-                                                <td>{{ $purchaseRequest->received == 1 ? date('D M d, Y', strtotime($purchaseRequest->updated_at)) : 'N/A'}}</td>
+                                                <td>{{date('m-d-y', strtotime($purchaseRequest->order_date))}}</td>
+                                                <td>{{date('m-d-y | h:i a', strtotime($purchaseRequest->created_at))}}</td>
+                                                <td>{{ $purchaseRequest->received == 1 ? date('m-d-y | h:i a', strtotime($purchaseRequest->date_received)) : 'N/A'}}</td>
                                             </tr>
                                         @endforeach
                                     </tbody>

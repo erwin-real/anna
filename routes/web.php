@@ -36,6 +36,10 @@ Route::get('/receivingReceipts/{id}', 'PurchaseRequestController@receivingReceip
 Route::delete('/receivingReceipts/{id}','PurchaseRequestController@destroyRR');
 Route::get('/purchaseSummary', 'PurchaseRequestController@purchaseSummary');
 
+// TRACK
+Route::get('/tracks', 'PagesController@track');
+Route::delete('/tracks/{id}','PagesController@destroyTrack');
+
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');

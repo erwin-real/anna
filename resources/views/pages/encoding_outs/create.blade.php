@@ -83,23 +83,23 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row">
-                                <label for="assistant" class="col-md-12 col-form-label text-md-left">{{ __('Warehouse Assistant') }} <span class="text-danger">*</span></label>
+                            {{--<div class="form-group row">--}}
+                                {{--<label for="assistant" class="col-md-12 col-form-label text-md-left">{{ __('Warehouse Assistant') }} <span class="text-danger">*</span></label>--}}
 
-                                <div class="col-md-12">
-                                    <select id="assistant" name="assistant" class="form-control" required autofocus>
-                                        <option value="Mr. Rodrigo Gumapos">Mr. Rodrigo Gumapos</option>
-                                        <option value="Mr. Mark Francis David">Mr. Mark Francis David</option>
-                                        <option value="Mr. Ricky Torio">Mr. Ricky Torio</option>
-                                    </select>
+                                {{--<div class="col-md-12">--}}
+                                    {{--<select id="assistant" name="assistant" class="form-control" required autofocus>--}}
+                                        {{--<option value="Mr. Rodrigo Gumapos">Mr. Rodrigo Gumapos</option>--}}
+                                        {{--<option value="Mr. Mark Francis David">Mr. Mark Francis David</option>--}}
+                                        {{--<option value="Mr. Ricky Torio">Mr. Ricky Torio</option>--}}
+                                    {{--</select>--}}
 
-                                    @if ($errors->has('assistant'))
-                                        <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('assistant') }}</strong>
-                                    </span>
-                                    @endif
-                                </div>
-                            </div>
+                                    {{--@if ($errors->has('assistant'))--}}
+                                        {{--<span class="invalid-feedback" role="alert">--}}
+                                        {{--<strong>{{ $errors->first('assistant') }}</strong>--}}
+                                    {{--</span>--}}
+                                    {{--@endif--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
 
                             <div class="form-group row">
                                 <label for="mir" class="col-md-12 col-form-label text-md-left">{{ __('MIR #') }} <span class="text-danger">*</span></label>
@@ -147,7 +147,7 @@
                                 <label for="date_delivered" class="col-md-12 col-form-label text-md-left">{{ __('Date Delivered') }} <span class="text-danger">*</span></label>
 
                                 <div class="col-md-12">
-                                    <input id="date_delivered" type="date" class="form-control{{ $errors->has('date_delivered') ? ' is-invalid' : '' }}" name="date_delivered" required autofocus>
+                                    <input id="date_delivered" type="date" class="form-control{{ $errors->has('date_delivered') ? ' is-invalid' : '' }}" name="date_delivered" autofocus>
 
                                     @if ($errors->has('date_delivered'))
                                         <span class="invalid-feedback" role="alert">

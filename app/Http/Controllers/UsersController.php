@@ -61,7 +61,7 @@ class UsersController extends Controller {
             }
 
             $user->remember_token = $request->get('_token');
-            $user->type = 'coordinator';
+            $user->type = 'COORDINATOR';
             $user->group = $request->get('User_Group');
             $user->fname = $request->get('fname');
             $user->mname = $request->get('mname');
@@ -158,13 +158,13 @@ class UsersController extends Controller {
             $user->delete();
 
             return redirect('/users')
-                ->with('success', 'Deleted user ' . $user->name .' Successfully!')
+                ->with('success', 'Deleted user ' . $user->fname .' '. $user->lname .' Successfully!')
                 ->with('users', User::orderBy('updated_at', 'desc')->paginate(20));
 //        }
 //        return redirect('/')->with('error', 'You don\'t have the privilege');
     }
 
     public function isUserType($type) {
-        return (User::find(auth()->user()->id)->type == $type) ? true : false;
+        return (auth()->user()->type == $type) ? true : false;
     }
 }

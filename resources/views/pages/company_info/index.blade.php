@@ -34,7 +34,7 @@
                         @if($company_info)
                             <div class="form-group row d-block text-center">
                                 <label for="address" class="col-md-12 col-form-label text-md-left"><b>{{ __('Logo') }}</b></label>
-                                <img class="h-75 w-75 rounded" src="/storage/company/{{$company_info->image}}" alt="">
+                                <img class="img-thumbnail rounded" src="/storage/company/{{$company_info->image}}" alt="">
                             </div>
                         @endif
 

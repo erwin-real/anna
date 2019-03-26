@@ -43,7 +43,7 @@
                                         <th>Department</th>
                                         <th>Customer</th>
                                         <th>Supplier</th>
-                                        <th>Warehouse Assistant</th>
+                                        <th>Coordinator</th>
                                         <th>Order Date</th>
                                         <th>Date Delivered</th>
                                     </tr>
@@ -56,9 +56,9 @@
                                                 <td>{{ $encodingOut->department }}</td>
                                                 <td><a href="/customers/{{$encodingOut->customer->id}}">{{ $encodingOut->customer->name }}</a></td>
                                                 <td><a href="/suppliers/{{$encodingOut->supplier->id}}">{{ $encodingOut->supplier->name }}</a></td>
-                                                <td>{{ $encodingOut->assistant }}</td>
+                                                <td><a href="/users/{{$encodingOut->user->id}}">{{ $encodingOut->user->fname }} {{ $encodingOut->user->lname }}</a></td>
                                                 <td>{{date('D M d, Y', strtotime($encodingOut->order_date))}}</td>
-                                                <td>{{date('D M d, Y', strtotime($encodingOut->date_delivered))}}</td>
+                                                <td>{{date('D M d, Y | h:i a', strtotime($encodingOut->date_delivered))}}</td>
                                             </tr>
                                         @endforeach
                                     </tbody>

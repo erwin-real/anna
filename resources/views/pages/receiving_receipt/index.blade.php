@@ -42,8 +42,12 @@
                                         <th>Department</th>
                                         <th>Customer</th>
                                         <th>Supplier</th>
+                                        <th>Coordinator</th>
                                         <th>Warehouse Assistant</th>
+                                        <th>Received by</th>
+                                        <th>Date Created</th>
                                         <th>Order Date</th>
+                                        <th>Date Received</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -53,8 +57,12 @@
                                                 <td>{{ $purchaseRequest->department }}</td>
                                                 <td><a href="/customers/{{$purchaseRequest->customer->id}}">{{ $purchaseRequest->customer->name }}</a></td>
                                                 <td><a href="/suppliers/{{$purchaseRequest->supplier->id}}">{{ $purchaseRequest->supplier->name }}</a></td>
-                                                <td>{{ $purchaseRequest->assistant }}</td>
+                                                <td><a href="/users/{{$purchaseRequest->user->id}}">{{ $purchaseRequest->user->fname }} {{ $purchaseRequest->user->lname }}</a></td>
+                                                <td><a href="/users/{{$purchaseRequest->warehouse_user->id}}">{{ $purchaseRequest->warehouse_user->fname }} {{ $purchaseRequest->warehouse_user->lname }}</a></td>
+                                                <td><a href="/users/{{$purchaseRequest->received_user->id}}">{{ $purchaseRequest->received_user->fname }} {{ $purchaseRequest->received_user->lname }}</a></td>
+                                                <td>{{date('D M d, Y | h:i a', strtotime($purchaseRequest->created_at))}}</td>
                                                 <td>{{date('D M d, Y', strtotime($purchaseRequest->order_date))}}</td>
+                                                <td>{{date('D M d, Y | h:i a', strtotime($purchaseRequest->date_received))}}</td>
                                             </tr>
                                         @endforeach
                                     </tbody>

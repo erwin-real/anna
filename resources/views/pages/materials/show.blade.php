@@ -187,41 +187,41 @@
                             </div>
                         </div>
 
-                        @if(count($tracks) > 0)
-                            <div class="form-group row">
-                                <label for="name" class="col-md-12 col-form-label text-md-left"><b>{{ __('Materials') }}</b></label>
+                        {{--@if(count($tracks) > 0)--}}
+                            {{--<div class="form-group row">--}}
+                                {{--<label for="name" class="col-md-12 col-form-label text-md-left"><b>{{ __('Materials') }}</b></label>--}}
 
-                                <div class="card-body">
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                            <thead>
-                                            <tr>
-                                                <th>IN</th>
-                                                <th>OUT</th>
-                                                <th>Date</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            @foreach($tracks as $track)
-                                                <tr>
+                                {{--<div class="card-body">--}}
+                                    {{--<div class="table-responsive">--}}
+                                        {{--<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">--}}
+                                            {{--<thead>--}}
+                                            {{--<tr>--}}
+                                                {{--<th>IN</th>--}}
+                                                {{--<th>OUT</th>--}}
+                                                {{--<th>Date</th>--}}
+                                            {{--</tr>--}}
+                                            {{--</thead>--}}
+                                            {{--<tbody>--}}
+                                            {{--@foreach($tracks as $track)--}}
+                                                {{--<tr>--}}
 
-                                                    @if(($track->updated - $track->previous) > 0)
-                                                        <td>{{$track->updated - $track->previous}}</td>
-                                                        <td></td>
-                                                    @else
-                                                        <td></td>
-                                                        <td>{{($track->updated - $track->previous)*(-1)}}</td>
-                                                    @endif
+                                                    {{--@if(($track->updated - $track->previous) > 0)--}}
+                                                        {{--<td>{{$track->updated - $track->previous}}</td>--}}
+                                                        {{--<td></td>--}}
+                                                    {{--@else--}}
+                                                        {{--<td></td>--}}
+                                                        {{--<td>{{($track->updated - $track->previous)*(-1)}}</td>--}}
+                                                    {{--@endif--}}
 
-                                                    <td>{{ date('D M d, Y', strtotime($track->date_modified)) }}</td>
-                                                </tr>
-                                            @endforeach
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        @endif
+                                                    {{--<td>{{ date('D M d, Y', strtotime($track->date_modified)) }}</td>--}}
+                                                {{--</tr>--}}
+                                            {{--@endforeach--}}
+                                            {{--</tbody>--}}
+                                        {{--</table>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--@endif--}}
 
                         {{--@if(count($tracks) > 0)--}}
                             {{--<div class="form-group row">--}}

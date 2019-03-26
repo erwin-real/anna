@@ -30,7 +30,7 @@
 
                         <div class="form-group row d-block text-center">
                             <label class="col-md-12 col-form-label text-md-left"><b>{{ __('Photo') }}</b></label>
-                            <img class="h-75 w-75 rounded" src="/storage/customer/{{$customer->image}}" alt="">
+                            <img class="img-thumbnail rounded" src="/storage/customer/{{$customer->image}}" alt="">
                         </div>
 
                         <div class="form-group row">

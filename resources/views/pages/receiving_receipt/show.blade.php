@@ -113,6 +113,22 @@
                         @include('pages.purchase_requests.status')
 
                         <div class="form-group row">
+                            <label for="name" class="col-md-12 col-form-label text-md-left"><b>{{ __('Received by') }}</b></label>
+
+                            <div class="offset-1 col-10">
+                                <span id="name"><a href="/users/{{$purchaseRequest->received_user->id}}">{{$purchaseRequest->received_user->fname}} {{$purchaseRequest->received_user->lname}}</a></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-md-12 col-form-label text-md-left"><b>{{ __('Date Received') }}</b></label>
+
+                            <div class="offset-1 col-10">
+                                <span>{{ date('D M d, Y h:i a', strtotime($purchaseRequest->date_received)) }}</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label class="col-md-12 col-form-label text-md-left"><b>{{ __('Added at') }}</b></label>
 
                             <div class="offset-1 col-10">
@@ -121,7 +137,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label class="col-md-12 col-form-label text-md-left"><b>{{ __('Received at') }}</b></label>
+                            <label class="col-md-12 col-form-label text-md-left"><b>{{ __('Updated at') }}</b></label>
 
                             <div class="offset-1 col-10">
                                 <span>{{ date('D M d, Y h:i a', strtotime($purchaseRequest->updated_at)) }}</span>

@@ -69,25 +69,23 @@ class EncodingOutController extends Controller
             'department' => 'required',
             'customer' => 'required',
             'supplier' => 'required',
-            'assistant' => 'required',
             'mir' => 'required',
             'pr' => 'required',
-            'order_date' => 'required',
-            'date_delivered' => 'required'
+            'order_date' => 'required'
         ]);
 
         $encodingOut = new EncodingOut(array(
             'department' => $validatedData['department'],
             'customer_id' => $validatedData['customer'],
             'supplier_id' => $validatedData['supplier'],
-            'assistant' => $validatedData['assistant'],
+            'user_id' => auth()->user()->id,
             'mir' => $validatedData['mir'],
             'pr' => $validatedData['pr'],
-            'order_date' => $validatedData['order_date'],
-            'date_delivered' => $validatedData['date_delivered']
+            'order_date' => $validatedData['order_date']
         ));
 
         $encodingOut->remarks = $request->get('remarks');
+        $encodingOut->date_delivered = $request->get('date_delivered');
         $encodingOut->save();
 
         for ($i = 0; $i < count($request->get('materials')); $i++) {
@@ -154,14 +152,10 @@ class EncodingOutController extends Controller
         $my_arr = $request->get('materials');
         $dups = $new_arr = array();
         foreach ($my_arr as $key => $val) {
-            if (!isset($new_arr[$val])) {
-                $new_arr[$val] = $key;
-            } else {
-                if (isset($dups[$val])) {
-                    $dups[$val][] = $key;
-                } else {
-                    $dups[$val] = array($key);
-                }
+            if (!isset($new_arr[$val])) $new_arr[$val] = $key;
+            else {
+                if (isset($dups[$val])) $dups[$val][] = $key;
+                else $dups[$val] = array($key);
             }
         }
         if ($dups) return redirect('/encodingOuts/'.$id.'/edit')
@@ -171,19 +165,18 @@ class EncodingOutController extends Controller
             'department' => 'required',
             'customer' => 'required',
             'supplier' => 'required',
-            'assistant' => 'required',
             'pr' => 'required',
-            'order_date' => 'required',
-            'date_delivered' => 'required'
+            'order_date' => 'required'
         ]);
 
         $encodingOut = EncodingOut::find($id);
         $encodingOut->department = $validatedData['department'];
         $encodingOut->customer_id = $validatedData['customer'];
         $encodingOut->supplier_id = $validatedData['supplier'];
-        $encodingOut->assistant = $validatedData['assistant'];
+        $encodingOut->user_id = auth()->user()->id;
         $encodingOut->pr = $validatedData['pr'];
         $encodingOut->order_date = $validatedData['order_date'];
+        $encodingOut->date_delivered = $request->get('date_delivered');
         $encodingOut->remarks = $request->get('remarks');
         $encodingOut->save();
 

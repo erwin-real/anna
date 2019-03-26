@@ -33,19 +33,32 @@
                     @else
                         {{--{{$materials->links()}}--}}
                         <div class="table-responsive">
-                            <table class="table table-hover">
+                            <table class="table table-hover text-center">
                                 <thead>
                                 <tr>
                                     <th>PLU</th>
                                     <th>Description</th>
+                                    <th>Safety Stock</th>
+                                    <th>Reorder Level</th>
+                                    <th>Status</th>
+                                    <th>SRP</th>
+                                    <th>Quantity</th>
                                     <th>Unit</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                     @foreach($materials as $material)
-                                        <tr>
+                                        <tr class="{{($material->warning_quantity && $material->warning_quantity >= $material->stocks) ? 'bg-warning' : ''}}">
                                             <td><a href="/materials/{{$material->id}}">{{ $material->plu }}</a></td>
                                             <td>{{ $material->main_desc }}</td>
+                                            <td>{{ $material->ideal_quantity ? $material->ideal_quantity : 'none' }}</td>
+                                            <td>{{ $material->warning_quantity ? $material->warning_quantity : 'none' }}</td>
+                                            <td>
+                                                {{ ($material->warning_quantity && $material->warning_quantity >= $material->stocks)  ? 'REORDER' : '' }}
+                                                <i class="{{ ($material->warning_quantity && $material->warning_quantity < $material->stocks)  ? 'fas fa-check' : '' }}"></i>
+                                            </td>
+                                            <td>{{ $material->srp ? $material->srp : 'none' }}</td>
+                                            <td>{{ $material->stocks }}</td>
                                             <td>{{ $material->unit_measurement }}</td>
                                         </tr>
                                     @endforeach

@@ -128,7 +128,7 @@
                             </div>
                         </div>
 
-                        @if(Auth::user()->type == "COORDINATOR")
+                        @if(Auth::user()->id == $purchaseRequest->user->id || Auth::user()->id == $purchaseRequest->warehouse_user->id )
 {{--                            <a href="{{ action('PurchaseRequestController@edit', $purchaseRequest->id) }}" class="btn btn-outline-info float-left mr-2"><i class="fa fa-pencil-alt"></i> Edit</a>--}}
 
                             <div class="form-group row m-auto text-center">

@@ -31,7 +31,7 @@ class PurchaseRequestController extends Controller
             ->with('purchaseRequests',
                 PurchaseRequest::where('mne', '=', '2')
                     ->orWhere('amg', '=', '2')
-                    ->orWhere('assistant', '=', '2')->get()
+                    ->orWhere('warehouse', '=', '2')->get()
             );
     }
 
@@ -78,6 +78,7 @@ class PurchaseRequestController extends Controller
             'customer_id' => $validatedData['customer'],
             'supplier_id' => $validatedData['supplier'],
             'pr' => $validatedData['pr'],
+            'user_id' => auth()->user()->id,
             'order_date' => $validatedData['order_date']
         ));
 
@@ -199,15 +200,16 @@ class PurchaseRequestController extends Controller
     public function updateStatus($id, Request $request) {
         $purchaseRequest = PurchaseRequest::find($id);
 
-        if ($request->get('type') == "MNE") {
+        if ($request->get('type') == "MNE SUPERVISOR") {
             $purchaseRequest->mne = $request->input('status');
             $purchaseRequest->mne_date = Carbon::now();
             $purchaseRequest->mne_remarks = $request->input('remarks');
-        } elseif ($request->get('type') == "WAREHOUSE") {
+        } elseif ($request->get('type') == "WAREHOUSE ASSISTANT") {
+            $purchaseRequest->warehouse_id = auth()->user()->id;
             $purchaseRequest->warehouse = $request->input('status');
             $purchaseRequest->warehouse_date = Carbon::now();
             $purchaseRequest->warehouse_remarks = $request->input('remarks');
-        } elseif ($request->get('type') == "AMG") {
+        } elseif ($request->get('type') == "AMG SUPERVISOR") {
             $purchaseRequest->amg = $request->input('status');
             $purchaseRequest->amg_date = Carbon::now();
             $purchaseRequest->amg_remarks = $request->input('remarks');
@@ -240,6 +242,8 @@ class PurchaseRequestController extends Controller
         if ($purchaseRequest->mne == 1 && $purchaseRequest->amg == 1 &&
             $purchaseRequest->warehouse == 1) {
             $purchaseRequest->received = true;
+            $purchaseRequest->received_id = auth()->user()->id;
+            $purchaseRequest->date_received = Carbon::now();
             foreach ($purchaseRequest->singlePurchaseRequests as $singlePurchaseRequest) {
                 $material = Material::find($singlePurchaseRequest->material_id);
 

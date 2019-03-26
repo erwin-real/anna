@@ -37,14 +37,14 @@
                             <div class="table-responsive">
                                 <table class="table table-hover">
                                     <thead>
-                                    <tr>
-                                        <th>PR #</th>
-                                        <th>Department</th>
-                                        <th>Customer</th>
-                                        <th>Supplier</th>
-                                        <th>Coordinator</th>
-                                        <th>Order Date</th>
-                                    </tr>
+                                        <tr>
+                                            <th>PR #</th>
+                                            <th>Department</th>
+                                            <th>Customer</th>
+                                            <th>Supplier</th>
+                                            <th>Coordinator</th>
+                                            <th>Order Date</th>
+                                        </tr>
                                     </thead>
                                     <tbody>
                                         @foreach($purchaseRequests as $purchaseRequest)
@@ -53,8 +53,7 @@
                                                 <td>{{ $purchaseRequest->department }}</td>
                                                 <td><a href="/customers/{{$purchaseRequest->customer->id}}">{{ $purchaseRequest->customer->name }}</a></td>
                                                 <td><a href="/suppliers/{{$purchaseRequest->supplier->id}}">{{ $purchaseRequest->supplier->name }}</a></td>
-                                                {{--<td>John Doe</td>--}}
-                                                <td>{{ $purchaseRequest->user['name'] }}</td>
+                                                <td><a href="/users/{{$purchaseRequest->user->id}}">{{ $purchaseRequest->user->fname }} {{ $purchaseRequest->user->lname }}</a></td>
                                                 <td>{{date('D M d, Y', strtotime($purchaseRequest->order_date))}}</td>
                                             </tr>
                                         @endforeach

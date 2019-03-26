@@ -87,6 +87,66 @@
             </div>
         </div>
 
+        <div class="row">
+
+            <div class="col-12 col-lg-6">
+                <div class="card shadow mb-4">
+                    <!-- Card Header - Dropdown -->
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary">User's Photo</h6>
+                        <div class="dropdown no-arrow">
+                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <a href="/users/{{Auth::user()->id}}"><i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i></a>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Card Body -->
+
+                    <div class="card-body">
+
+                        <div class="form-group d-block text-center">
+                            <img class="img-thumbnail rounded" src="/storage/user/{{Auth::user()->image}}" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-6">
+                <div class="card shadow mb-4">
+                    <!-- Card Header - Dropdown -->
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary">User's Info</h6>
+                        <div class="dropdown no-arrow">
+                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <a href="/users/{{Auth::user()->id}}"><i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i></a>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Card Body -->
+
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p> <strong>Name</strong>: {{ Auth::user()->fname }} {{ Auth::user()->lname }}</p>
+                                <p> <strong>Type</strong>: {{ Auth::user()->type }}</p>
+                                <p> <strong>Email</strong>: {{ Auth::user()->email ? Auth::user()->email : 'none'}}</p>
+                                <p> <strong>User Group</strong>: {{ Auth::user()->group }}</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p> <strong>Birthday</strong>: {{ Auth::user()->birthday ? date('M d, Y', strtotime(Auth::user()->birthday)) : 'none'}}</p>
+                                <p> <strong>Address</strong>: {{ Auth::user()->address ? Auth::user()->address : 'none'}}</p>
+                                <p> <strong>Landline</strong>: {{ Auth::user()->landline ? Auth::user()->landline : 'none'}}</p>
+                                <p> <strong>Mobile No.</strong>: {{ Auth::user()->mobile ? Auth::user()->mobile : 'none'}}</p>
+                            </div>
+                            <div class="w-100 text-center">
+                            <a href="{{ action('UsersController@editUser', Auth::user()->id) }}" class="btn btn-outline-info"><i class="fa fa-pencil-alt"></i> Edit</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Content Row -->
 
         <div class="row">
