@@ -52,6 +52,7 @@
                                             <th>Quarter</th>
                                             <th>Demand</th>
                                             <th>Center Moving Average (4-Period)</th>
+                                            <th>Trend</th>
                                             <th>Forecast</th>
                                         </tr>
                                     </thead>
@@ -65,6 +66,7 @@
                                                 echo '<td class="p-0">'. $quarter .'</td>';
                                                 echo '<td class="p-0">'. $demandsFinal[$i] .'</td>';
                                                 echo '<td class="p-0">'. $CMAFinal[$i] .'</td>';
+                                                echo '<td class="p-0">'. $TtFinal[$i] .'</td>';
                                                 echo '<td class="p-0">'. $forecastsFinal[$i] .'</td>';
                                                 echo '</tr>';
                                                 $quarter++;

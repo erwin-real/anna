@@ -31,8 +31,7 @@ class PurchaseRequestController extends Controller
             ->with('purchaseRequests',
                 PurchaseRequest::where('mne', '=', '2')
                     ->orWhere('amg', '=', '2')
-                    ->orWhere('coo', '=', '2')
-                    ->orWhere('purchasing', '=', '2')->get()
+                    ->orWhere('assistant', '=', '2')->get()
             );
     }
 
@@ -58,14 +57,10 @@ class PurchaseRequestController extends Controller
         $my_arr = $request->get('materials');
         $dups = $new_arr = array();
         foreach ($my_arr as $key => $val) {
-            if (!isset($new_arr[$val])) {
-                $new_arr[$val] = $key;
-            } else {
-                if (isset($dups[$val])) {
-                    $dups[$val][] = $key;
-                } else {
-                    $dups[$val] = array($key);
-                }
+            if (!isset($new_arr[$val])) $new_arr[$val] = $key;
+            else {
+                if (isset($dups[$val])) $dups[$val][] = $key;
+                else $dups[$val] = array($key);
             }
         }
         if ($dups) return redirect('/purchaseRequests/create')->with('error', 'Cannot create the request because it has duplicate materials!');
@@ -74,7 +69,6 @@ class PurchaseRequestController extends Controller
             'department' => 'required',
             'customer' => 'required',
             'supplier' => 'required',
-            'assistant' => 'required',
             'pr' => 'required',
             'order_date' => 'required'
         ]);
@@ -83,7 +77,6 @@ class PurchaseRequestController extends Controller
             'department' => $validatedData['department'],
             'customer_id' => $validatedData['customer'],
             'supplier_id' => $validatedData['supplier'],
-            'assistant' => $validatedData['assistant'],
             'pr' => $validatedData['pr'],
             'order_date' => $validatedData['order_date']
         ));
@@ -158,7 +151,6 @@ class PurchaseRequestController extends Controller
             'department' => 'required',
             'customer' => 'required',
             'supplier' => 'required',
-            'assistant' => 'required',
             'pr' => 'required',
             'order_date' => 'required'
         ]);
@@ -167,7 +159,6 @@ class PurchaseRequestController extends Controller
         $purchaseRequest->department = $validatedData['department'];
         $purchaseRequest->customer_id = $validatedData['customer'];
         $purchaseRequest->supplier_id = $validatedData['supplier'];
-        $purchaseRequest->assistant = $validatedData['assistant'];
         $purchaseRequest->pr = $validatedData['pr'];
         $purchaseRequest->order_date = $validatedData['order_date'];
         $purchaseRequest->remarks = $request->get('remarks');
@@ -212,19 +203,16 @@ class PurchaseRequestController extends Controller
             $purchaseRequest->mne = $request->input('status');
             $purchaseRequest->mne_date = Carbon::now();
             $purchaseRequest->mne_remarks = $request->input('remarks');
+        } elseif ($request->get('type') == "WAREHOUSE") {
+            $purchaseRequest->warehouse = $request->input('status');
+            $purchaseRequest->warehouse_date = Carbon::now();
+            $purchaseRequest->warehouse_remarks = $request->input('remarks');
         } elseif ($request->get('type') == "AMG") {
             $purchaseRequest->amg = $request->input('status');
             $purchaseRequest->amg_date = Carbon::now();
             $purchaseRequest->amg_remarks = $request->input('remarks');
-        } elseif ($request->get('type') == "COO") {
-            $purchaseRequest->coo = $request->input('status');
-            $purchaseRequest->coo_date = Carbon::now();
-            $purchaseRequest->coo_remarks = $request->input('remarks');
-        } elseif ($request->get('type') == "PURCHASING") {
-            $purchaseRequest->purchasing = $request->input('status');
-            $purchaseRequest->purchasing_date = Carbon::now();
-            $purchaseRequest->purchasing_remarks = $request->input('remarks');
         }
+
         $purchaseRequest->save();
 
         return redirect('/purchaseRequests')
@@ -232,7 +220,7 @@ class PurchaseRequestController extends Controller
     }
 
     public function purchaseOrders() {
-        $matchThese = ['mne' => 1, 'amg' => 1, 'coo' => 1, 'purchasing' => 1, 'received' => 0];
+        $matchThese = ['mne' => 1, 'amg' => 1, 'warehouse' => 1, 'received' => 0];
         return view('pages.purchase_orders.index')
             ->with('purchaseRequests', PurchaseRequest::where($matchThese)->get());
     }
@@ -250,7 +238,7 @@ class PurchaseRequestController extends Controller
     public function createRR(Request $request) {
         $purchaseRequest = PurchaseRequest::find($request->input('id'));
         if ($purchaseRequest->mne == 1 && $purchaseRequest->amg == 1 &&
-            $purchaseRequest->coo == 1 && $purchaseRequest->purchasing == 1) {
+            $purchaseRequest->warehouse == 1) {
             $purchaseRequest->received = true;
             foreach ($purchaseRequest->singlePurchaseRequests as $singlePurchaseRequest) {
                 $material = Material::find($singlePurchaseRequest->material_id);

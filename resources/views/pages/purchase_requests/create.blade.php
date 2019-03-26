@@ -84,24 +84,6 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="assistant" class="col-md-12 col-form-label text-md-left">{{ __('Warehouse Assistant') }} <span class="text-danger">*</span></label>
-
-                                <div class="col-md-12">
-                                    <select id="assistant" name="assistant" class="form-control" required autofocus>
-                                        <option value="Mr. Rodrigo Gumapos">Mr. Rodrigo Gumapos</option>
-                                        <option value="Mr. Mark Francis David">Mr. Mark Francis David</option>
-                                        <option value="Mr. Ricky Torio">Mr. Ricky Torio</option>
-                                    </select>
-
-                                    @if ($errors->has('assistant'))
-                                        <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('assistant') }}</strong>
-                                    </span>
-                                    @endif
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
                                 <label for="pr" class="col-md-12 col-form-label text-md-left">{{ __('PR #') }} <span class="text-danger">*</span></label>
 
                                 <div class="col-md-12">

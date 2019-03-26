@@ -11,14 +11,16 @@ class CreatePurchaseRequestsTable extends Migration
      *
      * @return void
      */
-    public function up()
-    {
+    public function up() {
         Schema::create('purchase_requests', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('department');
+
             $table->unsignedInteger('customer_id');
+            $table->unsignedInteger('user_id');
             $table->unsignedInteger('supplier_id');
-            $table->string('assistant')->nullable();
+            $table->unsignedInteger('warehouse_id')->nullable();
+
             $table->string('pr')->nullable();
             $table->timestamp('order_date')->nullable();
             $table->string('remarks')->nullable();
@@ -27,17 +29,13 @@ class CreatePurchaseRequestsTable extends Migration
             $table->timestamp('mne_date')->nullable();
             $table->string('mne_remarks')->nullable();
 
+            $table->tinyInteger('warehouse')->default(2);
+            $table->timestamp('warehouse_date')->nullable();
+            $table->string('warehouse_remarks')->nullable();
+
             $table->tinyInteger('amg')->default(2);
             $table->timestamp('amg_date')->nullable();
             $table->string('amg_remarks')->nullable();
-
-            $table->tinyInteger('coo')->default(2);
-            $table->timestamp('coo_date')->nullable();
-            $table->string('coo_remarks')->nullable();
-
-            $table->tinyInteger('purchasing')->default(2);
-            $table->timestamp('purchasing_date')->nullable();
-            $table->string('purchasing_remarks')->nullable();
 
             $table->boolean('received')->default(0);
 
@@ -50,8 +48,7 @@ class CreatePurchaseRequestsTable extends Migration
      *
      * @return void
      */
-    public function down()
-    {
+    public function down() {
         Schema::dropIfExists('purchase_requests');
     }
 }

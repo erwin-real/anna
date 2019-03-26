@@ -60,10 +60,10 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="name" class="col-md-12 col-form-label text-md-left"><b>{{ __('Warehouse Assistant') }}</b></label>
+                            <label for="name" class="col-md-12 col-form-label text-md-left"><b>{{ __('Coordinator') }}</b></label>
 
                             <div class="offset-1 col-10">
-                                <span id="name">{{$purchaseRequest->assistant}}</span>
+                                <span id="name">{{$purchaseRequest->user['name']}}</span>
                             </div>
                         </div>
 
@@ -130,7 +130,7 @@
 
                         @include('pages.purchase_requests.approval')
 
-                        @if(Auth::user()->type == "COORDINATOR" && $purchaseRequest->purchasing == 2)
+                        @if(Auth::user()->id == $purchaseRequest->user['id'] && $purchaseRequest->amg == 2)
                             {{--<a href="{{ action('PurchaseRequestController@edit', $purchaseRequest->id) }}" class="btn btn-outline-info float-left mr-2"><i class="fa fa-pencil-alt"></i> Edit</a>--}}
 
                             <button class="btn btn-outline-danger" data-toggle="modal" data-target="#delUserModal">

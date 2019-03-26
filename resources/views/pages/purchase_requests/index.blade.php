@@ -42,7 +42,7 @@
                                         <th>Department</th>
                                         <th>Customer</th>
                                         <th>Supplier</th>
-                                        <th>Warehouse Assistant</th>
+                                        <th>Coordinator</th>
                                         <th>Order Date</th>
                                     </tr>
                                     </thead>
@@ -53,7 +53,8 @@
                                                 <td>{{ $purchaseRequest->department }}</td>
                                                 <td><a href="/customers/{{$purchaseRequest->customer->id}}">{{ $purchaseRequest->customer->name }}</a></td>
                                                 <td><a href="/suppliers/{{$purchaseRequest->supplier->id}}">{{ $purchaseRequest->supplier->name }}</a></td>
-                                                <td>{{ $purchaseRequest->assistant }}</td>
+                                                {{--<td>John Doe</td>--}}
+                                                <td>{{ $purchaseRequest->user['name'] }}</td>
                                                 <td>{{date('D M d, Y', strtotime($purchaseRequest->order_date))}}</td>
                                             </tr>
                                         @endforeach

@@ -96,7 +96,8 @@ class ForecastController extends Controller
             ->with('chart', $data['chart'])
             ->with('forecastsFinal', $data['forecasts'])
             ->with('CMAFinal', $data['CMAFinal'])
-            ->with('demandsFinal', $data['demandsFinal']);
+            ->with('demandsFinal', $data['demandsFinal'])
+            ->with('TtFinal', $data['TtFinal']);
     }
 
     /**
@@ -178,6 +179,7 @@ class ForecastController extends Controller
 
         $chart = new MyChart;
         $chart->labels($dates->toArray());
+        $chart->dataset('Trend', 'line', $data['TtFinal']->toArray())->options(['color' => '#aaa',]);
         $chart->dataset('Forecast', 'line', $data['forecasts']->toArray())->options(['color' => '#38c172',]);
         $chart->dataset('Center Moving Average (4-Period)', 'line', $data['CMAFinal']->toArray())->options(['color' => '#e74a3b ',]);
         $chart->dataset('Demand', 'line', $data['demandsFinal']->toArray())->options(['color' => '#3490dc',]);
@@ -186,7 +188,8 @@ class ForecastController extends Controller
             'chart' => $chart,
             'forecasts' => $data['forecasts'],
             'CMAFinal' => $data['CMAFinal'],
-            'demandsFinal' => $data['demandsFinal']
+            'demandsFinal' => $data['demandsFinal'],
+            'TtFinal' => $data['TtFinal']
         );
     }
 
@@ -206,6 +209,7 @@ class ForecastController extends Controller
         $Tt = collect();
         $forecasts = collect();
 
+        $TtFinal = collect();
         $CMAFinal = collect();
         $demandsFinal = collect();
 
@@ -245,12 +249,16 @@ class ForecastController extends Controller
 
             if ($i >= 2 && $i <= 9) $CMAFinal->push(round($CMA[($i-2)], 2));
             else $CMAFinal->push(null);
+
+//            $TtFinal->push(round($Tt[$i]),2);
+            $TtFinal->push(round($Tt[$i],2));
         }
 
         return array(
             'forecasts' => $forecasts,
             'CMAFinal' => $CMAFinal,
-            'demandsFinal' => $demandsFinal
+            'demandsFinal' => $demandsFinal,
+            'TtFinal' => $TtFinal
         );
     }
 }

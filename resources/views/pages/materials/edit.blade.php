@@ -307,7 +307,7 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="warning_quantity" class="col-md-12 col-form-label text-md-left">{{ __('Warning Qauntity') }}</label>
+                                <label for="warning_quantity" class="col-md-12 col-form-label text-md-left">{{ __('Warning Quantity') }}</label>
 
                                 <div class="col-md-12">
                                     <input id="warning_quantity" type="number"
