@@ -31,7 +31,7 @@
 
                     <div class="card-body mt-2">
                         @if ($purchaseRequests->isEmpty())
-                            <p> There are no receiving receipts yet.</p>
+                            <p> There are no purchase requests yet.</p>
                         @else
                             {{--{{$purchaseRequests->links()}}--}}
                             <div class="table-responsive">
