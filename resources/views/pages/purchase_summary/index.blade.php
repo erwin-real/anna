@@ -53,8 +53,8 @@
                                         @foreach($purchaseRequests as $purchaseRequest)
                                             <tr>
                                                 <td>
-                                                    @if ($purchaseRequest->purchasing != 1) <a href="/purchaseRequests/{{$purchaseRequest->id}}">{{$purchaseRequest->pr}}</a>
-                                                    @elseif ($purchaseRequest->purchasing == 1 && $purchaseRequest->received != 1) <a href="/purchaseOrders/{{$purchaseRequest->id}}">{{$purchaseRequest->pr}}</a>
+                                                    @if ($purchaseRequest->amg != 1) <a href="/purchaseRequests/{{$purchaseRequest->id}}">{{$purchaseRequest->pr}}</a>
+                                                    @elseif ($purchaseRequest->amg == 1 && $purchaseRequest->received != 1) <a href="/purchaseOrders/{{$purchaseRequest->id}}">{{$purchaseRequest->pr}}</a>
                                                     @else <a href="/receivingReceipts/{{$purchaseRequest->id}}">{{$purchaseRequest->pr}}</a>
                                                     @endif
                                                 </td>
@@ -65,7 +65,7 @@
                                                 <td>
                                                     <span><i class="{{ $purchaseRequest->mne == 1 ? 'fas fa-check' : 'fas fa-times' }}"></i> MNE</span><br>
                                                     <span><i class="{{ $purchaseRequest->warehouse == 1 ? 'fas fa-check' : 'fas fa-times' }}"></i> Warehouse</span><br>
-                                                    <span><i class="{{ $purchaseRequest->amg == 1 ? 'fas fa-check' : 'fas fa-times' }}"></i> COO</span><br>
+                                                    <span><i class="{{ $purchaseRequest->amg == 1 ? 'fas fa-check' : 'fas fa-times' }}"></i> AMG</span><br>
                                                 </td>
                                                 <td>{{date('m-d-y', strtotime($purchaseRequest->order_date))}}</td>
                                                 <td>{{date('m-d-y | h:i a', strtotime($purchaseRequest->created_at))}}</td>
