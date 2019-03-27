@@ -179,7 +179,7 @@
                                     <tbody>
                                     @for ($i = 0; ($i < 5 && $i < count($customers)); $i++)
                                         <tr>
-                                            <td>{{$customers[$i]->name}}</td>
+                                            <td><a href="/customers/{{$customers[$i]->id}}">{{$customers[$i]->name}}</a></td>
                                             <td>{{$customers[$i]->type}}</td>
                                             <td>{{$customers[$i]->email}}</td>
                                         </tr>
@@ -222,7 +222,7 @@
                                 <tbody>
                                 @for ($i = 0; ($i < 5 && $i < count($suppliers)); $i++)
                                     <tr>
-                                        <td>{{$suppliers[$i]->name}}</td>
+                                        <td><a href="/suppliers/{{$suppliers[$i]->id}}">{{$suppliers[$i]->name}}</a></td>
                                         <td>{{$suppliers[$i]->person}}</td>
                                         <td>{{$suppliers[$i]->email}}</td>
                                     </tr>
@@ -265,7 +265,7 @@
                                     <tbody>
                                     @for ($i = 0; ($i < 5 && $i < count($materials)); $i++)
                                         <tr>
-                                            <td>{{$materials[$i]->plu}}</td>
+                                            <td><a href="/materials/{{$materials[$i]->id}}">{{$materials[$i]->plu}}</a></td>
                                             <td>{{$materials[$i]->main_desc}}</td>
                                             <td>{{$materials[$i]->unit_measurement}}</td>
                                         </tr>
@@ -302,15 +302,15 @@
                                     <tr>
                                         <th>PR #</th>
                                         <th>Department</th>
-                                        <th>Warehouse Assistant</th>
+                                        <th>Coordinator</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     @for ($i = 0; ($i < 5 && $i < count($purchaseRequests)); $i++)
                                         <tr>
-                                            <td>{{$purchaseRequests[$i]->pr}}</td>
+                                            <td><a href="/purchaseRequests/{{$purchaseRequests[$i]->id}}">{{$purchaseRequests[$i]->pr}}</a></td>
                                             <td>{{$purchaseRequests[$i]->department}}</td>
-                                            <td>{{$purchaseRequests[$i]->assistant}}</td>
+                                            <td><a href="/users/{{$purchaseRequests[$i]->user->id}}">{{$purchaseRequests[$i]->user->fname}} {{$purchaseRequests[$i]->user->lname}}</a></td>
                                         </tr>
                                     @endfor
                                     </tbody>

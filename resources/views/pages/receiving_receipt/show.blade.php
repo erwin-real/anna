@@ -63,7 +63,7 @@
                             <label for="name" class="col-md-12 col-form-label text-md-left"><b>{{ __('Warehouse Assistant') }}</b></label>
 
                             <div class="offset-1 col-10">
-                                <span id="name">{{$purchaseRequest->assistant}}</span>
+                                <span id="name"><a href="/users/{{$purchaseRequest->warehouse_user->id}}">{{$purchaseRequest->warehouse_user->fname}} {{$purchaseRequest->warehouse_user->lname}}</a></span>
                             </div>
                         </div>
 
@@ -72,6 +72,14 @@
 
                             <div class="offset-1 col-10">
                                 <span id="name">{{ date('D M d, Y', strtotime($purchaseRequest->order_date)) }}</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="name" class="col-md-12 col-form-label text-md-left"><b>{{ __('Coordinator') }}</b></label>
+
+                            <div class="offset-1 col-10">
+                                <span id="name"><a href="/users/{{$purchaseRequest->user->id}}">{{$purchaseRequest->user->fname}} {{$purchaseRequest->user->lname}}</a></span>
                             </div>
                         </div>
 
@@ -111,14 +119,6 @@
                         </div>
 
                         @include('pages.purchase_requests.status')
-
-                        <div class="form-group row">
-                            <label for="name" class="col-md-12 col-form-label text-md-left"><b>{{ __('Received by') }}</b></label>
-
-                            <div class="offset-1 col-10">
-                                <span id="name"><a href="/users/{{$purchaseRequest->received_user->id}}">{{$purchaseRequest->received_user->fname}} {{$purchaseRequest->received_user->lname}}</a></span>
-                            </div>
-                        </div>
 
                         <div class="form-group row">
                             <label class="col-md-12 col-form-label text-md-left"><b>{{ __('Date Received') }}</b></label>

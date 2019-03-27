@@ -63,7 +63,7 @@
                             <label for="name" class="col-md-12 col-form-label text-md-left"><b>{{ __('Warehouse Assistant') }}</b></label>
 
                             <div class="offset-1 col-10">
-                                <span id="name">{{$purchaseRequest->assistant}}</span>
+                                <span id="name"><a href="/users/{{$purchaseRequest->warehouse_user->id}}">{{$purchaseRequest->warehouse_user->fname}} {{$purchaseRequest->warehouse_user->lname}}</a></span>
                             </div>
                         </div>
 
@@ -72,6 +72,14 @@
 
                             <div class="offset-1 col-10">
                                 <span id="name">{{ date('D M d, Y', strtotime($purchaseRequest->order_date)) }}</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="name" class="col-md-12 col-form-label text-md-left"><b>{{ __('Coordinator') }}</b></label>
+
+                            <div class="offset-1 col-10">
+                                <span id="name"><a href="/users/{{$purchaseRequest->user->id}}">{{$purchaseRequest->user->fname}} {{$purchaseRequest->user->lname}}</a></span>
                             </div>
                         </div>
 
@@ -128,7 +136,7 @@
                             </div>
                         </div>
 
-                        @if(Auth::user()->id == $purchaseRequest->user->id || Auth::user()->id == $purchaseRequest->warehouse_user->id )
+                        @if(Auth::user()->id == $purchaseRequest->user->id)
 {{--                            <a href="{{ action('PurchaseRequestController@edit', $purchaseRequest->id) }}" class="btn btn-outline-info float-left mr-2"><i class="fa fa-pencil-alt"></i> Edit</a>--}}
 
                             <div class="form-group row m-auto text-center">
